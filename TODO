@@ -1,0 +1,1 @@
+* remove file pointers, use std::i/ofstream instead
