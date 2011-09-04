@@ -1,8 +1,9 @@
 /**
- * @file example1.cpp
+ * @file example2.cpp
  * Implements additional restarts with increasing population
  * (Auger & Hansen 2005).
  */
+
 #include <stdio.h>
 #include <string.h>
 #include <math.h>

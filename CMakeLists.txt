@@ -10,7 +10,7 @@ add_definitions(
   -Wconversion
 )
 
-include_directories(.)
+include_directories(cma-es)
 
 # doxygen, source:
 # http://permalink.gmane.org/gmane.comp.programming.tools.cmake.user/4930
@@ -34,10 +34,7 @@ add_custom_target(apidoc_forced
 )
 endif(DOXYGEN_FOUND)
 
-
-
-add_library(cmaes cmaes.cpp random.cpp timings.cpp readpara.cpp utils.cpp)
-target_link_libraries(cmaes m)
+subdirs(cma-es)
 
 add_executable(evo1 example1.cpp)
 target_link_libraries(evo1 cmaes)
