@@ -439,7 +439,7 @@ double* CMAES::updateDistribution(const double* rgFunVal)
   bool diag = sp.diagonalCov == 1 || sp.diagonalCov >= gen;
 
   if(state == UPDATED)
-    FATAL("updateDistribution(): You need to call \n",
+    FATAL("updateDistribution(): You need to call \n"
         "samplePopulation() before update can take place.");
   if(rgFunVal == NULL)
     FATAL("updateDistribution(): No fitness function value array input.");
@@ -460,8 +460,8 @@ double* CMAES::updateDistribution(const double* rgFunVal)
   if(rgFuncValue[index[0]] == rgFuncValue[index[(int) sp.lambda / 2]])
   {
     sigma *= exp(0.2 + sp.cs / sp.damps);
-    ERRORMESSAGE("Warning: sigma increased due to equal function values\n",
-            "   Reconsider the formulation of the objective function");
+    ERRORMESSAGE("Warning: sigma increased due to equal function values\n"
+        "   Reconsider the formulation of the objective function");
   }
 
   // update function value history
@@ -1116,13 +1116,13 @@ int CMAES::checkEigen(double* diag, double** Q)
       {
         sprintf(s, "%d %d: %.17e %.17e, %e",
                 i, j, cc, C[i > j ? i : j][i > j ? j : i], cc - C[i > j ? i : j][i > j ? j : i]);
-        ERRORMESSAGE("Eigen(): imprecise result detected ", s);
+        ERRORMESSAGE("Eigen(): imprecise result detected " + std::string(s));
         ++res;
       }
       if(fabs(dd - (i == j)) > 1e-10)
       {
         sprintf(s, "%d %d %.17e ", i, j, dd);
-        ERRORMESSAGE("Eigen(): imprecise result detected (Q not orthog.)", s);
+        ERRORMESSAGE("Eigen(): imprecise result detected (Q not orthog.)" + std::string(s));
         ++res;
       }
     }

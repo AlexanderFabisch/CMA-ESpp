@@ -42,34 +42,30 @@ double myhypot(double a, double b)
     return 0.0;
 }
 
-void FATAL(const std::string& s1, const std::string& s2,
-    const std::string& s3, const std::string& s4)
+void FATAL(const std::string& msg)
 {
   time_t t = time(NULL);
-  ERRORMESSAGE(s1, s2, s3, s4);
+  ERRORMESSAGE(msg);
   ERRORMESSAGE("*** Exiting CMAES ***");
-  std::cout << std::endl << " -- " << asctime(localtime(&t)) << " "
-      << s1 << s2 << s3 << s4 << std::endl
-      << " *** CMA-ES ABORTED, see errcmaes.err *** " << std::endl;
+  std::cout << std::endl << " -- " << asctime(localtime(&t)) << " " << msg
+      << std::endl << " *** CMA-ES ABORTED, see errcmaes.err *** " << std::endl;
   exit(1);
 }
 
-void ERRORMESSAGE(const std::string& s1, const std::string& s2,
-    const std::string& s3, const std::string& s4)
+void ERRORMESSAGE(const std::string& msg)
 {
   time_t t = time(NULL);
   std::ofstream file("errcmaes.err", std::ios_base::app);
   if(!file.is_open())
   {
-    std::cout << std::endl << "FATAL ERROR: " << s1 << s2 << s3 << s4
-        << std::endl << "CMAES could not open file 'errcmaes.err'."
-        << std::endl << " *** CMA-ES ABORTED *** ";
+    std::cout << std::endl << "FATAL ERROR: " << msg << std::endl
+        << "CMAES could not open file 'errcmaes.err'." << std::endl
+        << " *** CMA-ES ABORTED *** ";
     exit(1);
   }
   else
   {
-    file << std::endl << " -- " << asctime(localtime(&t)) << " " 
-        << s1 << s2 << s3 << s4;
+    file << std::endl << " -- " << asctime(localtime(&t)) << " " << msg;
     file.close();
   }
 }
