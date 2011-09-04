@@ -1,29 +1,10 @@
 #include "utils.h"
-#include <stdio.h>
 #include <string.h>
+#include <math.h>
 #include <sstream>
 #include <string>
 #include <fstream>
 #include <iostream>
-
-std::vector<std::string> split(const std::string line, char separator)
-{
-  std::vector<std::string> elements;
-  size_t last = 0;
-  size_t i;
-  for(i = 0; i < line.length(); ++i)
-  {
-    if(line[i] == separator)
-    {
-      if(i - last > 0)
-        elements.push_back(line.substr(last, i - last));
-      last = i + 1;
-    }
-  }
-  if(i - last > 0)
-    elements.push_back(line.substr(last, i - last));
-  return elements;
-}
 
 double myhypot(double a, double b)
 {

@@ -99,6 +99,67 @@
  */
 class CMAES
 {
+public:
+  /**
+   * Keys for get().
+   */
+  enum GetScalar
+  {
+    NoScalar = 0,
+    AxisRatio = 1,
+    Eval = 2, Evaluations = 2,
+    FctValue = 3, FuncValue = 3, FunValue = 3, Fitness = 3,
+    FBestEver = 4,
+    Generation = 5, Iteration = 5,
+    MaxEval = 6, MaxFunEvals = 6, StopMaxFunEvals = 6,
+    MaxGen = 7, MaxIter = 7, StopMaxIter = 7,
+    MaxAxisLength = 8,
+    MinAxisLength = 9,
+    MaxStdDev = 10,
+    MinStdDev = 11,
+    Dim = 12, Dimension = 12,
+    Lambda = 13, SampleSize = 13, PopSize = 13,
+    Sigma = 14
+  };
+
+  /**
+   * Keys for getPtr().
+   */
+  enum GetVector
+  {
+    NoVector = 0,
+    DiagC = 1,
+    DiagD = 2,
+    StdDev = 3,
+    XBestEver = 4,
+    XBest = 5,
+    XMean = 6
+  };
+
+  /**
+   * Keys for writeToFile().
+   */
+  enum WriteKey
+  {
+    WCNone = 0,
+    WKResume = 1,
+    WKXMean = 2,
+    WKC = 4,
+    WKAll = 8,
+    WKFewInfo = 16,
+    WKFew = 32,
+    WKEval = 64,
+    WKFitness = 128,
+    WKFBestEver = 256,
+    WKCGeneration = 512,
+    WKSigma = 1024,
+    WKLambda = 2048,
+    WKB = 4096,
+    WKXBest = 8192,
+    WKClock = 16384,
+    WKDim = 32768
+  };
+private:
   std::string version; //!< Implementation version.
   Random rand; //!< Random number generator.
   Parameters sp; //!< CMA-ES parameters.
@@ -211,7 +272,7 @@ class CMAES
    * is mostly fixed. If the key phrase does not match the expectation the
    * output might be strange.
    */
-  void writeToStream(std::string key, std::ostream& file);
+  void writeToStream(int key, std::ostream& file);
 
   /**
    * Reading commands e.g. from signals.par file.
@@ -219,41 +280,6 @@ class CMAES
   void readFromFilePtr(FILE *fp);
 
 public:
-  /**
-   * Keys for get().
-   */
-  enum GetScalar
-  {
-    NoScalar = 0,
-    AxisRatio = 1,
-    Eval = 2, Evaluations = 2,
-    FctValue = 3, FuncValue = 3, FunValue = 3, Fitness = 3,
-    FBestEver = 4,
-    Generation = 5, Iteration = 5,
-    MaxEval = 6, MaxFunEvals = 6, StopMaxFunEvals = 6,
-    MaxGen = 7, MaxIter = 7, StopMaxIter = 7,
-    MaxAxisLength = 8,
-    MinAxisLength = 9,
-    MaxStdDev = 10,
-    MinStdDev = 11,
-    Dim = 12, Dimension = 12,
-    Lambda = 13, SampleSize = 13, PopSize = 13,
-    Sigma = 14
-  };
-
-  /**
-   * Keys for getPtr().
-   */
-  enum GetVector
-  {
-    NoVector = 0,
-    DiagC = 1,
-    DiagD = 2,
-    StdDev = 3,
-    XBestEver = 4,
-    XBest = 5,
-    XMean = 6
-  };
 
   double countevals; //!< objective function evaluations
   Timing eigenTimings;
@@ -355,7 +381,7 @@ public:
    * @return A pointer to the perturbed solution vector, equals input x for
    *         x != NULL.
    */
-  double* perturbSolutionInto(double *x, double const *xmean, double eps);
+  double* perturbSolutionInto(double* x, double const* xmean, double eps);
 
   /**
    * Core procedure of the CMA-ES algorithm. Sets a new mean value and estimates
@@ -418,45 +444,10 @@ public:
 
   /**
    * @param filename Output file name.
-   * @param key There are quite a few keywords available. Most of them can be
-   *            combined with a "+". See file signals.par for examples and, in
-   *            doubt, confer to the implemtation in cmaes.cpp. Keywords:
-   *   - all:           Writes a fairly complete status of the search. Missing
-   *                    is the current random number generator status und the
-   *                    new coordinate system (matrix B).
-   *   - B:             The complete basis B of normalized eigenvectors, sorted
-   *                    by the size of the corresponding eigenvalues.
-   *   - C:             Covariance matrix.
-   *   - eval:          Number of function evaluations so far.
-   *   - fewinfo:       header line for few
-   *   - few: (default) Writes in one row: number of function evaluations;
-   *                    function value of best point in recent sample
-   *                    population; sigma; maximal standard deviation in
-   *                    coordinate axis; minimal standard deviation in
-   *                    coordinate axis; axis ratio of mutation ellipsoid;
-   *                    minimum of diagonal of D.
-   *   - few(diag(D)):  4 to 6 sorted eigenvalue square roots, including the
-   *                    smallest and largest.
-   *   - resume:        Writes internal state parameters for reading with
-   *                    resumeDistribution(). For reading back also the keyword
-   *                    resume in initials.par can be used.
-   *   - axisratio:     Ratio between lengths of longest and shortest
-   *                    principal axis of the distribution ellipsoid.
-   *   - clock:         (processor) time (used) since begin of execution
-   *   - stddevratio:   ratio between largest and smallest standard deviation
-   *   - coorstddev,
-   *     stddev:        standard deviations in coordinate directions
-   *                    \f$\sigma*\sqrt{C_{ii}}\f$.
-   *   - diag(D):       diagonal of D == roots of eigenvalues, sorted
-   *   - dim:           dimension
-   *   - funval,
-   *     fitness:       best fitness in this generation
-   *   - fbestever:     best function value ever
-   *   - fmedian:       median function value in this generation
-   *   - fworst:        worst function value in this generation
-   *   - ... See implementation of cmaes.cpp for more information.
+   * @param key Key of type WriteKey that indicates the content that should be
+   *            written. You can combine multiple keys with |.
    */
-  void writeToFile(std::string key, const std::string& filename);
+  void writeToFile(int key, const std::string& filename);
 
   /**
    * Conducts the eigendecomposition of C into B and D such that

@@ -396,7 +396,7 @@ double* const* CMAES::samplePopulation()
 double const* CMAES::reSampleSingleOld(double *x)
 {
   if(x == NULL)
-    FATAL("cmaes_ReSampleSingle(): Missing input double *x");
+    FATAL("reSampleSingle(): Missing input double *x");
   addMutation(x);
   return x;
 }
@@ -408,7 +408,7 @@ double* const* CMAES::reSampleSingle(int iindex)
   if(iindex < 0 || iindex >= sp.lambda)
   {
     sprintf(s, "index==%d must be between 0 and %d", iindex, sp.lambda);
-    FATAL("cmaes_ReSampleSingle(): Population member ");
+    FATAL("reSampleSingle(): Population member ");
   }
   x = rgrgx[iindex];
   addMutation(x);
@@ -600,7 +600,7 @@ void CMAES::testMinStdDevs()
       this->sigma *= exp(0.05 + this->sp.cs / this->sp.damps);
 }
 
-void CMAES::writeToFile(std::string key, const std::string& filename)
+void CMAES::writeToFile(int key, const std::string& filename)
 {
   std::ofstream file;
   file.open(filename.c_str(), std::ios_base::app);
@@ -618,241 +618,159 @@ void CMAES::writeToFile(std::string key, const std::string& filename)
   }
 }
 
-void CMAES::writeToStream(std::string keyList, std::ostream& file)
+void CMAES::writeToStream(int key, std::ostream& file)
 {
-  int i, k, N = sp.N;
-  if(keyList == "")
-    keyList = "few";
-
-  std::vector<std::string> keys = split(keyList, '+');
-
-  for(size_t key = 0; key < keys.size(); key++)
+  if(key & WKResume)
   {
-    if(keys[key] == "axisratio")
-    {
-      file << std::setprecision(2) << std::scientific << sqrt(maxEW / minEW);
-    }
-    else if(keys[key] == "idxminSD")
-    {
-      int mini = 0;
-      for(i = N - 1; i > 0; --i) if(mindiagC == C[i][i]) mini = i;
-      file << (mini + 1);
-    }
-    else if(keys[key] == "idxmaxSD")
-    {
-      int maxi = 0;
-      for(i = N - 1; i > 0; --i) if(maxdiagC == C[i][i]) maxi = i;
-      file << (maxi + 1);
-    }
-    else if(keys[key] == "B")
-    {
-      int j, *iindex = new int[N];
-      sortIndex(rgD, iindex, N);
-      for(i = 0; i < N; ++i)
-        for(j = 0; j < N; ++j)
-        {
-          file << B[j][iindex[N - 1 - i]];
-          if(j != N-1)
-            file << '\t';
-          else
-            file << std::endl;
-        }
-      delete[] iindex;
-      iindex = 0;
-    }
-    else if(keys[key] == "C")
-    {
-      int j;
-      for(i = 0; i < N; ++i)
-        for(j = 0; j <= i; ++j)
-        {
-          file << C[i][j];
-          if(j == i)
-            file << std::endl;
-          else
-            file << '\t';
-        }
-    }
-    else if(keys[key] == "clock")
-    {
-      eigenTimings.update();
-      file << std::setprecision(1) << eigenTimings.totaltotaltime << " "
-          << eigenTimings.tictoctime;
-    }
-    else if(keys[key] == "stddevratio")
-    {
-      file << sqrt(maxdiagC / mindiagC);
-    }
-    else if(keys[key] == "coorstddev" || keys[key] == "stddev")
-    {
-      for(i = 0; i < N; ++i)
-        file << (i == 0 ? "" : "\t") << (sigma*sqrt(C[i][i]));
-    }
-    else if(keys[key] == "diag(D)")
-    {
-      for(i = 0; i < N; ++i)
+    file << std::endl << "# resume " << sp.N << std::endl;
+    file << "xmean" << std::endl;
+    writeToStream(WKXMean, file);
+    file << "path for sigma" << std::endl;
+    for(int i = 0; i < sp.N; ++i)
+      file << rgps[i] << (i == sp.N-1 ? "\n" : "\t");
+    file << "path for C" << std::endl;
+    for(int i = 0; i < sp.N; ++i)
+      file << rgpc[i] << (i == sp.N-1 ? "\n" : "\t");
+    file << "sigma " << sigma << std::endl;
+    // note than B and D might not be up-to-date
+    file << "covariance matrix" << std::endl;
+    writeToStream(WKC, file);
+  }
+  if(key & WKXMean)
+  {
+    for(int i = 0; i < sp.N; ++i)
+      file << (i == 0 ? "" : "\t") << xmean[i];
+    file << std::endl;
+  }
+  if(key & WKC)
+  {
+    for(int i = 0; i < sp.N; ++i)
+      for(int j = 0; j <= i; ++j)
+      {
+        file << C[i][j];
+        if(j == i)
+          file << std::endl;
+        else
+          file << '\t';
+      }
+    file << std::endl;
+  }
+  if(key & WKAll)
+  {
+    time_t ti = time(NULL);
+    file << std::endl << "# --------- " << asctime(localtime(&ti)) << std::endl;
+    file << " N " << sp.N << std::endl;
+    file << "function evaluations " << (long) countevals << std::endl;
+    file << "elapsed (CPU) time [s] " << std::setprecision(2) << eigenTimings.totaltotaltime << std::endl;
+    file << "function value f(x)=" << rgrgx[index[0]][sp.N] << std::endl;
+    file << "maximal standard deviation " << sigma*sqrt(maxdiagC) << std::endl;
+    file << "minimal standard deviation " << sigma*sqrt(mindiagC) << std::endl;
+    file << "sigma " << sigma << std::endl;
+    file << "axisratio " << (maxElement(rgD, sp.N) / minElement(rgD, sp.N)) << std::endl;
+    file << "xbestever found after " << std::setprecision(0) << rgxbestever[sp.N+1]
+        << "evaluations, function value " << rgxbestever[sp.N] << std::endl;
+    for(int i = 0; i < sp.N; ++i)
+      file << " " << std::setw(12) << rgxbestever[i] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+    file << "xbest (of last generation, function value " << rgrgx[index[0]][sp.N] << ")" << std::endl;
+    for(int i = 0; i < sp.N; ++i)
+      file << " " << std::setw(12) << rgrgx[index[0]][i] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+    file << "xmean" << std::endl;
+    for(int i = 0; i < sp.N; ++i)
+      file << " " << std::setw(12) << xmean[i] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+    file << "Standard deviation of coordinate axes (sigma*sqrt(diag(C)))" << std::endl;
+    for(int i = 0; i < sp.N; ++i)
+      file << " " << std::setw(12) << sigma*sqrt(C[i][i]) << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+    file << "Main axis lengths of mutation ellipsoid (sigma*diag(D))" << std::endl;
+    for(int i = 0; i < sp.N; ++i)
         rgdTmp[i] = rgD[i];
-      for(i = 0; i < N; ++i)
-        file << (i == 0 ? "" : "\t") << rgdTmp[i];
-    }
-    else if(keys[key] == "dim")
-    {
-      file << N;
-    }
-    else if(keys[key] == "eval")
-    {
-      file << std::setprecision(0) << countevals;
-    }
-    else if(keys[key] == "few(diag(D))")
-    {
-      int add = (int) (0.5 + (N + 1.) / 5.);
-      for(i = 0; i < N; ++i)
-          rgdTmp[i] = rgD[i];
-      std::sort(rgdTmp, rgdTmp + N);
-      for(i = 0; i < N - 1; i += add)
-        file << (i == 0 ? "" : "\t") << rgdTmp[N - 1 - i];
-      file << "\t" << rgdTmp[0] << std::endl;
-      break;
-    }
-    else if(keys[key] == "fewinfo")
-    {
-      file << " Iter\tFevals\tFunction Value\tSigma\tMaxCoorDev\tMinCoorDev\t"
-          << "AxisRatio\tMinDii\tTime in eig" << std::endl;
-    }
-    else if(keys[key] == "few")
-    {
-      file << (int) gen << "\t" << (int) countevals << "\t"
-          << std::scientific << rgFuncValue[index[0]] << "\t\t"
-          << std::scientific << std::setprecision(2) << sigma << "  "
-          << sigma*sqrt(maxdiagC) << "\t" << sigma*sqrt(mindiagC)
-          << "\t" << std::scientific << std::setprecision(2)
-          << sqrt(maxEW / minEW) << "\t" << sqrt(minEW)
-          << "  " << eigenTimings.totaltotaltime;
-    }
-    else if(keys[key] == "funval" || keys[key] == "fitness")
-    {
-      file << std::scientific << std::setprecision(15) << rgFuncValue[index[0]];
-    }
-    else if(keys[key] == "fbestever")
-    {
-      file << std::scientific << std::setprecision(15) << rgxbestever[N]; // f-value
-    }
-    else if(keys[key] == "fmedian")
-    {
-      file << std::scientific << std::setprecision(15) << rgFuncValue[index[(int) (sp.lambda / 2)]];
-    }
-    else if(keys[key] == "fworst")
-    {
-      file << std::scientific << std::setprecision(15) << rgFuncValue[index[sp.lambda - 1]];
-    }
-    else if(keys[key] == "arfunval" || keys[key] == "arfitness")
-    {
-      for(i = 0; i < N; ++i)
-        file << (i == 0 ? "" : "\t") << std::scientific << std::setprecision(10)
-            << rgFuncValue[index[i]];
-    }
-    else if(keys[key] == "gen" || keys[key] == "iter")
-    {
-      file << std::setprecision(0) << gen;
-    }
-    else if(keys[key] == "sigma")
-    {
-      file << std::scientific << std::setprecision(4) << sigma;
-    }
-    else if(keys[key] == "minSD")
-    { // minimal standard deviation
-      file << std::scientific << std::setprecision(4) << sqrt(mindiagC);
-    }
-    else if(keys[key] == "maxSD")
-    {
-      file << std::scientific << std::setprecision(4) << sqrt(maxdiagC);
-    }
-    else if(keys[key] == "mindii")
-    {
-      file << std::scientific << std::setprecision(4) << sqrt(minEW);
-    }
-    else if(keys[key] == "0")
-    {
-      file << "0";
-    }
-    else if(keys[key] == "lambda")
-    {
-      file << sp.lambda;
-    }
-    else if(keys[key] == "N")
-    {
-      file << N;
-    }
-    else if(keys[key] == "resume")
-    {
-      file << std::endl << "# resume " << N << std::endl;
-      file << "xmean" << std::endl;
-      writeToStream("xmean", file);
-      file << "path for sigma" << std::endl;
-      for(i = 0; i < N; ++i)
-        file << rgps[i] << (i == N - 1 ? "\n" : "\t");
-      file << "path for C" << std::endl;
-      for(i = 0; i < N; ++i)
-        file << rgpc[i] << (i == N - 1 ? "\n" : "\t");
-      file << "sigma " << sigma << std::endl;
-      /* note than B and D might not be up-to-date */
-      file << "covariance matrix" << std::endl;
-      writeToStream("C", file);
-    }
-    else if(keys[key] == "xbest")
-    { /* best x in recent generation */
-      for(i = 0; i < N; ++i)
-        file << (i == 0 ? "" : "\t") << rgrgx[index[0]][i];
-    }
-    else if(keys[key] == "xmean")
-    {
-      for(i = 0; i < N; ++i)
-        file << (i == 0 ? "" : "\t") << xmean[i];
-    }
-    else if(keys[key] == "all")
-    {
-      time_t ti = time(NULL);
-      file << std::endl << "# --------- " << asctime(localtime(&ti)) << std::endl;
-      file << " N " << N << std::endl;
-      file << "function evaluations " << (long) countevals << std::endl;
-      file << "elapsed (CPU) time [s] " << std::setprecision(2) << eigenTimings.totaltotaltime << std::endl;
-      file << "function value f(x)=" << rgrgx[index[0]][N] << std::endl;
-      file << "maximal standard deviation " << sigma*sqrt(maxdiagC) << std::endl;
-      file << "minimal standard deviation " << sigma*sqrt(mindiagC) << std::endl;
-      file << "sigma " << sigma << std::endl;
-      file << "axisratio " << (maxElement(rgD, N) / minElement(rgD, N)) << std::endl;
-      file << "xbestever found after " << std::setprecision(0) << rgxbestever[N + 1]
-          << "evaluations, function value " << rgxbestever[N] << std::endl;
-      for(i = 0; i < N; ++i)
-        file << " " << std::setw(12) << rgxbestever[i] << (i % 5 == 4 || i == N - 1 ? '\n' : ' ');
-      file << "xbest (of last generation, function value " << rgrgx[index[0]][N] << ")" << std::endl;
-      for(i = 0; i < N; ++i)
-        file << " " << std::setw(12) << rgrgx[index[0]][i] << (i % 5 == 4 || i == N - 1 ? '\n' : ' ');
-      file << "xmean" << std::endl;
-      for(i = 0; i < N; ++i)
-        file << " " << std::setw(12) << xmean[i] << (i % 5 == 4 || i == N - 1 ? '\n' : ' ');
-      file << "Standard deviation of coordinate axes (sigma*sqrt(diag(C)))" << std::endl;
-      for(i = 0; i < N; ++i)
-        file << " " << std::setw(12) << sigma*sqrt(C[i][i]) << (i % 5 == 4 || i == N - 1 ? '\n' : ' ');
-      file << "Main axis lengths of mutation ellipsoid (sigma*diag(D))" << std::endl;
-      for(i = 0; i < N; ++i)
-          rgdTmp[i] = rgD[i];
-      std::sort(rgdTmp, rgdTmp + N);
-      for(i = 0; i < N; ++i)
-        file << " " << std::setw(12) << sigma*rgdTmp[N - 1 - i] << (i % 5 == 4 || i == N - 1 ? '\n' : ' ');
-      file << "Longest axis (b_i where d_ii=max(diag(D))" << std::endl;
-      k = maxIndex(rgD, N);
-      for(i = 0; i < N; ++i)
-        file << " " << std::setw(12) << B[i][k] << (i % 5 == 4 || i == N - 1 ? '\n' : ' ');
-      file << "Shortest axis (b_i where d_ii=max(diag(D))" << std::endl;
-      k = minIndex(rgD, N);
-      for(i = 0; i < N; ++i)
-        file << " " << std::setw(12) << B[i][k] << (i % 5 == 4 || i == N - 1 ? '\n' : ' ');
-    }
-    else
-    {
-      FATAL("writeToFilePtr(): No match found for key='" + keys[key] + "'");
-    }
+    std::sort(rgdTmp, rgdTmp + sp.N);
+    for(int i = 0; i < sp.N; ++i)
+      file << " " << std::setw(12) << sigma*rgdTmp[sp.N-1-i] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+    file << "Longest axis (b_i where d_ii=max(diag(D))" << std::endl;
+    int k = maxIndex(rgD, sp.N);
+    for(int i = 0; i < sp.N; ++i)
+      file << " " << std::setw(12) << B[i][k] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+    file << "Shortest axis (b_i where d_ii=max(diag(D))" << std::endl;
+    k = minIndex(rgD, sp.N);
+    for(int i = 0; i < sp.N; ++i)
+      file << " " << std::setw(12) << B[i][k] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+    file << std::endl;
+  }
+  if(key & WKFewInfo)
+  {
+    file << " Iter\tFevals\tFunction Value\tSigma\tMaxCoorDev\tMinCoorDev\t"
+        << "AxisRatio\tMinDii\tTime in eig" << std::endl;
+    file << std::endl;
+  }
+  if(key & WKFew)
+  {
+    file << (int) gen << "\t" << (int) countevals << "\t"
+        << rgFuncValue[index[0]] << "\t\t" << sigma << "  "
+        << sigma*sqrt(maxdiagC) << "\t" << sigma*sqrt(mindiagC)
+        << "\t" << std::scientific << std::setprecision(2)
+        << sqrt(maxEW / minEW) << "\t" << sqrt(minEW)
+        << "  " << eigenTimings.totaltotaltime;
+    file << std::endl;
+  }
+  if(key & WKEval)
+  {
+    file << countevals;
+    file << std::endl;
+  }
+  if(key & WKFitness)
+  {
+    for(int i = 0; i < sp.N; ++i)
+      file << (i == 0 ? "" : "\t") << rgFuncValue[index[i]];
+    file << std::endl;
+  }
+  if(key & WKFBestEver)
+  {
+    file << rgxbestever[sp.N] << std::endl;
+  }
+  if(key & WKCGeneration)
+  {
+    file << gen << std::endl;
+  }
+  if(key & WKSigma)
+  {
+    file << sigma << std::endl;
+  }
+  if(key & WKLambda)
+  {
+    file << sp.lambda << std::endl;
+  }
+  if(key & WKB)
+  {
+    int* iindex = new int[sp.N];
+    sortIndex(rgD, iindex, sp.N);
+    for(int i = 0; i < sp.N; ++i)
+      for(int j = 0; j < sp.N; ++j)
+      {
+        file << B[j][iindex[sp.N-1-i]];
+        if(j != sp.N-1)
+          file << '\t';
+        else
+          file << std::endl;
+      }
+    delete[] iindex;
+    iindex = 0;
+    file << std::endl;
+  }
+  if(key & WKXBest)
+  {
+    for(int i = 0; i < sp.N; ++i)
+      file << (i == 0 ? "" : "\t") << rgrgx[index[0]][i];
+    file << std::endl;
+  }
+  if(key & WKClock)
+  {
+    eigenTimings.update();
+    file << eigenTimings.totaltotaltime << " " << eigenTimings.tictoctime
+        << std::endl;
+  }
+  if(key & WKDim)
+  {
+    file << sp.N;
     file << std::endl;
   }
 }

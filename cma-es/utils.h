@@ -5,13 +5,9 @@
 
 #pragma once
 
-#include <stdlib.h>
-#include <math.h>
 #include <string>
-#include <vector>
 #include <algorithm>
 
-std::vector<std::string> split(const std::string line, char separator);
 template<typename T> T square(T d) { return d*d; }
 template<typename T>
 T maxElement(const T* rgd, int len) { return *std::max_element(rgd, rgd + len); }

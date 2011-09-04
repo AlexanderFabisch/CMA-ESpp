@@ -10,7 +10,7 @@
 
 /** the objective (fitness) function to be minized */
 double fitfun(double const *x, int N)
-{ /* function "cigtab" */
+{ // function "cigtab"
   double sum = 1e4*x[0]*x[0] + 1e-4*x[1]*x[1];
   for(int i = 2; i < N; ++i)  
     sum += x[i]*x[i]; 
@@ -19,7 +19,7 @@ double fitfun(double const *x, int N)
 
 /** the optimization loop */
 int main(int argn, char **args) {
-  CMAES evo; /* an CMA-ES type struct or "object" */
+  CMAES evo;
   double *arFunvals, *const*pop, *xfinal;
 
   // Initialize everything into the struct evo.
@@ -35,10 +35,10 @@ int main(int argn, char **args) {
 
   std::cout << evo.sayHello() << std::endl;
 
-  /* Iterate until stop criterion holds */
+  // Iterate until stop criterion holds
   while(!evo.testForTermination())
   {
-    /* generate lambda new search points, sample population */
+    // generate lambda new search points, sample population
     pop = evo.samplePopulation(); /* do not change content of pop */
 
     /* Here you may resample each solution point pop[i] until it
@@ -55,20 +55,20 @@ int main(int argn, char **args) {
            cmaes_ReSampleSingle(&evo, i); 
     */
 
-    /* evaluate the new search points using fitfun from above */ 
+    // evaluate the new search points using fitfun from above
     for (int i = 0; i < evo.get(CMAES::Lambda); ++i)
       arFunvals[i] = fitfun(pop[i], (int) evo.get(CMAES::Dimension));
 
-    /* update the search distribution used for cmaes_SampleDistribution() */
+    // update the search distribution used for cmaes_SampleDistribution()
     evo.updateDistribution(arFunvals);
   }
   std::cout << "Stop:" << std::endl << evo.getStopMessage() << std::endl;
-  evo.writeToFile("resume", "resumeevo1.dat"); // write resumable
+  evo.writeToFile(CMAES::WKResume, "resumeevo1.dat"); // write resumable
 
-  /* get best estimator for the optimum, xmean */
-  xfinal = evo.getNew(CMAES::XMean); /* "xbestever" might be used as well */
+  // get best estimator for the optimum, xmean
+  xfinal = evo.getNew(CMAES::XMean); // "xbestever" might be used as well
 
-  /* do something with final solution and finally release memory */
+  // do something with final solution and finally release memory
   delete[] xfinal;
 
   return 0;

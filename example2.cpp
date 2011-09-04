@@ -106,7 +106,7 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
     Parameters parameters;
     // You can resume a previous run by specifying a file that contains the
     // resume data:
-    //parameters.resumefile = "resumecmaes.dat";
+    //parameters.resumefile = "resumeevo2.dat";
     parameters.stopTolX = 1e-11;
     parameters.updateCmode.maxtime = 1.0;
     parameters.init(dim, xstart, stddev);
@@ -168,7 +168,7 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
         << evo.getStopMessage();
 
     // write resume data
-    evo.writeToFile("resume", "resumecmaes.dat");
+    evo.writeToFile(CMAES::WKResume, "resumeevo2.dat");
 
     // keep best ever solution
     if (irun == 0 || evo.get(CMAES::FBestEver) < fbestever)
