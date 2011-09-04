@@ -170,7 +170,7 @@ double* CMAES::init(const Parameters& parameters)
     for(int i = 0; i < sp.N; ++i)
       xmean[i] += sigma*rgD[i]*rand.gauss();
 
-  if(sp.resumefile != "_no_")
+  if(sp.resumefile != "")
     resumeDistribution(sp.resumefile);
 
   return publicFitness;

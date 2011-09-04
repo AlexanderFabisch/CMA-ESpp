@@ -32,7 +32,7 @@ Parameters::Parameters()
       ccov(-1),
       facupdateCmode(1),
       weightMode(UNINITIALIZED_WEIGHTS),
-      resumefile("_no_")
+      resumefile("")
 {
   stStopFitness.flg = false;
   stStopFitness.val = -std::numeric_limits<double>::max();
