@@ -1,4 +1,4 @@
-#include "readpara.h"
+#include "parameters.h"
 #include "utils.h"
 #include <stdio.h>
 #include <string.h>

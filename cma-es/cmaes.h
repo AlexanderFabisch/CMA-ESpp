@@ -90,7 +90,7 @@
 #include <string>
 #include "random.h"
 #include "timings.h"
-#include "readpara.h"
+#include "parameters.h"
 
 /**
  * @class CMAES
