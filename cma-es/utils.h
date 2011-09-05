@@ -19,5 +19,3 @@ template<typename T>
 int minIndex(const T* rgd, int len) { return std::min_element(rgd, rgd + len) - rgd; }
 /** sqrt(a^2 + b^2) numerically stable. */
 double myhypot(double a, double b);
-void FATAL(const std::string& msg);
-void ERRORMESSAGE(const std::string& msg);

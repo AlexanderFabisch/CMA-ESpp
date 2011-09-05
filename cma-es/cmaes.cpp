@@ -8,6 +8,7 @@
 #include "cmaes.h"
 #include "utils.h"
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <cstdio>
 #include <cstring>
@@ -16,6 +17,7 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 
 CMAES::~CMAES()
 {
@@ -185,10 +187,7 @@ void CMAES::resumeDistribution(const std::string& filename)
 {
   std::ifstream file(filename.c_str());
   if(!file.is_open())
-  {
-    ERRORMESSAGE("resumeDistribution(): could not open '" + filename + "'");
-    return;
-  }
+    throw std::runtime_error("resumeDistribution(): could not open '" + filename + "'");
 
   std::streampos lastResume = 0;
   std::string entry = "";
@@ -207,7 +206,7 @@ void CMAES::resumeDistribution(const std::string& filename)
   int n = 0;
   file >> n;
   if(n != sp.N)
-    FATAL("resumeDistribution(): Dimension numbers do not match");
+    throw std::runtime_error("resumeDistribution(): Dimension numbers do not match");
 
   // find next "xmean" entry
   while(!file.eof())
@@ -218,7 +217,7 @@ void CMAES::resumeDistribution(const std::string& filename)
   }
   // read xmean
   if(file.eof())
-    FATAL("resumeDistribution(): 'xmean' not found");
+    throw std::runtime_error("resumeDistribution(): 'xmean' not found");
   for(int i = 0; i < n; i++)
     file >> xmean[i];
   file.clear();
@@ -241,7 +240,7 @@ void CMAES::resumeDistribution(const std::string& filename)
   }
   // read ps
   if(file.eof())
-    FATAL("resumeDistribution(): 'path for sigma' not found");
+    throw std::runtime_error("resumeDistribution(): 'path for sigma' not found");
   for(int i = 0; i < n; i++)
     file >> rgps[i];
   file.clear();
@@ -264,7 +263,7 @@ void CMAES::resumeDistribution(const std::string& filename)
   }
   // read pc
   if(file.eof())
-    FATAL("resumeDistribution(): 'path for C' not found");
+    throw std::runtime_error("resumeDistribution(): 'path for C' not found");
   for(int i = 0; i < n; i++)
     file >> rgpc[i];
   file.clear();
@@ -279,7 +278,7 @@ void CMAES::resumeDistribution(const std::string& filename)
   }
   // read pc
   if(file.eof())
-    FATAL("resumeDistribution(): 'sigma' not found");
+    throw std::runtime_error("resumeDistribution(): 'sigma' not found");
   file >> sigma;
   file.clear();
   file.seekg(lastResume);
@@ -299,7 +298,7 @@ void CMAES::resumeDistribution(const std::string& filename)
   }
   // read C
   if(file.eof())
-    FATAL("resumeDistribution(): 'covariance matrix' not found");
+    throw std::runtime_error("resumeDistribution(): 'covariance matrix' not found");
   for(int i = 0; i < sp.N; ++i)
     for(int j = 0; j <= i; ++j)
       file >> C[i][j];
@@ -311,9 +310,8 @@ void CMAES::resumeDistribution(const std::string& filename)
 
 double const* CMAES::setMean(const double *newxmean)
 {
-  if(state == SAMPLED)
-    FATAL("setMean: mean cannot be set inbetween the calls of samplePopulation"
-        " and updateDistribution");
+  assert(state != SAMPLED &&
+      "setMean: mean cannot be set inbetween the calls of samplePopulation and updateDistribution");
 
   if(newxmean && newxmean != xmean)
     for(int i = 0; i < sp.N; ++i)
@@ -386,21 +384,16 @@ double* const* CMAES::samplePopulation()
 
 double const* CMAES::reSampleSingleOld(double* x)
 {
-  if(!x)
-    FATAL("reSampleSingle(): Missing input double *x");
+  assert(x && "reSampleSingleOld(): Missing input double *x");
   addMutation(x);
   return x;
 }
 
 double* const* CMAES::reSampleSingle(int iindex)
 {
-  double *x;
-  static char s[99];
-  if(iindex < 0 || iindex >= sp.lambda)
-  {
-    sprintf(s, "index==%d must be between 0 and %d", iindex, sp.lambda);
-    FATAL("reSampleSingle(): Population member ");
-  }
+  double* x;
+  assert(iindex >= 0 && iindex < sp.lambda &&
+      "reSampleSingle(): index must be between 0 and sp.lambda");
   x = rgrgx[iindex];
   addMutation(x);
   return rgrgx;
@@ -418,8 +411,7 @@ double* CMAES::perturbSolutionInto(double *x, double const *pxmean, double eps)
 {
   if(!x)
     x = new double[sp.N];
-  if(!pxmean)
-    FATAL("perturbSolutionInto(): xmean was not given");
+  assert(pxmean && "perturbSolutionInto(): xmean was not given");
   addMutation(x, eps);
   return x;
 }
@@ -429,16 +421,14 @@ double* CMAES::updateDistribution(const double* rgFunVal)
   const int N = sp.N;
   bool diag = sp.diagonalCov == 1 || sp.diagonalCov >= gen;
 
-  if(state == UPDATED)
-    FATAL("updateDistribution(): You need to call \n"
+  assert(state != UPDATED && "updateDistribution(): You need to call "
         "samplePopulation() before update can take place.");
-  if(!rgFunVal)
-    FATAL("updateDistribution(): No fitness function value array input.");
+  assert(rgFunVal && "updateDistribution(): No fitness function value array input.");
 
   if(state == SAMPLED) // function values are delivered here
     countevals += sp.lambda;
   else
-    ERRORMESSAGE("updateDistribution(): unexpected state");
+    assert(false && "updateDistribution(): unexpected state");
 
   // assign function values
   for(int i = 0; i < sp.lambda; ++i)
@@ -451,7 +441,7 @@ double* CMAES::updateDistribution(const double* rgFunVal)
   if(rgFuncValue[index[0]] == rgFuncValue[index[(int) sp.lambda / 2]])
   {
     sigma *= exp(0.2 + sp.cs / sp.damps);
-    ERRORMESSAGE("Warning: sigma increased due to equal function values\n"
+    assert(false && "Warning: sigma increased due to equal function values\n"
         "   Reconsider the formulation of the objective function");
   }
 
@@ -603,8 +593,7 @@ void CMAES::writeToFile(int key, const std::string& filename)
   }
   else
   {
-    ERRORMESSAGE("writeToFile(): could not open '" + filename + "'");
-    return;
+    throw std::runtime_error("writeToFile(): could not open '" + filename + "'");
   }
 }
 
@@ -826,8 +815,7 @@ double CMAES::get(GetScalar key)
       return sigma;
     }
     default:
-      FATAL("get(): No match found for key");
-      return 0;
+      throw std::runtime_error("get(): No match found for key");
   }
 }
 
@@ -873,8 +861,7 @@ const double* CMAES::getPtr(GetVector key)
     case XMean:
       return xmean;
     default:
-      FATAL("getPtr(): No match found for key");
-      return 0;
+      throw std::runtime_error("getPtr(): No match found for key");
   }
 }
 
@@ -1024,13 +1011,13 @@ int CMAES::checkEigen(double* diag, double** Q)
       {
         sprintf(s, "%d %d: %.17e %.17e, %e",
                 i, j, cc, C[i > j ? i : j][i > j ? j : i], cc - C[i > j ? i : j][i > j ? j : i]);
-        ERRORMESSAGE("Eigen(): imprecise result detected " + std::string(s));
+        assert(false && ("eigen(): imprecise result detected " + std::string(s)).c_str());
         ++res;
       }
       if(fabs(dd - (i == j)) > 1e-10)
       {
         sprintf(s, "%d %d %.17e ", i, j, dd);
-        ERRORMESSAGE("Eigen(): imprecise result detected (Q not orthog.)" + std::string(s));
+        assert(false && ("eigen(): imprecise result detected (Q not orthog.)" + std::string(s)).c_str());
         ++res;
       }
     }
@@ -1056,7 +1043,7 @@ void CMAES::updateEigensystem(bool force)
   }
 
   eigenTimings.tic();
-  Eigen(rgD, B, rgdTmp);
+  eigen(rgD, B, rgdTmp);
   eigenTimings.toc();
 
   // find largest and smallest eigenvalue, they are supposed to be sorted anyway
@@ -1073,10 +1060,9 @@ void CMAES::updateEigensystem(bool force)
   genOfEigensysUpdate = gen;
 }
 
-void CMAES::Eigen(double *diag, double **Q, double *rgtmp)
+void CMAES::eigen(double *diag, double **Q, double *rgtmp)
 {
-  if(!rgtmp)
-    FATAL("eigen(): input parameter double *rgtmp must be non-NULL");
+  assert(rgtmp && "eigen(): input parameter double *rgtmp must be non-NULL");
 
   if(C != Q) // copy C to Q
   {

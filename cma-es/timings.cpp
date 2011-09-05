@@ -1,5 +1,6 @@
 #include "timings.h"
 #include "utils.h"
+#include <cassert>
 
 Timing::Timing()
 {
@@ -26,8 +27,7 @@ double Timing::update()
   clock_t lc = lastclock; // measure CPU in 1e-6s
   time_t lt = lasttime; // measure time in s
 
-  if(isstarted != 1)
-    FATAL("timings_started() must be called before using timings... functions");
+  assert(isstarted == 1 && "timings_started() must be called before using timings... functions");
 
   lastclock = clock(); // measures at most 2147 seconds, where 1s = 1e6 CLOCKS_PER_SEC
   lasttime = time(NULL);
@@ -37,8 +37,7 @@ double Timing::update()
   // use diffc clock measurement if appropriate
   if(diffc > 0 && difft < 1000)
     lastdiff = diffc;
-  if(lastdiff < 0)
-    FATAL("BUG in time measurement");
+  assert(lastdiff >= 0 && "BUG in time measurement");
   totaltime += lastdiff;
   totaltotaltime += lastdiff;
   if(istic)
@@ -51,22 +50,14 @@ double Timing::update()
 
 void Timing::tic()
 {
-  if(istic)
-  {
-    ERRORMESSAGE("Warning: Timingic called twice without toc");
-    return;
-  }
+  assert(!istic && "Warning: Timingic called twice without toc");
   update();
   istic = 1;
 }
 
 double Timing::toc()
 {
-  if(!istic)
-  {
-    ERRORMESSAGE("Warning: Timingoc called without tic");
-    return -1;
-  }
+  assert(istic && "Warning: Timingoc called without tic");
   update();
   lasttictoctime = tictoczwischensumme;
   tictoczwischensumme = 0;

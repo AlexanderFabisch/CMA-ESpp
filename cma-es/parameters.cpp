@@ -1,9 +1,11 @@
 #include "parameters.h"
 #include "utils.h"
+#include <cassert>
 #include <cmath>
 #include <fstream>
 #include <limits>
 #include <iostream>
+#include <stdexcept>
 
 Parameters::Parameters()
     : N(-1),
@@ -51,8 +53,13 @@ Parameters& Parameters::operator=(const Parameters& parameters)
 
 void Parameters::init(int dimension, const double* inxstart, const double* inrgsigma)
 {
+  assert((xstart || inxstart || typicalX) && "Warning: initialX undefined. "
+      "typicalX = 0.5...0.5 used with NDEBUG.");
+  assert((rgInitialStds || inrgsigma) && "Warning: initialStandardDeviations "
+      "undefined. 0.3...0.3 used with NDEBUG.");
+
   if(dimension <= 0 && N <= 0)
-    FATAL("Problem dimension N undefined.");
+    throw std::runtime_error("Problem dimension N undefined.");
   else if(dimension > 0)
     N = dimension;
 
@@ -60,17 +67,6 @@ void Parameters::init(int dimension, const double* inxstart, const double* inrgs
     weightMode = LOG_WEIGHTS;
 
   diagonalCov = 0; // default is 0, but this might change in future
-
-  if(xstart == NULL && inxstart == NULL && typicalX == NULL)
-  {
-    ERRORMESSAGE("Warning: initialX undefined. typicalX = 0.5...0.5 used.");
-    printf("\nWarning: initialX undefined. typicalX = 0.5...0.5 used.\n");
-  }
-  if(rgInitialStds == NULL && inrgsigma == NULL)
-  {
-    ERRORMESSAGE("Warning: initialStandardDeviations undefined. 0.3...0.3 used.");
-    printf("\nWarning: initialStandardDeviations. 0.3...0.3 used.\n");
-  }
 
   if(!xstart)
   {
@@ -295,7 +291,7 @@ void Parameters::setWeights(Weights mode)
     weights[i] /= s1;
 
   if(mu < 1 || mu > lambda || (mu == lambda && weights[0] == weights[mu - 1]))
-    FATAL("setWeights(): invalid setting of mu or lambda");
+    throw std::runtime_error("setWeights(): invalid setting of mu or lambda");
 }
 
 std::ostream& operator<<(std::ostream& stream, const Parameters& p)

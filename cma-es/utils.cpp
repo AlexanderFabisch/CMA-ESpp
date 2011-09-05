@@ -1,9 +1,5 @@
 #include "utils.h"
 #include <cmath>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <string>
 
 double myhypot(double a, double b)
 {
@@ -20,32 +16,4 @@ double myhypot(double a, double b)
   }
   else
     return 0.0;
-}
-
-void FATAL(const std::string& msg)
-{
-  time_t t = time(NULL);
-  ERRORMESSAGE(msg);
-  ERRORMESSAGE("*** Exiting CMAES ***");
-  std::cout << std::endl << " -- " << asctime(localtime(&t)) << " " << msg
-      << std::endl << " *** CMA-ES ABORTED, see errcmaes.err *** " << std::endl;
-  exit(1);
-}
-
-void ERRORMESSAGE(const std::string& msg)
-{
-  time_t t = time(NULL);
-  std::ofstream file("errcmaes.err", std::ios_base::app);
-  if(!file.is_open())
-  {
-    std::cout << std::endl << "FATAL ERROR: " << msg << std::endl
-        << "CMAES could not open file 'errcmaes.err'." << std::endl
-        << " *** CMA-ES ABORTED *** ";
-    exit(1);
-  }
-  else
-  {
-    file << std::endl << " -- " << asctime(localtime(&t)) << " " << msg;
-    file.close();
-  }
 }

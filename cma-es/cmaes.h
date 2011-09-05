@@ -220,7 +220,7 @@ private:
    * @param diag (output) N eigenvalues. 
    * @param Q (output) Columns are normalized eigenvectors.
    */
-  void Eigen(double* diag, double** Q, double* rgtmp);
+  void eigen(double* diag, double** Q, double* rgtmp);
 
   /** 
    * Exhaustive test of the output of the eigendecomposition, needs O(n^3)
