@@ -1,0 +1,12 @@
+\form#0:$f: R^N \rightarrow R$
+\form#1:$N=10$
+\form#2:$100\cdot N$
+\form#3:$300\cdot N^2$
+\form#4:$0\leq i<\lambda$
+\form#5:$\lambda$
+\form#6:$\mu$
+\form#7:$\epsilon$
+\form#8:$x \sim \mu + \epsilon \sigma N(0,C)$
+\form#9:$\sigma*\sqrt{C_{ii}}$
+\form#10:$C = B \cdot D \cdot D \cdot B^T$
+\form#11:$B \cdot B^T = I$
