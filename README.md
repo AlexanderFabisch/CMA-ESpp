@@ -22,6 +22,7 @@ The code is based on Hansen's ANSI C implementation of CMA-ES:
 4. (optional) Change (increase) problem dimension and/or problem
    number in the example code.
 5. Read the generated API documentation!
+   (http://alexanderfabisch.github.com/CMA-ESpp/html/)
 6. Now you are ready to inspect and edit example2.cpp.
 7. Make sure that the scale of all objective parameter components of the
    function is somewhat similar and sigma corresponds to about 1/4 of the
