@@ -6,8 +6,6 @@
  */
 
 #include <math.h>
-#include <stddef.h>
-#include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include <sstream>
@@ -48,12 +46,9 @@ CMAES::~CMAES()
 
 std::string CMAES::getTimeStr(void)
 {
-  time_t tm = time(NULL);
-  static char s[33];
-
-  strncpy(s, ctime(&tm), 24);
-  s[24] = '\0'; // cut the \n
-  return std::string(s);
+  time_t tm = time(0);
+  std::string timeStr(ctime(&tm));
+  return timeStr.substr(0, 24);
 }
 
 double* CMAES::init(const Parameters& parameters)
@@ -320,7 +315,7 @@ double const* CMAES::setMean(const double *newxmean)
     FATAL("setMean: mean cannot be set inbetween the calls of samplePopulation"
         " and updateDistribution");
 
-  if(newxmean != NULL && newxmean != xmean)
+  if(newxmean && newxmean != xmean)
     for(int i = 0; i < sp.N; ++i)
       xmean[i] = newxmean[i];
   else
@@ -389,9 +384,9 @@ double* const* CMAES::samplePopulation()
   return rgrgx;
 }
 
-double const* CMAES::reSampleSingleOld(double *x)
+double const* CMAES::reSampleSingleOld(double* x)
 {
-  if(x == NULL)
+  if(!x)
     FATAL("reSampleSingle(): Missing input double *x");
   addMutation(x);
   return x;
@@ -413,7 +408,7 @@ double* const* CMAES::reSampleSingle(int iindex)
 
 double* CMAES::sampleSingleInto(double *x)
 {
-  if(x == NULL)
+  if(!x)
     x = new double[sp.N];
   addMutation(x);
   return x;
@@ -421,9 +416,9 @@ double* CMAES::sampleSingleInto(double *x)
 
 double* CMAES::perturbSolutionInto(double *x, double const *pxmean, double eps)
 {
-  if(x == NULL)
+  if(!x)
     x = new double[sp.N];
-  if(pxmean == NULL)
+  if(!pxmean)
     FATAL("perturbSolutionInto(): xmean was not given");
   addMutation(x, eps);
   return x;
@@ -437,7 +432,7 @@ double* CMAES::updateDistribution(const double* rgFunVal)
   if(state == UPDATED)
     FATAL("updateDistribution(): You need to call \n"
         "samplePopulation() before update can take place.");
-  if(rgFunVal == NULL)
+  if(!rgFunVal)
     FATAL("updateDistribution(): No fitness function value array input.");
 
   if(state == SAMPLED) // function values are delivered here
@@ -587,11 +582,10 @@ void CMAES::adaptC2(const int hsig) {
 
 void CMAES::testMinStdDevs()
 {
-  int i, N = this->sp.N;
-  if(this->sp.rgDiffMinChange == NULL)
+  if(!this->sp.rgDiffMinChange)
     return;
 
-  for(i = 0; i < N; ++i)
+  for(int i = 0; i < sp.N; ++i)
     while(this->sigma* sqrt(this->C[i][i]) < this->sp.rgDiffMinChange[i])
       this->sigma *= exp(0.05 + this->sp.cs / this->sp.damps);
 }
@@ -653,7 +647,7 @@ void CMAES::writeToStream(int key, std::ostream& file)
   }
   if(key & WKAll)
   {
-    time_t ti = time(NULL);
+    time_t ti = time(0);
     file << std::endl << "# --------- " << asctime(localtime(&ti)) << std::endl;
     file << " N " << sp.N << std::endl;
     file << "function evaluations " << (long) countevals << std::endl;
@@ -840,7 +834,7 @@ double CMAES::get(GetScalar key)
 double* CMAES::getInto(GetVector key, double *res)
 {
   double const* res0 = getPtr(key);
-  if(res == NULL)
+  if(!res)
     res = new double[sp.N];
   for(int i = 0; i < sp.N; ++i)
     res[i] = res0[i];
@@ -849,7 +843,7 @@ double* CMAES::getInto(GetVector key, double *res)
 
 double* CMAES::getNew(GetVector key)
 {
-  return getInto(key, NULL);
+  return getInto(key, 0);
 }
 
 const double* CMAES::getPtr(GetVector key)
@@ -1081,7 +1075,7 @@ void CMAES::updateEigensystem(bool force)
 
 void CMAES::Eigen(double *diag, double **Q, double *rgtmp)
 {
-  if(rgtmp == NULL)
+  if(!rgtmp)
     FATAL("eigen(): input parameter double *rgtmp must be non-NULL");
 
   if(C != Q) // copy C to Q
