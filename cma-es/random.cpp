@@ -1,13 +1,12 @@
 #include "random.h"
-#include <stdlib.h>
-#include <time.h>
-#include <math.h>
+#include <ctime>
+#include <cmath>
 
 Random::Random(long unsigned inseed)
 {
   stored = false;
   if(inseed < 1)
-    inseed = (long unsigned) abs(100*time(NULL) + clock());
+    inseed = (long unsigned) std::abs(100*time(0) + clock());
   start(inseed);
 }
 

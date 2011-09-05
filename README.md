@@ -4,11 +4,6 @@ The code is based on Hansen's ANSI C implementation of CMA-ES:
 
   http://www.lri.fr/~hansen/cmaes_inmatlab.html#C
 
-# FILES YOU MAY NEED TO EDIT
-
-Output files written by CMAES:
-  errcmaes.err  : Error messages. 
-
 # HOW TO START
 
 1. You need the following programs:

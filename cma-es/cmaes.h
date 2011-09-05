@@ -87,10 +87,10 @@
 
 #pragma once
 
-#include <string>
 #include "random.h"
 #include "timings.h"
 #include "parameters.h"
+#include <string>
 
 /**
  * @class CMAES

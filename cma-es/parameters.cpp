@@ -1,11 +1,9 @@
 #include "parameters.h"
 #include "utils.h"
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
+#include <cmath>
 #include <fstream>
-#include <iostream>
 #include <limits>
+#include <iostream>
 
 Parameters::Parameters()
     : N(-1),

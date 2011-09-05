@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include <string>
 #include <algorithm>
+#include <string>
 
 template<typename T> T square(T d) { return d*d; }
 template<typename T>

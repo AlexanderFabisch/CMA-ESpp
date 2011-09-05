@@ -1,10 +1,9 @@
 #include "utils.h"
-#include <string.h>
-#include <math.h>
-#include <sstream>
-#include <string>
+#include <cmath>
 #include <fstream>
 #include <iostream>
+#include <sstream>
+#include <string>
 
 double myhypot(double a, double b)
 {

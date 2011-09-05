@@ -5,17 +5,17 @@
  * CMA-ES for non-linear function minimization.
  */
 
-#include <math.h>
-#include <string.h>
-#include <stdio.h>
-#include <sstream>
-#include <iomanip>
-#include <algorithm>
-#include <iostream>
-#include <fstream>
-#include <limits>
 #include "cmaes.h"
 #include "utils.h"
+#include <algorithm>
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <fstream>
+#include <limits>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
 
 CMAES::~CMAES()
 {
