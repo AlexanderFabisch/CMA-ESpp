@@ -188,130 +188,126 @@ std::string CMAES::sayHello()
 
 void CMAES::resumeDistribution(const std::string& filename)
 {
-  int i, j, res, n;
-  double d;
-  FILE *fp = fopen(filename.c_str(), "r");
-  if(fp == NULL)
+  std::ifstream file(filename.c_str());
+  if(!file.is_open())
   {
     ERRORMESSAGE("resumeDistribution(): could not open '" + filename + "'");
     return;
   }
-  // count number of "resume" entries
-  i = 0;
-  res = 0;
-  while(1)
-  {
-    if((res = fscanf(fp, " resume %lg", &d)) == EOF)
-      break;
-    else if(res == 0)
-      fscanf(fp, " %*s");
-    else if(res > 0)
-      i += 1;
-  }
 
-  // go to last "resume" entry
-  n = i;
-  i = 0;
-  res = 0;
-  rewind(fp);
-  while(i < n)
+  std::streampos lastResume = 0;
+  std::string entry = "";
+  while(!file.eof())
   {
-    if((res = fscanf(fp, " resume %lg", &d)) == EOF)
-      FATAL("resumeDistribution(): Unexpected error, bug");
-    else if(res == 0)
-      fscanf(fp, " %*s");
-    else if(res > 0)
-      ++i;
+    file >> entry;
+    if(entry == "resume")
+    {
+      lastResume = file.tellg();
+      break;
+    }
   }
-  if(d != sp.N)
+  file.clear();
+  file.seekg(lastResume);
+
+  int n = 0;
+  file >> n;
+  if(n != sp.N)
     FATAL("resumeDistribution(): Dimension numbers do not match");
 
   // find next "xmean" entry
-  while(1)
+  while(!file.eof())
   {
-    if((res = fscanf(fp, " xmean %lg", &d)) == EOF)
-      FATAL("resumeDistribution(): 'xmean' not found");
-    else if(res == 0)
-      fscanf(fp, " %*s");
-    else if(res > 0)
+    file >> entry;
+    if(entry == "xmean")
       break;
   }
-
   // read xmean
-  xmean[0] = d;
-  res = 1;
-  for(i = 1; i < sp.N; ++i)
-    res += fscanf(fp, " %lg", &xmean[i]);
-  if(res != sp.N)
-    FATAL("resumeDistribution(): xmean: dimensions differ");
+  if(file.eof())
+    FATAL("resumeDistribution(): 'xmean' not found");
+  for(int i = 0; i < n; i++)
+    file >> xmean[i];
+  file.clear();
+  file.seekg(lastResume);
 
   // find next "path for sigma" entry
-  while(1)
+  while(!file.eof())
   {
-    if((res = fscanf(fp, " path for sigma %lg", &d)) == EOF)
-      FATAL("resumeDistribution(): 'path for sigma' not found");
-    else if(res == 0)
-      fscanf(fp, " %*s");
-    else if(res > 0)
-      break;
+    file >> entry;
+    if(entry == "path")
+    {
+      std::string temp = "";
+      file >> temp;
+      entry += " " + temp;
+      file >> temp;
+      entry += " " + temp;
+      if(entry == "path for sigma")
+        break;
+    }
   }
-
   // read ps
-  rgps[0] = d;
-  res = 1;
-  for(i = 1; i < sp.N; ++i)
-    res += fscanf(fp, " %lg", &rgps[i]);
-  if(res != sp.N)
-    FATAL("resumeDistribution(): ps: dimensions differ");
+  if(file.eof())
+    FATAL("resumeDistribution(): 'path for sigma' not found");
+  for(int i = 0; i < n; i++)
+    file >> rgps[i];
+  file.clear();
+  file.seekg(lastResume);
 
   // find next "path for C" entry
-  while(1)
+  while(!file.eof())
   {
-    if((res = fscanf(fp, " path for C %lg", &d)) == EOF)
-      FATAL("resumeDistribution(): 'path for C' not found");
-    else if(res == 0)
-      fscanf(fp, " %*s");
-    else if(res > 0)
+    file >> entry;
+    if(entry == "path")
+    {
+      std::string temp = "";
+      file >> temp;
+      entry += " " + temp;
+      file >> temp;
+      entry += " " + temp;
+      if(entry == "path for C")
+        break;
+    }
+  }
+  // read pc
+  if(file.eof())
+    FATAL("resumeDistribution(): 'path for C' not found");
+  for(int i = 0; i < n; i++)
+    file >> rgpc[i];
+  file.clear();
+  file.seekg(lastResume);
+
+  // find next "sigma" entry
+  while(!file.eof())
+  {
+    file >> entry;
+    if(entry == "sigma")
       break;
   }
   // read pc
-  rgpc[0] = d;
-  res = 1;
-  for(i = 1; i < sp.N; ++i)
-    res += fscanf(fp, " %lg", &rgpc[i]);
-  if(res != sp.N)
-    FATAL("resumeDistribution(): pc: dimensions differ");
+  if(file.eof())
+    FATAL("resumeDistribution(): 'sigma' not found");
+  file >> sigma;
+  file.clear();
+  file.seekg(lastResume);
 
-  // find next "sigma" entry
-  while(1)
+  // find next "covariance matrix" entry
+  while(!file.eof())
   {
-    if((res = fscanf(fp, " sigma %lg", &d)) == EOF)
-      FATAL("resumeDistribution(): 'sigma' not found");
-    else if(res == 0)
-      fscanf(fp, " %*s");
-    else if(res > 0)
-      break;
-  }
-  sigma = d;
-
-  // find next entry "covariance matrix"
-  while(1)
-  {
-    if((res = fscanf(fp, " covariance matrix %lg", &d)) == EOF)
-      FATAL("resumeDistribution(): 'covariance matrix' not found");
-    else if(res == 0)
-      fscanf(fp, " %*s");
-    else if(res > 0)
-      break;
+    file >> entry;
+    if(entry == "covariance")
+    {
+      std::string temp = "";
+      file >> temp;
+      entry += " " + temp;
+      if(entry == "covariance matrix")
+        break;
+    }
   }
   // read C
-  C[0][0] = d;
-  res = 1;
-  for(i = 1; i < sp.N; ++i)
-    for(j = 0; j <= i; ++j)
-      res += fscanf(fp, " %lg", &C[i][j]);
-  if(res != (sp.N* sp.N + sp.N) / 2)
-    FATAL("resumeDistribution(): C: dimensions differ");
+  if(file.eof())
+    FATAL("resumeDistribution(): 'covariance matrix' not found");
+  for(int i = 0; i < sp.N; ++i)
+    for(int j = 0; j <= i; ++j)
+      file >> C[i][j];
 
   eigensysIsUptodate = false;
   isResumeDone = true;

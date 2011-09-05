@@ -100,6 +100,7 @@
 class CMAES
 {
 public:
+
   /**
    * Keys for get().
    */
@@ -159,7 +160,9 @@ public:
     WKClock = 16384,
     WKDim = 32768
   };
+
 private:
+
   std::string version; //!< Implementation version.
   Random rand; //!< Random number generator.
   Parameters sp; //!< CMA-ES parameters.
@@ -273,11 +276,6 @@ private:
    * output might be strange.
    */
   void writeToStream(int key, std::ostream& file);
-
-  /**
-   * Reading commands e.g. from signals.par file.
-   */
-  void readFromFilePtr(FILE *fp);
 
 public:
 
