@@ -323,6 +323,8 @@ public:
   void resumeDistribution(const std::string& filename);
 
   /**
+   * The search space vectors have a special form: they are arrays with N+1
+   * entries. Entry number -1 is the dimension of the search space N.
    * @return A pointer to a "population" of lambda N-dimensional multivariate
    * normally distributed samples.
    */
