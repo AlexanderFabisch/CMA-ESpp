@@ -13,13 +13,14 @@ The code is based on Hansen's ANSI C implementation of CMA-ES:
                 generated html documentation
     * g++ - or any other C++ compiler
 2. Take five minutes to look at file example1.cpp.
-3. Compile and run the example programs. Compilation e.g. with
-   the GNU c++-compiler:
-      mkdir build
-      cd build
-      cmake ..
-      make
-   and run with "./evo1" or "./evo2". Take a look at the output.
+3. Compile and run the example programs. Compilation e.g. with the GNU
+   c++-compiler and run with "./evo1" or "./evo2". Take a look at the output.
+
+   mkdir build
+   cd build
+   cmake ..
+   make
+
 4. (optional) Change (increase) problem dimension and/or problem
    number in the example code.
 5. Read the generated API documentation!
