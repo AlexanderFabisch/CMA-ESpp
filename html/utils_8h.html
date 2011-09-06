@@ -73,6 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Contains some utility functions.  
 <a href="#_details">More...</a></p>
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br/>
+<code>#include &lt;cmath&gt;</code><br/>
 <code>#include &lt;string&gt;</code><br/>
 </div>
 <p><a href="utils_8h_source.html">Go to the source code of this file.</a></p>
@@ -89,8 +90,9 @@ Functions</h2></td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="utils_8h.html#add614d252f8c2ae3543a6771602d2d59">maxIndex</a> (const T *rgd, int len)</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="utils_8h.html#a6613dfd27c8d1c4238f313b5b33da2a3">minIndex</a> (const T *rgd, int len)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#a6ef91256037f1187208bc6a607cf86a6">myhypot</a> (double a, double b)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">sqrt(a^2 + b^2) numerically stable.  <a href="#a6ef91256037f1187208bc6a607cf86a6"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="utils_8h.html#a3771e75fa9efbea03b99fe1ae4853072">myhypot</a> (T a, T b)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">sqrt(a^2 + b^2) numerically stable.  <a href="#a3771e75fa9efbea03b99fe1ae4853072"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Contains some utility functions. </p>
@@ -211,20 +213,22 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a6ef91256037f1187208bc6a607cf86a6"></a><!-- doxytag: member="utils.h::myhypot" ref="a6ef91256037f1187208bc6a607cf86a6" args="(double a, double b)" -->
+<a class="anchor" id="a3771e75fa9efbea03b99fe1ae4853072"></a><!-- doxytag: member="utils.h::myhypot" ref="a3771e75fa9efbea03b99fe1ae4853072" args="(T a, T b)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double myhypot </td>
+          <td class="memname">T myhypot </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">T&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">T&#160;</td>
           <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
@@ -274,7 +278,7 @@ template&lt;typename T &gt; </div>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 6 2011 12:18:09 for CMA-ES by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 6 2011 12:21:04 for CMA-ES by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

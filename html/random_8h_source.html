@@ -69,22 +69,73 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="random_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#pragma once</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span>
-<a name="l00007"></a><a class="code" href="classRandom.html">00007</a> <span class="keyword">class </span><a class="code" href="classRandom.html" title="A pseudo random number generator.">Random</a>
-<a name="l00008"></a>00008 {
-<a name="l00009"></a>00009   <span class="comment">// variables for uniform()</span>
-<a name="l00010"></a><a class="code" href="classRandom.html#a8534e826ab1d8ffdefb4d2ca3ffc6072">00010</a>   <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="classRandom.html#a8534e826ab1d8ffdefb4d2ca3ffc6072">startseed</a>;
-<a name="l00011"></a><a class="code" href="classRandom.html#a3c0673d96612a06cd90d6365938764f7">00011</a>   <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="classRandom.html#a3c0673d96612a06cd90d6365938764f7">aktseed</a>;
-<a name="l00012"></a><a class="code" href="classRandom.html#a6f395d3dbb650b728ea311e6153b0981">00012</a>   <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="classRandom.html#a6f395d3dbb650b728ea311e6153b0981">aktrand</a>;
-<a name="l00013"></a><a class="code" href="classRandom.html#a00fdaa85b1906248d5c46b9764e3066a">00013</a>   <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="classRandom.html#a00fdaa85b1906248d5c46b9764e3066a">rgrand</a>[32];
-<a name="l00014"></a>00014   <span class="comment">// variables for gauss()</span>
-<a name="l00015"></a><a class="code" href="classRandom.html#a8b806b6f9bfa42f6da4062250f4a8dee">00015</a>   <span class="keywordtype">bool</span> <a class="code" href="classRandom.html#a8b806b6f9bfa42f6da4062250f4a8dee">stored</a>;
-<a name="l00016"></a><a class="code" href="classRandom.html#a615eef1df638737d3bb8ddd44facc817">00016</a>   <span class="keywordtype">double</span> <a class="code" href="classRandom.html#a615eef1df638737d3bb8ddd44facc817">hold</a>;
-<a name="l00017"></a>00017 <span class="keyword">public</span>:
-<a name="l00021"></a>00021   <a class="code" href="classRandom.html#ae0e6e2e32b65b53aa8724814daeaa30e">Random</a>(<span class="keywordtype">long</span> <span class="keywordtype">unsigned</span> seed = 0);
-<a name="l00025"></a>00025   <span class="keywordtype">void</span> <a class="code" href="classRandom.html#aa2a907af47bfcd4101f0b214b1ad1d33">start</a>(<span class="keywordtype">long</span> <span class="keywordtype">unsigned</span> seed);
-<a name="l00029"></a>00029   <span class="keywordtype">double</span> <a class="code" href="classRandom.html#a6d5d22fb517c900f10fb5880bdb6ccdc">gauss</a>(<span class="keywordtype">void</span>);
-<a name="l00033"></a>00033   <span class="keywordtype">double</span> <a class="code" href="classRandom.html#a0a6829a2dcc537ac6d2adb053afc4f11">uniform</a>(<span class="keywordtype">void</span>);
-<a name="l00034"></a>00034 };
+<a name="l00003"></a>00003 <span class="preprocessor">#include &lt;ctime&gt;</span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;cmath&gt;</span>
+<a name="l00005"></a>00005 
+<a name="l00010"></a>00010 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
+<a name="l00011"></a><a class="code" href="classRandom.html">00011</a> <span class="keyword">class </span><a class="code" href="classRandom.html" title="A pseudo random number generator.">Random</a>
+<a name="l00012"></a>00012 {
+<a name="l00013"></a>00013   <span class="comment">// variables for uniform()</span>
+<a name="l00014"></a><a class="code" href="classRandom.html#a0840dff1690a95f957395ecec7d01487">00014</a>   <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="classRandom.html#a0840dff1690a95f957395ecec7d01487">startseed</a>;
+<a name="l00015"></a><a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">00015</a>   <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a>;
+<a name="l00016"></a><a class="code" href="classRandom.html#a155438b390666ed9e1907c138e79d65c">00016</a>   <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="classRandom.html#a155438b390666ed9e1907c138e79d65c">aktrand</a>;
+<a name="l00017"></a><a class="code" href="classRandom.html#a8eee5493b7841bc9bb6d180d29b2e562">00017</a>   <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="classRandom.html#a8eee5493b7841bc9bb6d180d29b2e562">rgrand</a>[32];
+<a name="l00018"></a>00018   <span class="comment">// variables for gauss()</span>
+<a name="l00019"></a><a class="code" href="classRandom.html#acaf0f97c680ceeb8144ccf1f07655e85">00019</a>   <span class="keywordtype">bool</span> <a class="code" href="classRandom.html#acaf0f97c680ceeb8144ccf1f07655e85">stored</a>;
+<a name="l00020"></a><a class="code" href="classRandom.html#add76163e40272ed7205c85a8310eb9d1">00020</a>   T <a class="code" href="classRandom.html#add76163e40272ed7205c85a8310eb9d1">hold</a>;
+<a name="l00021"></a>00021 <span class="keyword">public</span>:
+<a name="l00025"></a><a class="code" href="classRandom.html#a4601dfee470d8cd213b4705d63333c4f">00025</a>   <a class="code" href="classRandom.html#a4601dfee470d8cd213b4705d63333c4f">Random</a>(<span class="keywordtype">long</span> <span class="keywordtype">unsigned</span> seed = 0)
+<a name="l00026"></a>00026   {
+<a name="l00027"></a>00027     <a class="code" href="classRandom.html#acaf0f97c680ceeb8144ccf1f07655e85">stored</a> = <span class="keyword">false</span>;
+<a name="l00028"></a>00028     <span class="keywordflow">if</span>(seed &lt; 1)
+<a name="l00029"></a>00029       seed = (<span class="keywordtype">long</span> unsigned) std::abs(100*time(0) + clock());
+<a name="l00030"></a>00030     <a class="code" href="classRandom.html#a0a0cfa14b28c24c9f7c02341ba8419d5">start</a>(seed);
+<a name="l00031"></a>00031   }
+<a name="l00035"></a><a class="code" href="classRandom.html#a0a0cfa14b28c24c9f7c02341ba8419d5">00035</a>   <span class="keywordtype">void</span> <a class="code" href="classRandom.html#a0a0cfa14b28c24c9f7c02341ba8419d5">start</a>(<span class="keywordtype">long</span> <span class="keywordtype">unsigned</span> seed)
+<a name="l00036"></a>00036   {
+<a name="l00037"></a>00037     <a class="code" href="classRandom.html#acaf0f97c680ceeb8144ccf1f07655e85">stored</a> = <span class="keyword">false</span>;
+<a name="l00038"></a>00038     <a class="code" href="classRandom.html#a0840dff1690a95f957395ecec7d01487">startseed</a> = seed;
+<a name="l00039"></a>00039     <span class="keywordflow">if</span>(seed &lt; 1) seed = 1;
+<a name="l00040"></a>00040     <a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a> = seed;
+<a name="l00041"></a>00041     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 39; i &gt;= 0; --i)
+<a name="l00042"></a>00042     {
+<a name="l00043"></a>00043       <span class="keywordtype">long</span> tmp = <a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a> / 127773;
+<a name="l00044"></a>00044       <a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a> = 16807* (<a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a> - tmp* 127773) - 2836* tmp;
+<a name="l00045"></a>00045       <span class="keywordflow">if</span>(<a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a> &lt; 0) <a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a> += 2147483647;
+<a name="l00046"></a>00046       <span class="keywordflow">if</span>(i &lt; 32) <a class="code" href="classRandom.html#a8eee5493b7841bc9bb6d180d29b2e562">rgrand</a>[i] = <a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a>;
+<a name="l00047"></a>00047     }
+<a name="l00048"></a>00048     <a class="code" href="classRandom.html#a155438b390666ed9e1907c138e79d65c">aktrand</a> = <a class="code" href="classRandom.html#a8eee5493b7841bc9bb6d180d29b2e562">rgrand</a>[0];
+<a name="l00049"></a>00049   }
+<a name="l00053"></a><a class="code" href="classRandom.html#ad35753a318917fa4b9aafe2a07054c91">00053</a>   T <a class="code" href="classRandom.html#ad35753a318917fa4b9aafe2a07054c91">gauss</a>(<span class="keywordtype">void</span>)
+<a name="l00054"></a>00054   {
+<a name="l00055"></a>00055     <span class="keywordflow">if</span>(<a class="code" href="classRandom.html#acaf0f97c680ceeb8144ccf1f07655e85">stored</a>)
+<a name="l00056"></a>00056     {
+<a name="l00057"></a>00057       <a class="code" href="classRandom.html#acaf0f97c680ceeb8144ccf1f07655e85">stored</a> = <span class="keyword">false</span>;
+<a name="l00058"></a>00058       <span class="keywordflow">return</span> <a class="code" href="classRandom.html#add76163e40272ed7205c85a8310eb9d1">hold</a>;
+<a name="l00059"></a>00059     }
+<a name="l00060"></a>00060     <a class="code" href="classRandom.html#acaf0f97c680ceeb8144ccf1f07655e85">stored</a> = <span class="keyword">true</span>;
+<a name="l00061"></a>00061     T x1, x2, rquad;
+<a name="l00062"></a>00062     <span class="keywordflow">do</span> {
+<a name="l00063"></a>00063       x1 = 2.0*<a class="code" href="classRandom.html#ae9a051045e2d4c8f9bcac3e1dc545140">uniform</a>() - 1.0;
+<a name="l00064"></a>00064       x2 = 2.0*<a class="code" href="classRandom.html#ae9a051045e2d4c8f9bcac3e1dc545140">uniform</a>() - 1.0;
+<a name="l00065"></a>00065       rquad = x1*x1 + x2*x2;
+<a name="l00066"></a>00066     } <span class="keywordflow">while</span>(rquad &gt;= 1 || rquad &lt;= 0);
+<a name="l00067"></a>00067     <span class="keyword">const</span> <span class="keyword">register</span> T fac = std::sqrt(T(-2)*std::log(rquad)/rquad);
+<a name="l00068"></a>00068     <a class="code" href="classRandom.html#add76163e40272ed7205c85a8310eb9d1">hold</a> = fac*x1;
+<a name="l00069"></a>00069     <span class="keywordflow">return</span> fac*x2;
+<a name="l00070"></a>00070   }
+<a name="l00074"></a><a class="code" href="classRandom.html#ae9a051045e2d4c8f9bcac3e1dc545140">00074</a>   T <a class="code" href="classRandom.html#ae9a051045e2d4c8f9bcac3e1dc545140">uniform</a>(<span class="keywordtype">void</span>)
+<a name="l00075"></a>00075   {
+<a name="l00076"></a>00076     <span class="keywordtype">long</span> tmp = <a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a> / 127773;
+<a name="l00077"></a>00077     <a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a> = 16807 * (<a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a> - tmp * 127773) - 2836 * tmp;
+<a name="l00078"></a>00078     <span class="keywordflow">if</span>(<a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a> &lt; 0)
+<a name="l00079"></a>00079       <a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a> += 2147483647;
+<a name="l00080"></a>00080     tmp = <a class="code" href="classRandom.html#a155438b390666ed9e1907c138e79d65c">aktrand</a> / 67108865;
+<a name="l00081"></a>00081     <a class="code" href="classRandom.html#a155438b390666ed9e1907c138e79d65c">aktrand</a> = <a class="code" href="classRandom.html#a8eee5493b7841bc9bb6d180d29b2e562">rgrand</a>[tmp];
+<a name="l00082"></a>00082     <a class="code" href="classRandom.html#a8eee5493b7841bc9bb6d180d29b2e562">rgrand</a>[tmp] = <a class="code" href="classRandom.html#a06385c1bcc949786b555146a75ed87c0">aktseed</a>;
+<a name="l00083"></a>00083     <span class="keywordflow">return</span> (T) <a class="code" href="classRandom.html#a155438b390666ed9e1907c138e79d65c">aktrand</a> / T(2.147483647e9);
+<a name="l00084"></a>00084   }
+<a name="l00085"></a>00085 };
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -101,7 +152,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 6 2011 12:18:09 for CMA-ES by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 6 2011 12:21:04 for CMA-ES by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

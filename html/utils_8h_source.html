@@ -71,18 +71,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00006"></a>00006 <span class="preprocessor">#pragma once</span>
 <a name="l00007"></a>00007 <span class="preprocessor"></span>
 <a name="l00008"></a>00008 <span class="preprocessor">#include &lt;algorithm&gt;</span>
-<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;string&gt;</span>
-<a name="l00010"></a>00010 
-<a name="l00011"></a><a class="code" href="utils_8h.html#a989667debd678779d780857cc650eb86">00011</a> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; T <a class="code" href="utils_8h.html#a989667debd678779d780857cc650eb86">square</a>(T d) { <span class="keywordflow">return</span> d*d; }
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;cmath&gt;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00011"></a>00011 
 <a name="l00012"></a>00012 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00013"></a><a class="code" href="utils_8h.html#a607a38043b6aa6f8501b8bfca777536f">00013</a> T <a class="code" href="utils_8h.html#a607a38043b6aa6f8501b8bfca777536f">maxElement</a>(<span class="keyword">const</span> T* rgd, <span class="keywordtype">int</span> len) { <span class="keywordflow">return</span> *std::max_element(rgd, rgd + len); }
-<a name="l00014"></a>00014 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00015"></a><a class="code" href="utils_8h.html#a5ab74da4f5c22d49151fd4c7c9a41dee">00015</a> T <a class="code" href="utils_8h.html#a5ab74da4f5c22d49151fd4c7c9a41dee">minElement</a>(<span class="keyword">const</span> T* rgd, <span class="keywordtype">int</span> len) { <span class="keywordflow">return</span> *std::min_element(rgd, rgd + len); }
-<a name="l00016"></a>00016 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00017"></a><a class="code" href="utils_8h.html#add614d252f8c2ae3543a6771602d2d59">00017</a> <span class="keywordtype">int</span> <a class="code" href="utils_8h.html#add614d252f8c2ae3543a6771602d2d59">maxIndex</a>(<span class="keyword">const</span> T* rgd, <span class="keywordtype">int</span> len) { <span class="keywordflow">return</span> std::max_element(rgd, rgd + len) - rgd; }
+<a name="l00013"></a><a class="code" href="utils_8h.html#a989667debd678779d780857cc650eb86">00013</a> T <a class="code" href="utils_8h.html#a989667debd678779d780857cc650eb86">square</a>(T d)
+<a name="l00014"></a>00014 {
+<a name="l00015"></a>00015   <span class="keywordflow">return</span> d*d;
+<a name="l00016"></a>00016 }
+<a name="l00017"></a>00017 
 <a name="l00018"></a>00018 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00019"></a><a class="code" href="utils_8h.html#a6613dfd27c8d1c4238f313b5b33da2a3">00019</a> <span class="keywordtype">int</span> <a class="code" href="utils_8h.html#a6613dfd27c8d1c4238f313b5b33da2a3">minIndex</a>(<span class="keyword">const</span> T* rgd, <span class="keywordtype">int</span> len) { <span class="keywordflow">return</span> std::min_element(rgd, rgd + len) - rgd; }
-<a name="l00021"></a>00021 <span class="keywordtype">double</span> <a class="code" href="utils_8cpp.html#a6ef91256037f1187208bc6a607cf86a6" title="sqrt(a^2 + b^2) numerically stable.">myhypot</a>(<span class="keywordtype">double</span> a, <span class="keywordtype">double</span> b);
+<a name="l00019"></a><a class="code" href="utils_8h.html#a607a38043b6aa6f8501b8bfca777536f">00019</a> T <a class="code" href="utils_8h.html#a607a38043b6aa6f8501b8bfca777536f">maxElement</a>(<span class="keyword">const</span> T* rgd, <span class="keywordtype">int</span> len)
+<a name="l00020"></a>00020 {
+<a name="l00021"></a>00021   <span class="keywordflow">return</span> *std::max_element(rgd, rgd + len);
+<a name="l00022"></a>00022 }
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
+<a name="l00025"></a><a class="code" href="utils_8h.html#a5ab74da4f5c22d49151fd4c7c9a41dee">00025</a> T <a class="code" href="utils_8h.html#a5ab74da4f5c22d49151fd4c7c9a41dee">minElement</a>(<span class="keyword">const</span> T* rgd, <span class="keywordtype">int</span> len)
+<a name="l00026"></a>00026 {
+<a name="l00027"></a>00027   <span class="keywordflow">return</span> *std::min_element(rgd, rgd + len);
+<a name="l00028"></a>00028 }
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
+<a name="l00031"></a><a class="code" href="utils_8h.html#add614d252f8c2ae3543a6771602d2d59">00031</a> <span class="keywordtype">int</span> <a class="code" href="utils_8h.html#add614d252f8c2ae3543a6771602d2d59">maxIndex</a>(<span class="keyword">const</span> T* rgd, <span class="keywordtype">int</span> len)
+<a name="l00032"></a>00032 {
+<a name="l00033"></a>00033   <span class="keywordflow">return</span> std::max_element(rgd, rgd + len) - rgd;
+<a name="l00034"></a>00034 }
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
+<a name="l00037"></a><a class="code" href="utils_8h.html#a6613dfd27c8d1c4238f313b5b33da2a3">00037</a> <span class="keywordtype">int</span> <a class="code" href="utils_8h.html#a6613dfd27c8d1c4238f313b5b33da2a3">minIndex</a>(<span class="keyword">const</span> T* rgd, <span class="keywordtype">int</span> len)
+<a name="l00038"></a>00038 {
+<a name="l00039"></a>00039   <span class="keywordflow">return</span> std::min_element(rgd, rgd + len) - rgd;
+<a name="l00040"></a>00040 }
+<a name="l00041"></a>00041 
+<a name="l00043"></a>00043 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
+<a name="l00044"></a><a class="code" href="utils_8h.html#a3771e75fa9efbea03b99fe1ae4853072">00044</a> T <a class="code" href="utils_8h.html#a3771e75fa9efbea03b99fe1ae4853072" title="sqrt(a^2 + b^2) numerically stable.">myhypot</a>(T a, T b)
+<a name="l00045"></a>00045 {
+<a name="l00046"></a>00046   <span class="keyword">const</span> <span class="keyword">register</span> T fabsa = std::fabs(a), fabsb = std::fabs(b);
+<a name="l00047"></a>00047   <span class="keywordflow">if</span>(fabsa &gt; fabsb)
+<a name="l00048"></a>00048   {
+<a name="l00049"></a>00049     <span class="keyword">const</span> <span class="keyword">register</span> T r = b / a;
+<a name="l00050"></a>00050     <span class="keywordflow">return</span> fabsa*std::sqrt(T(1)+r*r);
+<a name="l00051"></a>00051   }
+<a name="l00052"></a>00052   <span class="keywordflow">else</span> <span class="keywordflow">if</span>(b != T(0))
+<a name="l00053"></a>00053   {
+<a name="l00054"></a>00054     <span class="keyword">const</span> <span class="keyword">register</span> T r = a / b;
+<a name="l00055"></a>00055     <span class="keywordflow">return</span> fabsb*std::sqrt(T(1)+r*r);
+<a name="l00056"></a>00056   }
+<a name="l00057"></a>00057   <span class="keywordflow">else</span>
+<a name="l00058"></a>00058     <span class="keywordflow">return</span> T(0);
+<a name="l00059"></a>00059 }
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -99,7 +137,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 6 2011 12:18:09 for CMA-ES by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 6 2011 12:21:04 for CMA-ES by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

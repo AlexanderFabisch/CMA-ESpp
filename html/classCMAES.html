@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>CMA-ES: CMAES Class Reference</title>
+<title>CMA-ES: CMAES&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,7 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
-<h1>CMAES Class Reference</h1>  </div>
+<h1>CMAES&lt; T &gt; Class Template Reference</h1>  </div>
 </div>
 <div class="contents">
 <!-- doxytag: class="CMAES" -->
@@ -81,220 +81,225 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8">GetScalar</a> { <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a176a634f191454374cb07b76c259d3ce">NoScalar</a> =  0, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8ae922b9f656b80ec2e0db1c196d154c21">AxisRatio</a> =  1, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a966e082259e19d281c39dfc0bcbe571a">Eval</a> =  2, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a57ffe416f3432c88549ec8c5645371dc">Evaluations</a> =  2, 
+&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a0eac9fcd31997fbce7b050fea059146c">NoScalar</a> =  0, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a80b1da110476f59b1dd637f86abcff6d">AxisRatio</a> =  1, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a792dc72137eae9dff32d3d0ec7e520a0">Eval</a> =  2, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a3d094cfa5259537cb5866df1aa30dabf">Evaluations</a> =  2, 
 <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a3c30ba35d71a4764a28020ae9b646f79">FctValue</a> =  3, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a5e8dc2025f7e8cd87c7be2baaada098f">FuncValue</a> =  3, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a808641299db374e875f0df944e5cf5d9">FunValue</a> =  3, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a39befd5a626ab086f2c795050f0b4506">Fitness</a> =  3, 
+&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8abda053a0cb2db42a16e0acfcdffc1f5d">FctValue</a> =  3, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a0a185991edec9d5597e958a825ccef8b">FuncValue</a> =  3, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a24a927cfe7f5c73c47e8f5395abc0e7a">FunValue</a> =  3, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8addcdd74505b48ad4a541db7b829e335b">Fitness</a> =  3, 
 <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a8d25bf7ea1c3fcfdfc5ee70cf924ca09">FBestEver</a> =  4, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a4245e455b767356fbe6b62bbcc4874cb">Generation</a> =  5, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8afb13b72496908a32e1f6f4cf8dd064f5">Iteration</a> =  5, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a9baa5d82052a07a62dbdc31dd55abf6f">MaxEval</a> =  6, 
+&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8ad21c49f13a72548684969bd0efadee5b">FBestEver</a> =  4, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8acc3da801ee825cfe1d4546e7ff1df445">Generation</a> =  5, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a227350ef92ae76a118395539614413ea">Iteration</a> =  5, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8aa6d0a2c0e925ea13fbc4eafdb0d73212">MaxEval</a> =  6, 
 <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8ad6df8e43791e2074fa39d1708004188f">MaxFunEvals</a> =  6, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a8056587ec06c7ffdc9765dfc00528333">StopMaxFunEvals</a> =  6, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a0756b08dc2d487310e17fd67e72c0c0b">MaxGen</a> =  7, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a5bdb798c866b49922824c53e87c288e4">MaxIter</a> =  7, 
+&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8ae9d7f8b79143385c7b106bbbf3c2d412">MaxFunEvals</a> =  6, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8ac2a58bc5ffa24f12ec92e11c18e8d4a1">StopMaxFunEvals</a> =  6, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8af273a71dfa8af4b2512e63b85255c57b">MaxGen</a> =  7, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a2f5dc38e6e11ee72a99131f66ac96ec6">MaxIter</a> =  7, 
 <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a9bbdd1f196b5e95806f82de77003d921">StopMaxIter</a> =  7, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a40a64f7ecde56491199044722c6ff854">MaxAxisLength</a> =  8, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a3316d6bb73419af44875b6bd1c0665bb">MinAxisLength</a> =  9, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8ae28af7ca384838d588fefafce7cb1884">MaxStdDev</a> =  10, 
+&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8aeb3dce345e47ca1fcc222d4fde877a3a">StopMaxIter</a> =  7, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8ad08dc0a35ffc83e74e5ee207facfd9ae">MaxAxisLength</a> =  8, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a69531e25f35ad31c729d8cbbdb0919ce">MinAxisLength</a> =  9, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a2255eb5bbe0790bd7d8a59ebd6adcefc">MaxStdDev</a> =  10, 
 <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a7a72ea0f6cef7f4294380a7c22e8d30f">MinStdDev</a> =  11, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8aacc02fe0b5e5c2b63a96903234a783e4">Dim</a> =  12, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8addd16733727b70416604815340451ad8">Dimension</a> =  12, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8af5cd6e88b89cd199cf2ef06871d0f144">Lambda</a> =  13, 
+&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8ad2a4cb103c2cde9298f960900d82d9e5">MinStdDev</a> =  11, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a75e12eda134ea0f0eca86ee1833e561e">Dim</a> =  12, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8aa3da33927ee647a3f48e408b11c37946">Dimension</a> =  12, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a0a7cf2fff11dd8b8ad79f21540313a76">Lambda</a> =  13, 
 <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8ab9fd99760e117acd0f83876c1f65406c">SampleSize</a> =  13, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8ae73c8b8dcafdc05b7906a765fe531b0d">PopSize</a> =  13, 
-<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a28515ae54b211cd9d302cd69b5e62631">Sigma</a> =  14
+&#160;&#160;<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a525cb5a156ebe9191586e97830aede31">SampleSize</a> =  13, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a8fa009b49ad74ed50cb8639d94ce4d00">PopSize</a> =  13, 
+<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8a06a4d432f0d0783509dd88456ecd07ea">Sigma</a> =  14
 <br/>
  }</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Keys for <a class="el" href="classCMAES.html#a9629e132599eebe2f0605d3d14702c7a" title="Request a scalar parameter from CMA-ES.">get()</a>. </p>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Keys for <a class="el" href="classCMAES.html#a45e773741a707a9f95a5c2bab07fcfca" title="Request a scalar parameter from CMA-ES.">get()</a>. </p>
  <a href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">GetVector</a> { <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82ab9206073e6224ae8b2822985e5db2486">NoVector</a> =  0, 
-<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82a1f3a735d84948e040340bf1c7d951543">DiagC</a> =  1, 
-<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82a18bc0e01e139afe352e600d213409dc3">DiagD</a> =  2, 
-<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82a5904c1886948d8bad125ca325475bb96">StdDev</a> =  3, 
+&#160;&#160;<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82af40a2e44d652a00a9ccd9edec2009af0">NoVector</a> =  0, 
+<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82ae17b1c54a0a0ab7c76d07eed386d9322">DiagC</a> =  1, 
+<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82a5bdd7c9d31b8273f97e54e30f6119399">DiagD</a> =  2, 
+<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82a0ec1a5126c8afaa5de18d488631e0694">StdDev</a> =  3, 
 <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82adcc2a65ebbcdfd5ed5aab4170d95b83d">XBestEver</a> =  4, 
-<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82a6e6957af29b9eac41c2a20eac0cf651a">XBest</a> =  5, 
-<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82a29bbe329c9d3616ce1697f6855b28037">XMean</a> =  6
+&#160;&#160;<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82aee6ad973ab7973ed05fbd787af5f4241">XBestEver</a> =  4, 
+<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82aeb635f2a8c23f4e25bd9ae0e0804bb7a">XBest</a> =  5, 
+<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82abe10ba6036cb0771e308fb1f9af27f48">XMean</a> =  6
 <br/>
  }</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Keys for <a class="el" href="classCMAES.html#a803fa1cf4b2d0b24c141ed2067967963" title="Request a vector parameter from CMA-ES.">getPtr()</a>. </p>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Keys for <a class="el" href="classCMAES.html#a818196db6e0a2bfcf800d4b6e644988e" title="Request a vector parameter from CMA-ES.">getPtr()</a>. </p>
  <a href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5">WriteKey</a> { <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5aa3a292cb838b0f0fefc907265a21e5c8">WCNone</a> =  0, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5aa920337fa145b8d396fba2360db77b34">WKResume</a> =  1, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a105077ac3c850a61c8f78b613027ce6a">WKXMean</a> =  2, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5aa59793891d21c843f7fc0f88e8cdfbbe">WKC</a> =  4, 
+&#160;&#160;<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a21e38dd471b82a293b061500ada251c6">WCNone</a> =  0, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5aa149aa30989f563b45db616cf69a375b">WKResume</a> =  1, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5ab430a1a4c4f6030e67f76d49dc1acd76">WKXMean</a> =  2, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a61d330c96de9b673a0076606bea2b59b">WKC</a> =  4, 
 <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5aa54a5c803af2605f5b160bb28b945f4f">WKAll</a> =  8, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a65f595e8d00a42163965b29172151547">WKFewInfo</a> =  16, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a779c437200d5aeab2bdb9d4187a24c82">WKFew</a> =  32, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a794f66caef51ac8b2ad2d21f8b7211e4">WKEval</a> =  64, 
+&#160;&#160;<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5abbf04a8ffe5c7bccecf352e294e9c099">WKAll</a> =  8, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a07d0282b9c7d9719df60fbc03f5a6eab">WKFewInfo</a> =  16, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5ac8b7485532d066b19565db85e060aeac">WKFew</a> =  32, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a92d1998fb46900bceb39a60e3ed35746">WKEval</a> =  64, 
 <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a11e0a55656769fd9257ef3eaff240b45">WKFitness</a> =  128, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5adc734b184a17b52239fbd03bf060f831">WKFBestEver</a> =  256, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5adbd7e54a24d652c90061c0dcf835ca3d">WKCGeneration</a> =  512, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5aeaa3b28aa13a3cb57e221becc76231d2">WKSigma</a> =  1024, 
+&#160;&#160;<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a3bab88222e97d560b05cdcd7f5d967f0">WKFitness</a> =  128, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a689dedaccffee9f44f969a838f62b2a3">WKFBestEver</a> =  256, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5af74d31e6940d9c55b13935971bfd764d">WKCGeneration</a> =  512, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a393a8956a826379f2918b1a0193ceead">WKSigma</a> =  1024, 
 <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5af0fd7c06d3320c9349eb4a1eebdd889b">WKLambda</a> =  2048, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a06e4c961296c3bd42b00d1da7a77a2e4">WKB</a> =  4096, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a6757783236cac3f44ad7c2e6e672fbdb">WKXBest</a> =  8192, 
-<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5af9ed88b368e78d3494bb72206f50f95c">WKClock</a> =  16384, 
+&#160;&#160;<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5ab3b3919789e241ae3ae2c855d17c7528">WKLambda</a> =  2048, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a407d38eb1d75495aa388416be4fb9673">WKB</a> =  4096, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a9b15493966d6f12f6e3135046cd6ae24">WKXBest</a> =  8192, 
+<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a939618e4c01b55a93ead6992a16e7d80">WKClock</a> =  16384, 
 <br/>
-&#160;&#160;<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a78b8788726c93fcd126eb221b2795d7f">WKDim</a> =  32768
+&#160;&#160;<a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5a7213701c32edd96cbca9697368af03ae">WKDim</a> =  32768
 <br/>
  }</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Keys for <a class="el" href="classCMAES.html#a089b82855c2e9a289365afd55fbdb054">writeToFile()</a>. </p>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Keys for <a class="el" href="classCMAES.html#a57ea7bb50956aed2aa9eb03f7233f71e">writeToFile()</a>. </p>
  <a href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a4e36686e926f9f7e539fdc77668b1d1f">~CMAES</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the dynamically allocated memory, including that of the return value of <a class="el" href="classCMAES.html#a55fc3154b6e7be236fa86e6cc24f0b79" title="Initializes the CMA-ES algorithm.">init()</a>.  <a href="#a4e36686e926f9f7e539fdc77668b1d1f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a55fc3154b6e7be236fa86e6cc24f0b79">init</a> (const <a class="el" href="classParameters.html">Parameters</a> &amp;parameters)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the CMA-ES algorithm.  <a href="#a55fc3154b6e7be236fa86e6cc24f0b79"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#aac1cd5e4fcff9c124877fc26fe9601a2">sayHello</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Well, says hello.  <a href="#aac1cd5e4fcff9c124877fc26fe9601a2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a469c7442884187bb8b349fe28b982edf">resumeDistribution</a> (const std::string &amp;filename)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to restart with saved internal state (distribution) variables (use <a class="el" href="classCMAES.html#a089b82855c2e9a289365afd55fbdb054">writeToFile()</a> for saving).  <a href="#a469c7442884187bb8b349fe28b982edf"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28">samplePopulation</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The search space vectors have a special form: they are arrays with N+1 entries.  <a href="#a722fde109ceab510d126d775ead6de28"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a70d530bd6551f5c283736f0fffdcbaa7">reSampleSingle</a> (int i)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be called after <a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions of the population as often as desired.  <a href="#a70d530bd6551f5c283736f0fffdcbaa7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a145b79d47ac21a32729fbf4847c1884c">sampleSingleInto</a> (double *x)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be called after <a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions.  <a href="#a145b79d47ac21a32729fbf4847c1884c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae5fbc6f331f766afcf15692603670924">reSampleSingleOld</a> (double *x)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be called after <a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions.  <a href="#ae5fbc6f331f766afcf15692603670924"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a0801a07c0b0b7ffc764fb0c2e5a343fa">perturbSolutionInto</a> (double *x, double const *<a class="el" href="classCMAES.html#abcb0bb1c0ce6bb74151a718f1b3a22d6">xmean</a>, double eps)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to reevaluate a slightly disturbed solution for an uncertaintly measurement.  <a href="#a0801a07c0b0b7ffc764fb0c2e5a343fa"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a1be4734deb345a72316ecb20755e93d8">updateDistribution</a> (const double *fitnessValues)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Core procedure of the CMA-ES algorithm.  <a href="#a1be4734deb345a72316ecb20755e93d8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a9629e132599eebe2f0605d3d14702c7a">get</a> (<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8">GetScalar</a> key)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Request a scalar parameter from CMA-ES.  <a href="#a9629e132599eebe2f0605d3d14702c7a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a803fa1cf4b2d0b24c141ed2067967963">getPtr</a> (<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">GetVector</a> key)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Request a vector parameter from CMA-ES.  <a href="#a803fa1cf4b2d0b24c141ed2067967963"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a085891d774211f88f0a09c5f8348229d">getNew</a> (<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">GetVector</a> key)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Request a vector parameter from CMA-ES.  <a href="#a085891d774211f88f0a09c5f8348229d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a6c5613bbd71d3185108f88d307d35118">getInto</a> (<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">GetVector</a> key, double *res)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Request a vector parameter from CMA-ES.  <a href="#a6c5613bbd71d3185108f88d307d35118"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#aca4f4606738e014393158d96265b15e0">testForTermination</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Some stopping criteria can be set in initials.par, with names starting with stop...  <a href="#aca4f4606738e014393158d96265b15e0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a5d932ee44142eafb181ecec61e6ba704">getStopMessage</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A message that contains a detailed description of the matched stop criteria.  <a href="#a5d932ee44142eafb181ecec61e6ba704"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a089b82855c2e9a289365afd55fbdb054">writeToFile</a> (int key, const std::string &amp;filename)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a3836af14f32d5f224d8e9bac03ced84a">updateEigensystem</a> (bool force)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Conducts the eigendecomposition of C into B and D such that <img class="formulaInl" alt="$C = B \cdot D \cdot D \cdot B^T$" src="form_9.png"/> and <img class="formulaInl" alt="$B \cdot B^T = I$" src="form_10.png"/> and D diagonal and positive.  <a href="#a3836af14f32d5f224d8e9bac03ced84a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a22f91697a890b897f99f9140b1d4143c">setMean</a> (const double *<a class="el" href="classCMAES.html#abcb0bb1c0ce6bb74151a718f1b3a22d6">xmean</a>)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Distribution mean could be changed before <a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a>.  <a href="#a22f91697a890b897f99f9140b1d4143c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a1dafd6714642367224020c2b8bd6573a">~CMAES</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the dynamically allocated memory, including that of the return value of <a class="el" href="classCMAES.html#ad9f4e1888c672a88821fef4de2d71193" title="Initializes the CMA-ES algorithm.">init()</a>.  <a href="#a1dafd6714642367224020c2b8bd6573a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ad9f4e1888c672a88821fef4de2d71193">init</a> (const <a class="el" href="classParameters.html">Parameters</a>&lt; T &gt; &amp;parameters)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the CMA-ES algorithm.  <a href="#ad9f4e1888c672a88821fef4de2d71193"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a514dd76a8dd20a33a3c52f0cc6af74d2">sayHello</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Well, says hello.  <a href="#a514dd76a8dd20a33a3c52f0cc6af74d2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a6fb584672adf0a856b638cadbe2e3b84">resumeDistribution</a> (const std::string &amp;filename)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to restart with saved internal state (distribution) variables (use <a class="el" href="classCMAES.html#a57ea7bb50956aed2aa9eb03f7233f71e">writeToFile()</a> for saving).  <a href="#a6fb584672adf0a856b638cadbe2e3b84"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1">samplePopulation</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The search space vectors have a special form: they are arrays with N+1 entries.  <a href="#a125e113c39476688c546f3e065fd18f1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#af4080d6c8baeda354674c5e94f15c682">reSampleSingle</a> (int i)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be called after <a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions of the population as often as desired.  <a href="#af4080d6c8baeda354674c5e94f15c682"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a5e691eef09ff825b48b1db0aed3f5cd8">sampleSingleInto</a> (T *x)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be called after <a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions.  <a href="#a5e691eef09ff825b48b1db0aed3f5cd8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a0b63182a2fe2b4e977b3f0931153d166">reSampleSingleOld</a> (T *x)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be called after <a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions.  <a href="#a0b63182a2fe2b4e977b3f0931153d166"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ad567c3fb26738c797f4312dcacb48d52">perturbSolutionInto</a> (T *x, T const *pxmean, T eps)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to reevaluate a slightly disturbed solution for an uncertaintly measurement.  <a href="#ad567c3fb26738c797f4312dcacb48d52"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#aca72ba65586cc02ecd9325eb0cc420a0">updateDistribution</a> (const T *fitnessValues)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Core procedure of the CMA-ES algorithm.  <a href="#aca72ba65586cc02ecd9325eb0cc420a0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a45e773741a707a9f95a5c2bab07fcfca">get</a> (<a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8">GetScalar</a> key)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Request a scalar parameter from CMA-ES.  <a href="#a45e773741a707a9f95a5c2bab07fcfca"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a818196db6e0a2bfcf800d4b6e644988e">getPtr</a> (<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">GetVector</a> key)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Request a vector parameter from CMA-ES.  <a href="#a818196db6e0a2bfcf800d4b6e644988e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a573360ecfe2684493e0e256f9d5ea60d">getNew</a> (<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">GetVector</a> key)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Request a vector parameter from CMA-ES.  <a href="#a573360ecfe2684493e0e256f9d5ea60d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a26ea206fe46a5bc687716dfb0802d74c">getInto</a> (<a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">GetVector</a> key, T *res)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Request a vector parameter from CMA-ES.  <a href="#a26ea206fe46a5bc687716dfb0802d74c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a5d3fb0bbff460e5901ef0e8a2bb2f839">testForTermination</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Some stopping criteria can be set in initials.par, with names starting with stop...  <a href="#a5d3fb0bbff460e5901ef0e8a2bb2f839"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a3a09215b6efefde35c9faa5c2201c7a7">getStopMessage</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A message that contains a detailed description of the matched stop criteria.  <a href="#a3a09215b6efefde35c9faa5c2201c7a7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a57ea7bb50956aed2aa9eb03f7233f71e">writeToFile</a> (int key, const std::string &amp;filename)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae0dcc966a2b41a9f35724c5f65e87cf5">updateEigensystem</a> (bool force)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Conducts the eigendecomposition of C into B and D such that <img class="formulaInl" alt="$C = B \cdot D \cdot D \cdot B^T$" src="form_9.png"/> and <img class="formulaInl" alt="$B \cdot B^T = I$" src="form_10.png"/> and D diagonal and positive.  <a href="#ae0dcc966a2b41a9f35724c5f65e87cf5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#aa61a791319fb10455ed26a77edded44d">setMean</a> (const T *newxmean)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Distribution mean could be changed before <a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a>.  <a href="#aa61a791319fb10455ed26a77edded44d"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a20167f0a9a3d1379caba2638ac219b17">countevals</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">objective function evaluations  <a href="#a20167f0a9a3d1379caba2638ac219b17"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTiming.html">Timing</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a9d52896c658de6f61705b29ac633666c">eigenTimings</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a4e328b09739d2fb1a220a3d7cf4bc82c">countevals</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">objective function evaluations  <a href="#a4e328b09739d2fb1a220a3d7cf4bc82c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTiming.html">Timing</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a3ee3b115e387f80b409e94e1127a77dd">eigenTimings</a></td></tr>
 <tr><td colspan="2"><h2><a name="pri-types"></a>
 Private Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classCMAES.html#a0cef0210cdaaf09dd1d40daf33127765a8d5d4000826e06e38f46851a63ae6521">INITIALIZED</a>, 
-<a class="el" href="classCMAES.html#a0cef0210cdaaf09dd1d40daf33127765a3f6993cbddba82cbb6118ca2904a4707">SAMPLED</a>, 
-<a class="el" href="classCMAES.html#a0cef0210cdaaf09dd1d40daf33127765a8d077b51333fefb4e38a7eba701433dc">UPDATED</a>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classCMAES.html#a0cef0210cdaaf09dd1d40daf33127765acdf19eb2e5b851d7af910fa38ac814e7">INITIALIZED</a>, 
+<a class="el" href="classCMAES.html#a0cef0210cdaaf09dd1d40daf33127765abf4219108f9e35e6816d0233af2a2e3e">SAMPLED</a>, 
+<a class="el" href="classCMAES.html#a0cef0210cdaaf09dd1d40daf33127765a56c763404afb4ac45e7b81539eeb6fd2">UPDATED</a>
  }</td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a74d10b9aff5af5c38f502d5deeb39ca7">getTimeStr</a> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a1f0ddbf316bdd3c7d581126300b15c3d">eigen</a> (double *diag, double **Q, double *rgtmp)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculating eigenvalues and vectors.  <a href="#a1f0ddbf316bdd3c7d581126300b15c3d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a0ba93a993430ea159fcfbcb5190ca89b">checkEigen</a> (double *diag, double **Q)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Exhaustive test of the output of the eigendecomposition, needs O(n^3) operations writes to error file.  <a href="#a0ba93a993430ea159fcfbcb5190ca89b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a031fc879bb340a62773770be6010f552">ql</a> (double *d, double *e, double **V)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Symmetric tridiagonal QL algorithm, iterative.  <a href="#a031fc879bb340a62773770be6010f552"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a3c64f274b16f97bb8e3284134ddb80e0">householder</a> (double **V, double *d, double *e)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Householder transformation of a symmetric matrix V into tridiagonal form.  <a href="#a3c64f274b16f97bb8e3284134ddb80e0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae9d4c2d4882514850c45e3c0c8c9be6e">sortIndex</a> (const double *rgFunVal, int *<a class="el" href="classCMAES.html#a327af2d124781cac8f0cf7cbac38e829">index</a>, int n)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Dirty index sort.  <a href="#ae9d4c2d4882514850c45e3c0c8c9be6e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a003a18e06c3a98e459107ef1302240d8">adaptC2</a> (const int hsig)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#adec745ab81a58aa128a4d597496d4a98">testMinStdDevs</a> (void)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Treats minimal standard deviations and numeric problems.  <a href="#adec745ab81a58aa128a4d597496d4a98"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#aab84b0daede0397d6c75828ffaeede81">addMutation</a> (double *x, double eps=1.0)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the mutation sigma*B*(D*z).  <a href="#aab84b0daede0397d6c75828ffaeede81"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#afb9f250141a96e4032d8c34e7895ec17">writeToStream</a> (int key, std::ostream &amp;file)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This hack reads key words from input key for data to be written to a file, see file signals.par as input file.  <a href="#afb9f250141a96e4032d8c34e7895ec17"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#aed17d3f1a936b1f640203d17f0422743">getTimeStr</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a77ac5ff94fbff0bed5ce9e8d83f890ee">eigen</a> (T *diag, T **Q, T *rgtmp)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculating eigenvalues and vectors.  <a href="#a77ac5ff94fbff0bed5ce9e8d83f890ee"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a770b17733d7d66fae4654823736d9c26">checkEigen</a> (T *diag, T **Q)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Exhaustive test of the output of the eigendecomposition, needs O(n^3) operations writes to error file.  <a href="#a770b17733d7d66fae4654823736d9c26"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a6bb335a1116845d5ef1bb11fc3ac5cd1">ql</a> (T *d, T *e, T **V)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Symmetric tridiagonal QL algorithm, iterative.  <a href="#a6bb335a1116845d5ef1bb11fc3ac5cd1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae861a4dac0f11adfdc0096cfbcdcbd07">householder</a> (T **V, T *d, T *e)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Householder transformation of a symmetric matrix V into tridiagonal form.  <a href="#ae861a4dac0f11adfdc0096cfbcdcbd07"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a6ec64a4e6821b8d568a18acd524a7611">sortIndex</a> (const T *rgFunVal, int *iindex, int n)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Dirty index sort.  <a href="#a6ec64a4e6821b8d568a18acd524a7611"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a2865ab646d4cbab7fa8e9c965b3d2b84">adaptC2</a> (const int hsig)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a0acb1ad8ffd57032a1be02654a9d0d4a">testMinStdDevs</a> (void)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Treats minimal standard deviations and numeric problems.  <a href="#a0acb1ad8ffd57032a1be02654a9d0d4a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#af5d3c51b5b233cb684ba40bfa564fc98">addMutation</a> (T *x, T eps=1.0)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the mutation sigma*B*(D*z).  <a href="#af5d3c51b5b233cb684ba40bfa564fc98"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a886643be9124a2910aa765ad04e4ca84">writeToStream</a> (int key, std::ostream &amp;file)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This hack reads key words from input key for data to be written to a file, see file signals.par as input file.  <a href="#a886643be9124a2910aa765ad04e4ca84"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a4d523fa10b04d39b27286edac57e26e5">version</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation version.  <a href="#a4d523fa10b04d39b27286edac57e26e5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRandom.html">Random</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a07a72482c6fc177ece2cb353600bc71c">rand</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRandom.html" title="A pseudo random number generator.">Random</a> number generator.  <a href="#a07a72482c6fc177ece2cb353600bc71c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classParameters.html">Parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a646d12979e9ce1e0cc4976ed328983ae">sp</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">CMA-ES parameters.  <a href="#a646d12979e9ce1e0cc4976ed328983ae"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a3ae16f2606eee1dc028b82c965c139d0">sigma</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">step size  <a href="#a3ae16f2606eee1dc028b82c965c139d0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#abcb0bb1c0ce6bb74151a718f1b3a22d6">xmean</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">mean x vector, "parent"  <a href="#abcb0bb1c0ce6bb74151a718f1b3a22d6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ad5f00690bceebe568304f3036293cfaa">rgxbestever</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">best sample ever  <a href="#ad5f00690bceebe568304f3036293cfaa"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a5131f541c816fe648e3d4bfc8e738013">rgrgx</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">x-vectors, lambda offspring  <a href="#a5131f541c816fe648e3d4bfc8e738013"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a327af2d124781cac8f0cf7cbac38e829">index</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">sorting index of sample pop.  <a href="#a327af2d124781cac8f0cf7cbac38e829"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae1aaa3d9590f5d9e2d619ff3f6584682">arFuncValueHist</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a4f7fa6fd358536283dee05829c8b15aa">chiN</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a8eb3ad8ba39c283963235f5d1bc65a04">C</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">lower triangular matrix: i&gt;=j for C[i][j]  <a href="#a8eb3ad8ba39c283963235f5d1bc65a04"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a68e6210ca488626409d54c19a2839e78">B</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">matrix with normalize eigenvectors in columns  <a href="#a68e6210ca488626409d54c19a2839e78"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a2a64769c76a7494acd4bd866213aa59a">rgD</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">axis lengths  <a href="#a2a64769c76a7494acd4bd866213aa59a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae304983b2c99abcf6dc36ea1ebd74642">rgpc</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ad7a758c45c95ef37a177d8adb18591ec">rgps</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#aa85ff315974b22a75c29b33a704596f7">rgxold</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a0a6f4d56111c77de1804fb7c645932bd">rgout</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#af80f9d67de1750619de092bbf2a817e9">rgBDz</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">for B*D*z  <a href="#af80f9d67de1750619de092bbf2a817e9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#aace1f3ba3e4b281f9f38b53ce56f33c2">rgdTmp</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">temporary (random) vector used in different places  <a href="#aace1f3ba3e4b281f9f38b53ce56f33c2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a8d14f2dedaa8232751deef2dfe3b790c">rgFuncValue</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#aac908352cba564b9c9dfb30bd0e888b6">publicFitness</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">returned by <a class="el" href="classCMAES.html#a55fc3154b6e7be236fa86e6cc24f0b79" title="Initializes the CMA-ES algorithm.">init()</a>  <a href="#aac908352cba564b9c9dfb30bd0e888b6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a439bc63b5c1f46085f09e943e88b4c05">gen</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Generation number.  <a href="#a439bc63b5c1f46085f09e943e88b4c05"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum CMAES:: { ... } &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a125bbfab3f9a3de9f09ee1eca83a9539">state</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">algorithm state  <a href="#a125bbfab3f9a3de9f09ee1eca83a9539"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a534013409293cb9ae3bdb8d03bfa9703">maxdiagC</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">repeatedly used for output  <a href="#a534013409293cb9ae3bdb8d03bfa9703"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ac487518f220a5fc61704303bed198154">mindiagC</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a3d34af1a0b5e99070ddbb7b371fdb0f6">maxEW</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a360f7434691b26fdb924f6afb772ad4b">minEW</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a43c2cf2241820479db43ad44bf850597">eigensysIsUptodate</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae2201ed5f53b5ca38753a6f784a76b03">doCheckEigen</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">control via signals.par  <a href="#ae2201ed5f53b5ca38753a6f784a76b03"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#af179ac88e72245f413ede0bf69111b2a">genOfEigensysUpdate</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a7eac1bd3a60737544ef7da226d63d31d">dMaxSignifKond</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a8e2081431648f6c1e109c7b72c79795b">dLastMinEWgroesserNull</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ac6f52c15160194a876d035c7d0641a44">isResumeDone</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ade3c99de4e1fd6ceceef0d9d03ce7bac">printtime</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a53c42b86b83bd87c40b9ba739dcc8d6e">writetime</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">ideally should keep track for each output file  <a href="#a53c42b86b83bd87c40b9ba739dcc8d6e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a8fd087acb3cd86d16caf751e966781dc">firstwritetime</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a0ab43f8189b883f426266daf31fb94f8">firstprinttime</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a2f8a2dcc1661ebbb3cef5bf81eca603b">stopMessage</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A message that contains all matched stop criteria.  <a href="#a2f8a2dcc1661ebbb3cef5bf81eca603b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a39f33a47d224feccbb0f31bc3b24f922">version</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation version.  <a href="#a39f33a47d224feccbb0f31bc3b24f922"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRandom.html">Random</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a73e60929e1e08ea6f9f4a5cec6f020b4">rand</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRandom.html" title="A pseudo random number generator.">Random</a> number generator.  <a href="#a73e60929e1e08ea6f9f4a5cec6f020b4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classParameters.html">Parameters</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a1471339fa263d00131424b3436c7b2ab">sp</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">CMA-ES parameters.  <a href="#a1471339fa263d00131424b3436c7b2ab"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a8d4d03e74abcb95d665288c4f6298af4">sigma</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">step size  <a href="#a8d4d03e74abcb95d665288c4f6298af4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ac98e58c55d6b24c324f4f4d520983191">xmean</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">mean x vector, "parent"  <a href="#ac98e58c55d6b24c324f4f4d520983191"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a33b5fc42be0304dc3ca66f3923d6d6ed">rgxbestever</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">best sample ever  <a href="#a33b5fc42be0304dc3ca66f3923d6d6ed"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae85f01391da333e830437e46671b5b4d">rgrgx</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">x-vectors, lambda offspring  <a href="#ae85f01391da333e830437e46671b5b4d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a6e665f59b72e11cda732b4461a450eb3">index</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">sorting index of sample pop.  <a href="#a6e665f59b72e11cda732b4461a450eb3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ad5c0bde5c3688de59e830e852ef17e44">arFuncValueHist</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#af5aff4dfec9d1eabe488c5f03395158f">chiN</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a0298719dac43fe97d073d33b0381169d">C</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">lower triangular matrix: i&gt;=j for C[i][j]  <a href="#a0298719dac43fe97d073d33b0381169d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ad8e754e134fdfa39a040a1d421d514f0">B</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">matrix with normalize eigenvectors in columns  <a href="#ad8e754e134fdfa39a040a1d421d514f0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a477663d643d114c667965d299221a1e1">rgD</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">axis lengths  <a href="#a477663d643d114c667965d299221a1e1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a959adefafdb32f8e1f56a478c28cc2b7">rgpc</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#af032f05a04ebce55701225bccc9c60f7">rgps</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a09e7f98cfed00b8847c411faaa28a935">rgxold</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a0632e9bfd6e6f6db52df1e988b7d3758">rgout</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#af70aca7676a8a393591e3813dfd244c6">rgBDz</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">for B*D*z  <a href="#af70aca7676a8a393591e3813dfd244c6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a75bd9d32b150084d1e6771c7806367b9">rgdTmp</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">temporary (random) vector used in different places  <a href="#a75bd9d32b150084d1e6771c7806367b9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a3766a33cf5871b68715921aa5df60118">rgFuncValue</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a4ed94ed86d47a4903cb11eacd1f703e5">publicFitness</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">returned by <a class="el" href="classCMAES.html#ad9f4e1888c672a88821fef4de2d71193" title="Initializes the CMA-ES algorithm.">init()</a>  <a href="#a4ed94ed86d47a4903cb11eacd1f703e5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ad9d6f162f80c8163903883694d3970c3">gen</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Generation number.  <a href="#ad9d6f162f80c8163903883694d3970c3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum CMAES:: { ... } &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a2259ba2fee168dac1aed9a5de7e9703e">state</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">algorithm state  <a href="#a2259ba2fee168dac1aed9a5de7e9703e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a93eee1dc0a955f05fcabb5db15b64886">maxdiagC</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">repeatedly used for output  <a href="#a93eee1dc0a955f05fcabb5db15b64886"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a0fc9beb46f3685e1f49f2575de3ce026">mindiagC</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae36bc85cdd41cb3db39b99a0303f6b6e">maxEW</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a9796be17293ba4549946392565368f41">minEW</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ade7b4d250edba249dfcfdc2e2396246e">eigensysIsUptodate</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a09f393f2ef964f14f6b668bc91657650">doCheckEigen</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">control via signals.par  <a href="#a09f393f2ef964f14f6b668bc91657650"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a6f4acfc9073c8320c00bb0faa9efcdcb">genOfEigensysUpdate</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae2163bc8eb11b8d28662ae985f51429b">dMaxSignifKond</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a89e9afdc9f28b153f6939039117080f1">dLastMinEWgroesserNull</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a5ef76c4c2d5833429dc868ed8d2c6709">isResumeDone</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a31915e1cc29d88faee41c1f45d3d5a2a">printtime</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a9f27aaa233806a6823b96d83059c68e1">writetime</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">ideally should keep track for each output file  <a href="#a9f27aaa233806a6823b96d83059c68e1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a72e456703b11bdcd7c273a2b764faf70">firstwritetime</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#ae5b668b5b4bacd4048c6742650801356">firstprinttime</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMAES.html#a0146e5c3a576c5f04e33c0ec3978a2e8">stopMessage</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A message that contains all matched stop criteria.  <a href="#a0146e5c3a576c5f04e33c0ec3978a2e8"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Evolution Strategies with Covariance Matrix Adaptation. </p>
+<div class="textblock"><h3>template&lt;typename T&gt;<br/>
+ class CMAES&lt; T &gt;</h3>
+
+<p>Evolution Strategies with Covariance Matrix Adaptation. </p>
 <p>The public interface of the optimization algorithm. </p>
 </div><hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="a0cef0210cdaaf09dd1d40daf33127765"></a><!-- doxytag: member="CMAES::@0" ref="a0cef0210cdaaf09dd1d40daf33127765" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">anonymous enum<code> [private]</code></td>
@@ -303,11 +308,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="a0cef0210cdaaf09dd1d40daf33127765a8d5d4000826e06e38f46851a63ae6521"></a><!-- doxytag: member="INITIALIZED" ref="a0cef0210cdaaf09dd1d40daf33127765a8d5d4000826e06e38f46851a63ae6521" args="" -->INITIALIZED</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a0cef0210cdaaf09dd1d40daf33127765acdf19eb2e5b851d7af910fa38ac814e7"></a><!-- doxytag: member="INITIALIZED" ref="a0cef0210cdaaf09dd1d40daf33127765acdf19eb2e5b851d7af910fa38ac814e7" args="" -->INITIALIZED</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a0cef0210cdaaf09dd1d40daf33127765a3f6993cbddba82cbb6118ca2904a4707"></a><!-- doxytag: member="SAMPLED" ref="a0cef0210cdaaf09dd1d40daf33127765a3f6993cbddba82cbb6118ca2904a4707" args="" -->SAMPLED</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a0cef0210cdaaf09dd1d40daf33127765abf4219108f9e35e6816d0233af2a2e3e"></a><!-- doxytag: member="SAMPLED" ref="a0cef0210cdaaf09dd1d40daf33127765abf4219108f9e35e6816d0233af2a2e3e" args="" -->SAMPLED</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a0cef0210cdaaf09dd1d40daf33127765a8d077b51333fefb4e38a7eba701433dc"></a><!-- doxytag: member="UPDATED" ref="a0cef0210cdaaf09dd1d40daf33127765a8d077b51333fefb4e38a7eba701433dc" args="" -->UPDATED</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a0cef0210cdaaf09dd1d40daf33127765a56c763404afb4ac45e7b81539eeb6fd2"></a><!-- doxytag: member="UPDATED" ref="a0cef0210cdaaf09dd1d40daf33127765a56c763404afb4ac45e7b81539eeb6fd2" args="" -->UPDATED</em>&nbsp;</td><td>
 </td></tr>
 </table>
 </dd>
@@ -318,6 +323,8 @@ Private Attributes</h2></td></tr>
 <a class="anchor" id="ad7400b48c05115ef004ce20317646ca8"></a><!-- doxytag: member="CMAES::GetScalar" ref="ad7400b48c05115ef004ce20317646ca8" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">enum <a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8">CMAES::GetScalar</a></td>
@@ -326,61 +333,61 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Keys for <a class="el" href="classCMAES.html#a9629e132599eebe2f0605d3d14702c7a" title="Request a scalar parameter from CMA-ES.">get()</a>. </p>
+<p>Keys for <a class="el" href="classCMAES.html#a45e773741a707a9f95a5c2bab07fcfca" title="Request a scalar parameter from CMA-ES.">get()</a>. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a176a634f191454374cb07b76c259d3ce"></a><!-- doxytag: member="NoScalar" ref="ad7400b48c05115ef004ce20317646ca8a176a634f191454374cb07b76c259d3ce" args="" -->NoScalar</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a0eac9fcd31997fbce7b050fea059146c"></a><!-- doxytag: member="NoScalar" ref="ad7400b48c05115ef004ce20317646ca8a0eac9fcd31997fbce7b050fea059146c" args="" -->NoScalar</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8ae922b9f656b80ec2e0db1c196d154c21"></a><!-- doxytag: member="AxisRatio" ref="ad7400b48c05115ef004ce20317646ca8ae922b9f656b80ec2e0db1c196d154c21" args="" -->AxisRatio</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a80b1da110476f59b1dd637f86abcff6d"></a><!-- doxytag: member="AxisRatio" ref="ad7400b48c05115ef004ce20317646ca8a80b1da110476f59b1dd637f86abcff6d" args="" -->AxisRatio</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a966e082259e19d281c39dfc0bcbe571a"></a><!-- doxytag: member="Eval" ref="ad7400b48c05115ef004ce20317646ca8a966e082259e19d281c39dfc0bcbe571a" args="" -->Eval</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a792dc72137eae9dff32d3d0ec7e520a0"></a><!-- doxytag: member="Eval" ref="ad7400b48c05115ef004ce20317646ca8a792dc72137eae9dff32d3d0ec7e520a0" args="" -->Eval</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a57ffe416f3432c88549ec8c5645371dc"></a><!-- doxytag: member="Evaluations" ref="ad7400b48c05115ef004ce20317646ca8a57ffe416f3432c88549ec8c5645371dc" args="" -->Evaluations</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a3d094cfa5259537cb5866df1aa30dabf"></a><!-- doxytag: member="Evaluations" ref="ad7400b48c05115ef004ce20317646ca8a3d094cfa5259537cb5866df1aa30dabf" args="" -->Evaluations</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a3c30ba35d71a4764a28020ae9b646f79"></a><!-- doxytag: member="FctValue" ref="ad7400b48c05115ef004ce20317646ca8a3c30ba35d71a4764a28020ae9b646f79" args="" -->FctValue</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8abda053a0cb2db42a16e0acfcdffc1f5d"></a><!-- doxytag: member="FctValue" ref="ad7400b48c05115ef004ce20317646ca8abda053a0cb2db42a16e0acfcdffc1f5d" args="" -->FctValue</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a5e8dc2025f7e8cd87c7be2baaada098f"></a><!-- doxytag: member="FuncValue" ref="ad7400b48c05115ef004ce20317646ca8a5e8dc2025f7e8cd87c7be2baaada098f" args="" -->FuncValue</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a0a185991edec9d5597e958a825ccef8b"></a><!-- doxytag: member="FuncValue" ref="ad7400b48c05115ef004ce20317646ca8a0a185991edec9d5597e958a825ccef8b" args="" -->FuncValue</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a808641299db374e875f0df944e5cf5d9"></a><!-- doxytag: member="FunValue" ref="ad7400b48c05115ef004ce20317646ca8a808641299db374e875f0df944e5cf5d9" args="" -->FunValue</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a24a927cfe7f5c73c47e8f5395abc0e7a"></a><!-- doxytag: member="FunValue" ref="ad7400b48c05115ef004ce20317646ca8a24a927cfe7f5c73c47e8f5395abc0e7a" args="" -->FunValue</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a39befd5a626ab086f2c795050f0b4506"></a><!-- doxytag: member="Fitness" ref="ad7400b48c05115ef004ce20317646ca8a39befd5a626ab086f2c795050f0b4506" args="" -->Fitness</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8addcdd74505b48ad4a541db7b829e335b"></a><!-- doxytag: member="Fitness" ref="ad7400b48c05115ef004ce20317646ca8addcdd74505b48ad4a541db7b829e335b" args="" -->Fitness</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a8d25bf7ea1c3fcfdfc5ee70cf924ca09"></a><!-- doxytag: member="FBestEver" ref="ad7400b48c05115ef004ce20317646ca8a8d25bf7ea1c3fcfdfc5ee70cf924ca09" args="" -->FBestEver</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8ad21c49f13a72548684969bd0efadee5b"></a><!-- doxytag: member="FBestEver" ref="ad7400b48c05115ef004ce20317646ca8ad21c49f13a72548684969bd0efadee5b" args="" -->FBestEver</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a4245e455b767356fbe6b62bbcc4874cb"></a><!-- doxytag: member="Generation" ref="ad7400b48c05115ef004ce20317646ca8a4245e455b767356fbe6b62bbcc4874cb" args="" -->Generation</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8acc3da801ee825cfe1d4546e7ff1df445"></a><!-- doxytag: member="Generation" ref="ad7400b48c05115ef004ce20317646ca8acc3da801ee825cfe1d4546e7ff1df445" args="" -->Generation</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8afb13b72496908a32e1f6f4cf8dd064f5"></a><!-- doxytag: member="Iteration" ref="ad7400b48c05115ef004ce20317646ca8afb13b72496908a32e1f6f4cf8dd064f5" args="" -->Iteration</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a227350ef92ae76a118395539614413ea"></a><!-- doxytag: member="Iteration" ref="ad7400b48c05115ef004ce20317646ca8a227350ef92ae76a118395539614413ea" args="" -->Iteration</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a9baa5d82052a07a62dbdc31dd55abf6f"></a><!-- doxytag: member="MaxEval" ref="ad7400b48c05115ef004ce20317646ca8a9baa5d82052a07a62dbdc31dd55abf6f" args="" -->MaxEval</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8aa6d0a2c0e925ea13fbc4eafdb0d73212"></a><!-- doxytag: member="MaxEval" ref="ad7400b48c05115ef004ce20317646ca8aa6d0a2c0e925ea13fbc4eafdb0d73212" args="" -->MaxEval</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8ad6df8e43791e2074fa39d1708004188f"></a><!-- doxytag: member="MaxFunEvals" ref="ad7400b48c05115ef004ce20317646ca8ad6df8e43791e2074fa39d1708004188f" args="" -->MaxFunEvals</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8ae9d7f8b79143385c7b106bbbf3c2d412"></a><!-- doxytag: member="MaxFunEvals" ref="ad7400b48c05115ef004ce20317646ca8ae9d7f8b79143385c7b106bbbf3c2d412" args="" -->MaxFunEvals</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a8056587ec06c7ffdc9765dfc00528333"></a><!-- doxytag: member="StopMaxFunEvals" ref="ad7400b48c05115ef004ce20317646ca8a8056587ec06c7ffdc9765dfc00528333" args="" -->StopMaxFunEvals</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8ac2a58bc5ffa24f12ec92e11c18e8d4a1"></a><!-- doxytag: member="StopMaxFunEvals" ref="ad7400b48c05115ef004ce20317646ca8ac2a58bc5ffa24f12ec92e11c18e8d4a1" args="" -->StopMaxFunEvals</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a0756b08dc2d487310e17fd67e72c0c0b"></a><!-- doxytag: member="MaxGen" ref="ad7400b48c05115ef004ce20317646ca8a0756b08dc2d487310e17fd67e72c0c0b" args="" -->MaxGen</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8af273a71dfa8af4b2512e63b85255c57b"></a><!-- doxytag: member="MaxGen" ref="ad7400b48c05115ef004ce20317646ca8af273a71dfa8af4b2512e63b85255c57b" args="" -->MaxGen</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a5bdb798c866b49922824c53e87c288e4"></a><!-- doxytag: member="MaxIter" ref="ad7400b48c05115ef004ce20317646ca8a5bdb798c866b49922824c53e87c288e4" args="" -->MaxIter</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a2f5dc38e6e11ee72a99131f66ac96ec6"></a><!-- doxytag: member="MaxIter" ref="ad7400b48c05115ef004ce20317646ca8a2f5dc38e6e11ee72a99131f66ac96ec6" args="" -->MaxIter</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a9bbdd1f196b5e95806f82de77003d921"></a><!-- doxytag: member="StopMaxIter" ref="ad7400b48c05115ef004ce20317646ca8a9bbdd1f196b5e95806f82de77003d921" args="" -->StopMaxIter</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8aeb3dce345e47ca1fcc222d4fde877a3a"></a><!-- doxytag: member="StopMaxIter" ref="ad7400b48c05115ef004ce20317646ca8aeb3dce345e47ca1fcc222d4fde877a3a" args="" -->StopMaxIter</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a40a64f7ecde56491199044722c6ff854"></a><!-- doxytag: member="MaxAxisLength" ref="ad7400b48c05115ef004ce20317646ca8a40a64f7ecde56491199044722c6ff854" args="" -->MaxAxisLength</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8ad08dc0a35ffc83e74e5ee207facfd9ae"></a><!-- doxytag: member="MaxAxisLength" ref="ad7400b48c05115ef004ce20317646ca8ad08dc0a35ffc83e74e5ee207facfd9ae" args="" -->MaxAxisLength</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a3316d6bb73419af44875b6bd1c0665bb"></a><!-- doxytag: member="MinAxisLength" ref="ad7400b48c05115ef004ce20317646ca8a3316d6bb73419af44875b6bd1c0665bb" args="" -->MinAxisLength</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a69531e25f35ad31c729d8cbbdb0919ce"></a><!-- doxytag: member="MinAxisLength" ref="ad7400b48c05115ef004ce20317646ca8a69531e25f35ad31c729d8cbbdb0919ce" args="" -->MinAxisLength</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8ae28af7ca384838d588fefafce7cb1884"></a><!-- doxytag: member="MaxStdDev" ref="ad7400b48c05115ef004ce20317646ca8ae28af7ca384838d588fefafce7cb1884" args="" -->MaxStdDev</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a2255eb5bbe0790bd7d8a59ebd6adcefc"></a><!-- doxytag: member="MaxStdDev" ref="ad7400b48c05115ef004ce20317646ca8a2255eb5bbe0790bd7d8a59ebd6adcefc" args="" -->MaxStdDev</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a7a72ea0f6cef7f4294380a7c22e8d30f"></a><!-- doxytag: member="MinStdDev" ref="ad7400b48c05115ef004ce20317646ca8a7a72ea0f6cef7f4294380a7c22e8d30f" args="" -->MinStdDev</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8ad2a4cb103c2cde9298f960900d82d9e5"></a><!-- doxytag: member="MinStdDev" ref="ad7400b48c05115ef004ce20317646ca8ad2a4cb103c2cde9298f960900d82d9e5" args="" -->MinStdDev</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8aacc02fe0b5e5c2b63a96903234a783e4"></a><!-- doxytag: member="Dim" ref="ad7400b48c05115ef004ce20317646ca8aacc02fe0b5e5c2b63a96903234a783e4" args="" -->Dim</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a75e12eda134ea0f0eca86ee1833e561e"></a><!-- doxytag: member="Dim" ref="ad7400b48c05115ef004ce20317646ca8a75e12eda134ea0f0eca86ee1833e561e" args="" -->Dim</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8addd16733727b70416604815340451ad8"></a><!-- doxytag: member="Dimension" ref="ad7400b48c05115ef004ce20317646ca8addd16733727b70416604815340451ad8" args="" -->Dimension</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8aa3da33927ee647a3f48e408b11c37946"></a><!-- doxytag: member="Dimension" ref="ad7400b48c05115ef004ce20317646ca8aa3da33927ee647a3f48e408b11c37946" args="" -->Dimension</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8af5cd6e88b89cd199cf2ef06871d0f144"></a><!-- doxytag: member="Lambda" ref="ad7400b48c05115ef004ce20317646ca8af5cd6e88b89cd199cf2ef06871d0f144" args="" -->Lambda</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a0a7cf2fff11dd8b8ad79f21540313a76"></a><!-- doxytag: member="Lambda" ref="ad7400b48c05115ef004ce20317646ca8a0a7cf2fff11dd8b8ad79f21540313a76" args="" -->Lambda</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8ab9fd99760e117acd0f83876c1f65406c"></a><!-- doxytag: member="SampleSize" ref="ad7400b48c05115ef004ce20317646ca8ab9fd99760e117acd0f83876c1f65406c" args="" -->SampleSize</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a525cb5a156ebe9191586e97830aede31"></a><!-- doxytag: member="SampleSize" ref="ad7400b48c05115ef004ce20317646ca8a525cb5a156ebe9191586e97830aede31" args="" -->SampleSize</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8ae73c8b8dcafdc05b7906a765fe531b0d"></a><!-- doxytag: member="PopSize" ref="ad7400b48c05115ef004ce20317646ca8ae73c8b8dcafdc05b7906a765fe531b0d" args="" -->PopSize</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a8fa009b49ad74ed50cb8639d94ce4d00"></a><!-- doxytag: member="PopSize" ref="ad7400b48c05115ef004ce20317646ca8a8fa009b49ad74ed50cb8639d94ce4d00" args="" -->PopSize</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a28515ae54b211cd9d302cd69b5e62631"></a><!-- doxytag: member="Sigma" ref="ad7400b48c05115ef004ce20317646ca8a28515ae54b211cd9d302cd69b5e62631" args="" -->Sigma</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ad7400b48c05115ef004ce20317646ca8a06a4d432f0d0783509dd88456ecd07ea"></a><!-- doxytag: member="Sigma" ref="ad7400b48c05115ef004ce20317646ca8a06a4d432f0d0783509dd88456ecd07ea" args="" -->Sigma</em>&nbsp;</td><td>
 </td></tr>
 </table>
 </dd>
@@ -391,6 +398,8 @@ Private Attributes</h2></td></tr>
 <a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82"></a><!-- doxytag: member="CMAES::GetVector" ref="a55c21f2418b9972c6ffe26d188115f82" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">enum <a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">CMAES::GetVector</a></td>
@@ -399,21 +408,21 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Keys for <a class="el" href="classCMAES.html#a803fa1cf4b2d0b24c141ed2067967963" title="Request a vector parameter from CMA-ES.">getPtr()</a>. </p>
+<p>Keys for <a class="el" href="classCMAES.html#a818196db6e0a2bfcf800d4b6e644988e" title="Request a vector parameter from CMA-ES.">getPtr()</a>. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82ab9206073e6224ae8b2822985e5db2486"></a><!-- doxytag: member="NoVector" ref="a55c21f2418b9972c6ffe26d188115f82ab9206073e6224ae8b2822985e5db2486" args="" -->NoVector</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82af40a2e44d652a00a9ccd9edec2009af0"></a><!-- doxytag: member="NoVector" ref="a55c21f2418b9972c6ffe26d188115f82af40a2e44d652a00a9ccd9edec2009af0" args="" -->NoVector</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82a1f3a735d84948e040340bf1c7d951543"></a><!-- doxytag: member="DiagC" ref="a55c21f2418b9972c6ffe26d188115f82a1f3a735d84948e040340bf1c7d951543" args="" -->DiagC</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82ae17b1c54a0a0ab7c76d07eed386d9322"></a><!-- doxytag: member="DiagC" ref="a55c21f2418b9972c6ffe26d188115f82ae17b1c54a0a0ab7c76d07eed386d9322" args="" -->DiagC</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82a18bc0e01e139afe352e600d213409dc3"></a><!-- doxytag: member="DiagD" ref="a55c21f2418b9972c6ffe26d188115f82a18bc0e01e139afe352e600d213409dc3" args="" -->DiagD</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82a5bdd7c9d31b8273f97e54e30f6119399"></a><!-- doxytag: member="DiagD" ref="a55c21f2418b9972c6ffe26d188115f82a5bdd7c9d31b8273f97e54e30f6119399" args="" -->DiagD</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82a5904c1886948d8bad125ca325475bb96"></a><!-- doxytag: member="StdDev" ref="a55c21f2418b9972c6ffe26d188115f82a5904c1886948d8bad125ca325475bb96" args="" -->StdDev</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82a0ec1a5126c8afaa5de18d488631e0694"></a><!-- doxytag: member="StdDev" ref="a55c21f2418b9972c6ffe26d188115f82a0ec1a5126c8afaa5de18d488631e0694" args="" -->StdDev</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82adcc2a65ebbcdfd5ed5aab4170d95b83d"></a><!-- doxytag: member="XBestEver" ref="a55c21f2418b9972c6ffe26d188115f82adcc2a65ebbcdfd5ed5aab4170d95b83d" args="" -->XBestEver</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82aee6ad973ab7973ed05fbd787af5f4241"></a><!-- doxytag: member="XBestEver" ref="a55c21f2418b9972c6ffe26d188115f82aee6ad973ab7973ed05fbd787af5f4241" args="" -->XBestEver</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82a6e6957af29b9eac41c2a20eac0cf651a"></a><!-- doxytag: member="XBest" ref="a55c21f2418b9972c6ffe26d188115f82a6e6957af29b9eac41c2a20eac0cf651a" args="" -->XBest</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82aeb635f2a8c23f4e25bd9ae0e0804bb7a"></a><!-- doxytag: member="XBest" ref="a55c21f2418b9972c6ffe26d188115f82aeb635f2a8c23f4e25bd9ae0e0804bb7a" args="" -->XBest</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82a29bbe329c9d3616ce1697f6855b28037"></a><!-- doxytag: member="XMean" ref="a55c21f2418b9972c6ffe26d188115f82a29bbe329c9d3616ce1697f6855b28037" args="" -->XMean</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a55c21f2418b9972c6ffe26d188115f82abe10ba6036cb0771e308fb1f9af27f48"></a><!-- doxytag: member="XMean" ref="a55c21f2418b9972c6ffe26d188115f82abe10ba6036cb0771e308fb1f9af27f48" args="" -->XMean</em>&nbsp;</td><td>
 </td></tr>
 </table>
 </dd>
@@ -424,6 +433,8 @@ Private Attributes</h2></td></tr>
 <a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5"></a><!-- doxytag: member="CMAES::WriteKey" ref="ae9f81c1f7041cad8e768ecd6d30aaed5" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">enum <a class="el" href="classCMAES.html#ae9f81c1f7041cad8e768ecd6d30aaed5">CMAES::WriteKey</a></td>
@@ -432,41 +443,41 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Keys for <a class="el" href="classCMAES.html#a089b82855c2e9a289365afd55fbdb054">writeToFile()</a>. </p>
+<p>Keys for <a class="el" href="classCMAES.html#a57ea7bb50956aed2aa9eb03f7233f71e">writeToFile()</a>. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5aa3a292cb838b0f0fefc907265a21e5c8"></a><!-- doxytag: member="WCNone" ref="ae9f81c1f7041cad8e768ecd6d30aaed5aa3a292cb838b0f0fefc907265a21e5c8" args="" -->WCNone</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a21e38dd471b82a293b061500ada251c6"></a><!-- doxytag: member="WCNone" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a21e38dd471b82a293b061500ada251c6" args="" -->WCNone</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5aa920337fa145b8d396fba2360db77b34"></a><!-- doxytag: member="WKResume" ref="ae9f81c1f7041cad8e768ecd6d30aaed5aa920337fa145b8d396fba2360db77b34" args="" -->WKResume</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5aa149aa30989f563b45db616cf69a375b"></a><!-- doxytag: member="WKResume" ref="ae9f81c1f7041cad8e768ecd6d30aaed5aa149aa30989f563b45db616cf69a375b" args="" -->WKResume</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a105077ac3c850a61c8f78b613027ce6a"></a><!-- doxytag: member="WKXMean" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a105077ac3c850a61c8f78b613027ce6a" args="" -->WKXMean</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5ab430a1a4c4f6030e67f76d49dc1acd76"></a><!-- doxytag: member="WKXMean" ref="ae9f81c1f7041cad8e768ecd6d30aaed5ab430a1a4c4f6030e67f76d49dc1acd76" args="" -->WKXMean</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5aa59793891d21c843f7fc0f88e8cdfbbe"></a><!-- doxytag: member="WKC" ref="ae9f81c1f7041cad8e768ecd6d30aaed5aa59793891d21c843f7fc0f88e8cdfbbe" args="" -->WKC</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a61d330c96de9b673a0076606bea2b59b"></a><!-- doxytag: member="WKC" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a61d330c96de9b673a0076606bea2b59b" args="" -->WKC</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5aa54a5c803af2605f5b160bb28b945f4f"></a><!-- doxytag: member="WKAll" ref="ae9f81c1f7041cad8e768ecd6d30aaed5aa54a5c803af2605f5b160bb28b945f4f" args="" -->WKAll</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5abbf04a8ffe5c7bccecf352e294e9c099"></a><!-- doxytag: member="WKAll" ref="ae9f81c1f7041cad8e768ecd6d30aaed5abbf04a8ffe5c7bccecf352e294e9c099" args="" -->WKAll</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a65f595e8d00a42163965b29172151547"></a><!-- doxytag: member="WKFewInfo" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a65f595e8d00a42163965b29172151547" args="" -->WKFewInfo</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a07d0282b9c7d9719df60fbc03f5a6eab"></a><!-- doxytag: member="WKFewInfo" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a07d0282b9c7d9719df60fbc03f5a6eab" args="" -->WKFewInfo</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a779c437200d5aeab2bdb9d4187a24c82"></a><!-- doxytag: member="WKFew" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a779c437200d5aeab2bdb9d4187a24c82" args="" -->WKFew</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5ac8b7485532d066b19565db85e060aeac"></a><!-- doxytag: member="WKFew" ref="ae9f81c1f7041cad8e768ecd6d30aaed5ac8b7485532d066b19565db85e060aeac" args="" -->WKFew</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a794f66caef51ac8b2ad2d21f8b7211e4"></a><!-- doxytag: member="WKEval" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a794f66caef51ac8b2ad2d21f8b7211e4" args="" -->WKEval</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a92d1998fb46900bceb39a60e3ed35746"></a><!-- doxytag: member="WKEval" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a92d1998fb46900bceb39a60e3ed35746" args="" -->WKEval</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a11e0a55656769fd9257ef3eaff240b45"></a><!-- doxytag: member="WKFitness" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a11e0a55656769fd9257ef3eaff240b45" args="" -->WKFitness</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a3bab88222e97d560b05cdcd7f5d967f0"></a><!-- doxytag: member="WKFitness" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a3bab88222e97d560b05cdcd7f5d967f0" args="" -->WKFitness</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5adc734b184a17b52239fbd03bf060f831"></a><!-- doxytag: member="WKFBestEver" ref="ae9f81c1f7041cad8e768ecd6d30aaed5adc734b184a17b52239fbd03bf060f831" args="" -->WKFBestEver</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a689dedaccffee9f44f969a838f62b2a3"></a><!-- doxytag: member="WKFBestEver" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a689dedaccffee9f44f969a838f62b2a3" args="" -->WKFBestEver</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5adbd7e54a24d652c90061c0dcf835ca3d"></a><!-- doxytag: member="WKCGeneration" ref="ae9f81c1f7041cad8e768ecd6d30aaed5adbd7e54a24d652c90061c0dcf835ca3d" args="" -->WKCGeneration</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5af74d31e6940d9c55b13935971bfd764d"></a><!-- doxytag: member="WKCGeneration" ref="ae9f81c1f7041cad8e768ecd6d30aaed5af74d31e6940d9c55b13935971bfd764d" args="" -->WKCGeneration</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5aeaa3b28aa13a3cb57e221becc76231d2"></a><!-- doxytag: member="WKSigma" ref="ae9f81c1f7041cad8e768ecd6d30aaed5aeaa3b28aa13a3cb57e221becc76231d2" args="" -->WKSigma</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a393a8956a826379f2918b1a0193ceead"></a><!-- doxytag: member="WKSigma" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a393a8956a826379f2918b1a0193ceead" args="" -->WKSigma</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5af0fd7c06d3320c9349eb4a1eebdd889b"></a><!-- doxytag: member="WKLambda" ref="ae9f81c1f7041cad8e768ecd6d30aaed5af0fd7c06d3320c9349eb4a1eebdd889b" args="" -->WKLambda</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5ab3b3919789e241ae3ae2c855d17c7528"></a><!-- doxytag: member="WKLambda" ref="ae9f81c1f7041cad8e768ecd6d30aaed5ab3b3919789e241ae3ae2c855d17c7528" args="" -->WKLambda</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a06e4c961296c3bd42b00d1da7a77a2e4"></a><!-- doxytag: member="WKB" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a06e4c961296c3bd42b00d1da7a77a2e4" args="" -->WKB</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a407d38eb1d75495aa388416be4fb9673"></a><!-- doxytag: member="WKB" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a407d38eb1d75495aa388416be4fb9673" args="" -->WKB</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a6757783236cac3f44ad7c2e6e672fbdb"></a><!-- doxytag: member="WKXBest" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a6757783236cac3f44ad7c2e6e672fbdb" args="" -->WKXBest</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a9b15493966d6f12f6e3135046cd6ae24"></a><!-- doxytag: member="WKXBest" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a9b15493966d6f12f6e3135046cd6ae24" args="" -->WKXBest</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5af9ed88b368e78d3494bb72206f50f95c"></a><!-- doxytag: member="WKClock" ref="ae9f81c1f7041cad8e768ecd6d30aaed5af9ed88b368e78d3494bb72206f50f95c" args="" -->WKClock</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a939618e4c01b55a93ead6992a16e7d80"></a><!-- doxytag: member="WKClock" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a939618e4c01b55a93ead6992a16e7d80" args="" -->WKClock</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a78b8788726c93fcd126eb221b2795d7f"></a><!-- doxytag: member="WKDim" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a78b8788726c93fcd126eb221b2795d7f" args="" -->WKDim</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ae9f81c1f7041cad8e768ecd6d30aaed5a7213701c32edd96cbca9697368af03ae"></a><!-- doxytag: member="WKDim" ref="ae9f81c1f7041cad8e768ecd6d30aaed5a7213701c32edd96cbca9697368af03ae" args="" -->WKDim</em>&nbsp;</td><td>
 </td></tr>
 </table>
 </dd>
@@ -475,35 +486,39 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a4e36686e926f9f7e539fdc77668b1d1f"></a><!-- doxytag: member="CMAES::~CMAES" ref="a4e36686e926f9f7e539fdc77668b1d1f" args="()" -->
+<a class="anchor" id="a1dafd6714642367224020c2b8bd6573a"></a><!-- doxytag: member="CMAES::~CMAES" ref="a1dafd6714642367224020c2b8bd6573a" args="()" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">CMAES::~CMAES </td>
+          <td class="memname"><a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::~<a class="el" href="classCMAES.html">CMAES</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Releases the dynamically allocated memory, including that of the return value of <a class="el" href="classCMAES.html#a55fc3154b6e7be236fa86e6cc24f0b79" title="Initializes the CMA-ES algorithm.">init()</a>. </p>
+<p>Releases the dynamically allocated memory, including that of the return value of <a class="el" href="classCMAES.html#ad9f4e1888c672a88821fef4de2d71193" title="Initializes the CMA-ES algorithm.">init()</a>. </p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a003a18e06c3a98e459107ef1302240d8"></a><!-- doxytag: member="CMAES::adaptC2" ref="a003a18e06c3a98e459107ef1302240d8" args="(const int hsig)" -->
+<a class="anchor" id="a2865ab646d4cbab7fa8e9c965b3d2b84"></a><!-- doxytag: member="CMAES::adaptC2" ref="a2865ab646d4cbab7fa8e9c965b3d2b84" args="(const int hsig)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void CMAES::adaptC2 </td>
+          <td class="memname">void <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::adaptC2 </td>
           <td>(</td>
           <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>hsig</em></td><td>)</td>
-          <td><code> [private]</code></td>
+          <td><code> [inline, private]</code></td>
         </tr>
       </table>
 </div>
@@ -511,26 +526,28 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aab84b0daede0397d6c75828ffaeede81"></a><!-- doxytag: member="CMAES::addMutation" ref="aab84b0daede0397d6c75828ffaeede81" args="(double *x, double eps=1.0)" -->
+<a class="anchor" id="af5d3c51b5b233cb684ba40bfa564fc98"></a><!-- doxytag: member="CMAES::addMutation" ref="af5d3c51b5b233cb684ba40bfa564fc98" args="(T *x, T eps=1.0)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void CMAES::addMutation </td>
+          <td class="memname">void <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::addMutation </td>
           <td>(</td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">T&#160;</td>
           <td class="paramname"><em>eps</em> = <code>1.0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [private]</code></td>
+          <td></td><td><code> [inline, private]</code></td>
         </tr>
       </table>
 </div>
@@ -547,26 +564,28 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0ba93a993430ea159fcfbcb5190ca89b"></a><!-- doxytag: member="CMAES::checkEigen" ref="a0ba93a993430ea159fcfbcb5190ca89b" args="(double *diag, double **Q)" -->
+<a class="anchor" id="a770b17733d7d66fae4654823736d9c26"></a><!-- doxytag: member="CMAES::checkEigen" ref="a770b17733d7d66fae4654823736d9c26" args="(T *diag, T **Q)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int CMAES::checkEigen </td>
+          <td class="memname">int <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::checkEigen </td>
           <td>(</td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>diag</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double **&#160;</td>
+          <td class="paramtype">T **&#160;</td>
           <td class="paramname"><em>Q</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [private]</code></td>
+          <td></td><td><code> [inline, private]</code></td>
         </tr>
       </table>
 </div>
@@ -577,32 +596,34 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1f0ddbf316bdd3c7d581126300b15c3d"></a><!-- doxytag: member="CMAES::eigen" ref="a1f0ddbf316bdd3c7d581126300b15c3d" args="(double *diag, double **Q, double *rgtmp)" -->
+<a class="anchor" id="a77ac5ff94fbff0bed5ce9e8d83f890ee"></a><!-- doxytag: member="CMAES::eigen" ref="a77ac5ff94fbff0bed5ce9e8d83f890ee" args="(T *diag, T **Q, T *rgtmp)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void CMAES::eigen </td>
+          <td class="memname">void <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::eigen </td>
           <td>(</td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>diag</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double **&#160;</td>
+          <td class="paramtype">T **&#160;</td>
           <td class="paramname"><em>Q</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>rgtmp</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [private]</code></td>
+          <td></td><td><code> [inline, private]</code></td>
         </tr>
       </table>
 </div>
@@ -620,16 +641,18 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9629e132599eebe2f0605d3d14702c7a"></a><!-- doxytag: member="CMAES::get" ref="a9629e132599eebe2f0605d3d14702c7a" args="(GetScalar key)" -->
+<a class="anchor" id="a45e773741a707a9f95a5c2bab07fcfca"></a><!-- doxytag: member="CMAES::get" ref="a45e773741a707a9f95a5c2bab07fcfca" args="(GetScalar key)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double CMAES::get </td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::get </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classCMAES.html#ad7400b48c05115ef004ce20317646ca8">GetScalar</a>&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -646,12 +669,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6c5613bbd71d3185108f88d307d35118"></a><!-- doxytag: member="CMAES::getInto" ref="a6c5613bbd71d3185108f88d307d35118" args="(GetVector key, double *res)" -->
+<a class="anchor" id="a26ea206fe46a5bc687716dfb0802d74c"></a><!-- doxytag: member="CMAES::getInto" ref="a26ea206fe46a5bc687716dfb0802d74c" args="(GetVector key, T *res)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double * CMAES::getInto </td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::getInto </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">GetVector</a>&#160;</td>
           <td class="paramname"><em>key</em>, </td>
@@ -659,13 +684,13 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>res</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -675,23 +700,25 @@ Private Attributes</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">key</td><td>Key of the requested vector. </td></tr>
-    <tr><td class="paramname">res</td><td>Memory of size N == dimension, where the desired values are written into. For mem == NULL new memory is allocated as with calling <a class="el" href="classCMAES.html#a085891d774211f88f0a09c5f8348229d" title="Request a vector parameter from CMA-ES.">getNew()</a> and must be released by the user at some point. </td></tr>
+    <tr><td class="paramname">res</td><td>Memory of size N == dimension, where the desired values are written into. For mem == NULL new memory is allocated as with calling <a class="el" href="classCMAES.html#a573360ecfe2684493e0e256f9d5ea60d" title="Request a vector parameter from CMA-ES.">getNew()</a> and must be released by the user at some point. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a085891d774211f88f0a09c5f8348229d"></a><!-- doxytag: member="CMAES::getNew" ref="a085891d774211f88f0a09c5f8348229d" args="(GetVector key)" -->
+<a class="anchor" id="a573360ecfe2684493e0e256f9d5ea60d"></a><!-- doxytag: member="CMAES::getNew" ref="a573360ecfe2684493e0e256f9d5ea60d" args="(GetVector key)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double * CMAES::getNew </td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::getNew </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">GetVector</a>&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -708,16 +735,18 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a803fa1cf4b2d0b24c141ed2067967963"></a><!-- doxytag: member="CMAES::getPtr" ref="a803fa1cf4b2d0b24c141ed2067967963" args="(GetVector key)" -->
+<a class="anchor" id="a818196db6e0a2bfcf800d4b6e644988e"></a><!-- doxytag: member="CMAES::getPtr" ref="a818196db6e0a2bfcf800d4b6e644988e" args="(GetVector key)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const double * CMAES::getPtr </td>
+          <td class="memname">const T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::getPtr </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classCMAES.html#a55c21f2418b9972c6ffe26d188115f82">GetVector</a>&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -730,19 +759,21 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Pointer to the desired value array. Its content might be overwritten during the next call to any member functions other than <a class="el" href="classCMAES.html#a9629e132599eebe2f0605d3d14702c7a" title="Request a scalar parameter from CMA-ES.">get()</a>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Pointer to the desired value array. Its content might be overwritten during the next call to any member functions other than <a class="el" href="classCMAES.html#a45e773741a707a9f95a5c2bab07fcfca" title="Request a scalar parameter from CMA-ES.">get()</a>. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a5d932ee44142eafb181ecec61e6ba704"></a><!-- doxytag: member="CMAES::getStopMessage" ref="a5d932ee44142eafb181ecec61e6ba704" args="()" -->
+<a class="anchor" id="a3a09215b6efefde35c9faa5c2201c7a7"></a><!-- doxytag: member="CMAES::getStopMessage" ref="a3a09215b6efefde35c9faa5c2201c7a7" args="()" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::string CMAES::getStopMessage </td>
+          <td class="memname">std::string <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::getStopMessage </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -752,16 +783,18 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a74d10b9aff5af5c38f502d5deeb39ca7"></a><!-- doxytag: member="CMAES::getTimeStr" ref="a74d10b9aff5af5c38f502d5deeb39ca7" args="(void)" -->
+<a class="anchor" id="aed17d3f1a936b1f640203d17f0422743"></a><!-- doxytag: member="CMAES::getTimeStr" ref="aed17d3f1a936b1f640203d17f0422743" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::string CMAES::getTimeStr </td>
+          <td class="memname">std::string <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::getTimeStr </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
-          <td><code> [private]</code></td>
+          <td><code> [inline, private]</code></td>
         </tr>
       </table>
 </div>
@@ -769,32 +802,34 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3c64f274b16f97bb8e3284134ddb80e0"></a><!-- doxytag: member="CMAES::householder" ref="a3c64f274b16f97bb8e3284134ddb80e0" args="(double **V, double *d, double *e)" -->
+<a class="anchor" id="ae861a4dac0f11adfdc0096cfbcdcbd07"></a><!-- doxytag: member="CMAES::householder" ref="ae861a4dac0f11adfdc0096cfbcdcbd07" args="(T **V, T *d, T *e)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void CMAES::householder </td>
+          <td class="memname">void <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::householder </td>
           <td>(</td>
-          <td class="paramtype">double **&#160;</td>
+          <td class="paramtype">T **&#160;</td>
           <td class="paramname"><em>V</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>d</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>e</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [private]</code></td>
+          <td></td><td><code> [inline, private]</code></td>
         </tr>
       </table>
 </div>
@@ -813,16 +848,18 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a55fc3154b6e7be236fa86e6cc24f0b79"></a><!-- doxytag: member="CMAES::init" ref="a55fc3154b6e7be236fa86e6cc24f0b79" args="(const Parameters &amp;parameters)" -->
+<a class="anchor" id="ad9f4e1888c672a88821fef4de2d71193"></a><!-- doxytag: member="CMAES::init" ref="ad9f4e1888c672a88821fef4de2d71193" args="(const Parameters&lt; T &gt; &amp;parameters)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double * CMAES::init </td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::init </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classParameters.html">Parameters</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classParameters.html">Parameters</a>&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>parameters</em></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -835,36 +872,38 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Array of size lambda that can be used to assign fitness values and pass them to <a class="el" href="classCMAES.html#a1be4734deb345a72316ecb20755e93d8" title="Core procedure of the CMA-ES algorithm.">updateDistribution()</a>. Not that after the desctructor was called, the array is deleted. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Array of size lambda that can be used to assign fitness values and pass them to <a class="el" href="classCMAES.html#aca72ba65586cc02ecd9325eb0cc420a0" title="Core procedure of the CMA-ES algorithm.">updateDistribution()</a>. Not that after the desctructor was called, the array is deleted. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a0801a07c0b0b7ffc764fb0c2e5a343fa"></a><!-- doxytag: member="CMAES::perturbSolutionInto" ref="a0801a07c0b0b7ffc764fb0c2e5a343fa" args="(double *x, double const *xmean, double eps)" -->
+<a class="anchor" id="ad567c3fb26738c797f4312dcacb48d52"></a><!-- doxytag: member="CMAES::perturbSolutionInto" ref="ad567c3fb26738c797f4312dcacb48d52" args="(T *x, T const *pxmean, T eps)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double * CMAES::perturbSolutionInto </td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::perturbSolutionInto </td>
           <td>(</td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double const *&#160;</td>
-          <td class="paramname"><em>xmean</em>, </td>
+          <td class="paramtype">T const *&#160;</td>
+          <td class="paramname"><em>pxmean</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">T&#160;</td>
           <td class="paramname"><em>eps</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -875,7 +914,7 @@ Private Attributes</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>Solution vector that gets sampled a new value. If x == NULL new memory is allocated and must be released by the user using delete[] x. </td></tr>
-    <tr><td class="paramname">xmean</td><td>Mean vector <img class="formulaInl" alt="$\mu$" src="form_6.png"/> for perturbation. </td></tr>
+    <tr><td class="paramname">pxmean</td><td>Mean vector <img class="formulaInl" alt="$\mu$" src="form_6.png"/> for perturbation. </td></tr>
     <tr><td class="paramname">eps</td><td>Scale factor <img class="formulaInl" alt="$\epsilon$" src="form_7.png"/> for perturbation: <img class="formulaInl" alt="$x \sim \mu + \epsilon \sigma N(0,C)$" src="form_8.png"/>. </td></tr>
   </table>
   </dd>
@@ -884,32 +923,34 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a031fc879bb340a62773770be6010f552"></a><!-- doxytag: member="CMAES::ql" ref="a031fc879bb340a62773770be6010f552" args="(double *d, double *e, double **V)" -->
+<a class="anchor" id="a6bb335a1116845d5ef1bb11fc3ac5cd1"></a><!-- doxytag: member="CMAES::ql" ref="a6bb335a1116845d5ef1bb11fc3ac5cd1" args="(T *d, T *e, T **V)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void CMAES::ql </td>
+          <td class="memname">void <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::ql </td>
           <td>(</td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>d</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>e</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double **&#160;</td>
+          <td class="paramtype">T **&#160;</td>
           <td class="paramname"><em>V</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [private]</code></td>
+          <td></td><td><code> [inline, private]</code></td>
         </tr>
       </table>
 </div>
@@ -928,26 +969,28 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a70d530bd6551f5c283736f0fffdcbaa7"></a><!-- doxytag: member="CMAES::reSampleSingle" ref="a70d530bd6551f5c283736f0fffdcbaa7" args="(int i)" -->
+<a class="anchor" id="af4080d6c8baeda354674c5e94f15c682"></a><!-- doxytag: member="CMAES::reSampleSingle" ref="af4080d6c8baeda354674c5e94f15c682" args="(int i)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double *const CMAES::reSampleSingle </td>
+          <td class="memname">T* const <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::reSampleSingle </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>i</em></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Can be called after <a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions of the population as often as desired. </p>
+<p>Can be called after <a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions of the population as often as desired. </p>
 <p>Useful to implement a box constraints (boundary) handling. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>Index to an element of the returned value of <a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a>. population[index] will be resampled where <img class="formulaInl" alt="$0\leq i<\lambda$" src="form_4.png"/> must hold. </td></tr>
+    <tr><td class="paramname">i</td><td>Index to an element of the returned value of <a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a>. population[index] will be resampled where <img class="formulaInl" alt="$0\leq i<\lambda$" src="form_4.png"/> must hold. </td></tr>
   </table>
   </dd>
 </dl>
@@ -955,26 +998,28 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae5fbc6f331f766afcf15692603670924"></a><!-- doxytag: member="CMAES::reSampleSingleOld" ref="ae5fbc6f331f766afcf15692603670924" args="(double *x)" -->
+<a class="anchor" id="a0b63182a2fe2b4e977b3f0931153d166"></a><!-- doxytag: member="CMAES::reSampleSingleOld" ref="a0b63182a2fe2b4e977b3f0931153d166" args="(T *x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double const * CMAES::reSampleSingleOld </td>
+          <td class="memname">T const* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::reSampleSingleOld </td>
           <td>(</td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>x</em></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Can be called after <a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions. </p>
+<p>Can be called after <a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions. </p>
 <p>In general, the function can be used to sample as many independent mean+sigma*Normal(0,C) distributed vectors as desired. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td>Element of the return value of <a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a>, that is pop[0.. <img class="formulaInl" alt="$\lambda$" src="form_5.png"/>]. This solution vector of the population gets sampled a new value. </td></tr>
+    <tr><td class="paramname">x</td><td>Element of the return value of <a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a>, that is pop[0.. <img class="formulaInl" alt="$\lambda$" src="form_5.png"/>]. This solution vector of the population gets sampled a new value. </td></tr>
   </table>
   </dd>
 </dl>
@@ -982,42 +1027,46 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a469c7442884187bb8b349fe28b982edf"></a><!-- doxytag: member="CMAES::resumeDistribution" ref="a469c7442884187bb8b349fe28b982edf" args="(const std::string &amp;filename)" -->
+<a class="anchor" id="a6fb584672adf0a856b638cadbe2e3b84"></a><!-- doxytag: member="CMAES::resumeDistribution" ref="a6fb584672adf0a856b638cadbe2e3b84" args="(const std::string &amp;filename)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void CMAES::resumeDistribution </td>
+          <td class="memname">void <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::resumeDistribution </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>filename</em></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Allows to restart with saved internal state (distribution) variables (use <a class="el" href="classCMAES.html#a089b82855c2e9a289365afd55fbdb054">writeToFile()</a> for saving). </p>
-<p>Keyword "resume" followed by a filename in initials.par invokes this function during initialization. Searches in filename for the last occurrence of word "resume", followed by a dimension number, and reads the subsequent values for xmean, evolution paths ps and pc, sigma and covariance matrix. Note that <a class="el" href="classCMAES.html#a55fc3154b6e7be236fa86e6cc24f0b79" title="Initializes the CMA-ES algorithm.">init()</a> needs to be called before calling resume_distribution() explicitely. In the former all the remaining (strategy-)parameters are set. It can be useful to edit the written parameters, in particular to increase sigma, before resume.</p>
+<p>Allows to restart with saved internal state (distribution) variables (use <a class="el" href="classCMAES.html#a57ea7bb50956aed2aa9eb03f7233f71e">writeToFile()</a> for saving). </p>
+<p>Keyword "resume" followed by a filename in initials.par invokes this function during initialization. Searches in filename for the last occurrence of word "resume", followed by a dimension number, and reads the subsequent values for xmean, evolution paths ps and pc, sigma and covariance matrix. Note that <a class="el" href="classCMAES.html#ad9f4e1888c672a88821fef4de2d71193" title="Initializes the CMA-ES algorithm.">init()</a> needs to be called before calling resume_distribution() explicitely. In the former all the remaining (strategy-)parameters are set. It can be useful to edit the written parameters, in particular to increase sigma, before resume.</p>
 <p>Not all internal state parameters are recovered. In particular generation number and xbestever are not restored. For covariance matrices with large condition numbers the writing precision of 6 digits is not sufficient and resume will lead to poor result. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">filename</td><td>A file, that was written presumably by <a class="el" href="classCMAES.html#a089b82855c2e9a289365afd55fbdb054">writeToFile()</a>. </td></tr>
+    <tr><td class="paramname">filename</td><td>A file, that was written presumably by <a class="el" href="classCMAES.html#a57ea7bb50956aed2aa9eb03f7233f71e">writeToFile()</a>. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a722fde109ceab510d126d775ead6de28"></a><!-- doxytag: member="CMAES::samplePopulation" ref="a722fde109ceab510d126d775ead6de28" args="()" -->
+<a class="anchor" id="a125e113c39476688c546f3e065fd18f1"></a><!-- doxytag: member="CMAES::samplePopulation" ref="a125e113c39476688c546f3e065fd18f1" args="()" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double *const CMAES::samplePopulation </td>
+          <td class="memname">T* const <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::samplePopulation </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -1029,24 +1078,26 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a145b79d47ac21a32729fbf4847c1884c"></a><!-- doxytag: member="CMAES::sampleSingleInto" ref="a145b79d47ac21a32729fbf4847c1884c" args="(double *x)" -->
+<a class="anchor" id="a5e691eef09ff825b48b1db0aed3f5cd8"></a><!-- doxytag: member="CMAES::sampleSingleInto" ref="a5e691eef09ff825b48b1db0aed3f5cd8" args="(T *x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double * CMAES::sampleSingleInto </td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::sampleSingleInto </td>
           <td>(</td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>x</em></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Can be called after <a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions. </p>
+<p>Can be called after <a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> to resample single solutions. </p>
 <p>In general, the function can be used to sample as many independent mean+sigma*Normal(0,C) distributed vectors as desired.</p>
-<p>Input x can be a pointer to an element of the vector returned by <a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> but this is inconsistent with the const qualifier of the returned value and therefore rather <a class="el" href="classCMAES.html#a70d530bd6551f5c283736f0fffdcbaa7" title="Can be called after samplePopulation() to resample single solutions of the population as often as des...">reSampleSingle()</a> should be used. </p>
+<p>Input x can be a pointer to an element of the vector returned by <a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a> but this is inconsistent with the const qualifier of the returned value and therefore rather <a class="el" href="classCMAES.html#af4080d6c8baeda354674c5e94f15c682" title="Can be called after samplePopulation() to resample single solutions of the population as often as des...">reSampleSingle()</a> should be used. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>Solution vector that gets sampled a new value. If x == NULL new memory is allocated and must be released by the user using delete[]. </td></tr>
@@ -1057,15 +1108,17 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aac1cd5e4fcff9c124877fc26fe9601a2"></a><!-- doxytag: member="CMAES::sayHello" ref="aac1cd5e4fcff9c124877fc26fe9601a2" args="()" -->
+<a class="anchor" id="a514dd76a8dd20a33a3c52f0cc6af74d2"></a><!-- doxytag: member="CMAES::sayHello" ref="a514dd76a8dd20a33a3c52f0cc6af74d2" args="()" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::string CMAES::sayHello </td>
+          <td class="memname">std::string <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::sayHello </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -1076,26 +1129,28 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a22f91697a890b897f99f9140b1d4143c"></a><!-- doxytag: member="CMAES::setMean" ref="a22f91697a890b897f99f9140b1d4143c" args="(const double *xmean)" -->
+<a class="anchor" id="aa61a791319fb10455ed26a77edded44d"></a><!-- doxytag: member="CMAES::setMean" ref="aa61a791319fb10455ed26a77edded44d" args="(const T *newxmean)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double const * CMAES::setMean </td>
+          <td class="memname">T const* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::setMean </td>
           <td>(</td>
-          <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>xmean</em></td><td>)</td>
-          <td></td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>newxmean</em></td><td>)</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Distribution mean could be changed before <a class="el" href="classCMAES.html#a722fde109ceab510d126d775ead6de28" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a>. </p>
+<p>Distribution mean could be changed before <a class="el" href="classCMAES.html#a125e113c39476688c546f3e065fd18f1" title="The search space vectors have a special form: they are arrays with N+1 entries.">samplePopulation()</a>. </p>
 <p>This might lead to unexpected behaviour if done repeatedly. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">xmean</td><td>new mean, if it is NULL, it will be set to the current mean </td></tr>
+    <tr><td class="paramname">newxmean</td><td>new mean, if it is NULL, it will be set to the current mean </td></tr>
   </table>
   </dd>
 </dl>
@@ -1103,21 +1158,23 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae9d4c2d4882514850c45e3c0c8c9be6e"></a><!-- doxytag: member="CMAES::sortIndex" ref="ae9d4c2d4882514850c45e3c0c8c9be6e" args="(const double *rgFunVal, int *index, int n)" -->
+<a class="anchor" id="a6ec64a4e6821b8d568a18acd524a7611"></a><!-- doxytag: member="CMAES::sortIndex" ref="a6ec64a4e6821b8d568a18acd524a7611" args="(const T *rgFunVal, int *iindex, int n)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void CMAES::sortIndex </td>
+          <td class="memname">void <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::sortIndex </td>
           <td>(</td>
-          <td class="paramtype">const double *&#160;</td>
+          <td class="paramtype">const T *&#160;</td>
           <td class="paramname"><em>rgFunVal</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
+          <td class="paramname"><em>iindex</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1128,7 +1185,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [private]</code></td>
+          <td></td><td><code> [inline, private]</code></td>
         </tr>
       </table>
 </div>
@@ -1138,36 +1195,40 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aca4f4606738e014393158d96265b15e0"></a><!-- doxytag: member="CMAES::testForTermination" ref="aca4f4606738e014393158d96265b15e0" args="()" -->
+<a class="anchor" id="a5d3fb0bbff460e5901ef0e8a2bb2f839"></a><!-- doxytag: member="CMAES::testForTermination" ref="a5d3fb0bbff460e5901ef0e8a2bb2f839" args="()" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool CMAES::testForTermination </td>
+          <td class="memname">bool <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::testForTermination </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>Some stopping criteria can be set in initials.par, with names starting with stop... </p>
-<p>Internal stopping criteria include a maximal condition number of about 10^15 for the covariance matrix and situations where the numerical discretisation error in x-space becomes noticeably. You can get a message that contains the matched stop criteria via <a class="el" href="classCMAES.html#a5d932ee44142eafb181ecec61e6ba704" title="A message that contains a detailed description of the matched stop criteria.">getStopMessage()</a>. </p>
+<p>Internal stopping criteria include a maximal condition number of about 10^15 for the covariance matrix and situations where the numerical discretisation error in x-space becomes noticeably. You can get a message that contains the matched stop criteria via <a class="el" href="classCMAES.html#a3a09215b6efefde35c9faa5c2201c7a7" title="A message that contains a detailed description of the matched stop criteria.">getStopMessage()</a>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Does any stop criterion match? </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="adec745ab81a58aa128a4d597496d4a98"></a><!-- doxytag: member="CMAES::testMinStdDevs" ref="adec745ab81a58aa128a4d597496d4a98" args="(void)" -->
+<a class="anchor" id="a0acb1ad8ffd57032a1be02654a9d0d4a"></a><!-- doxytag: member="CMAES::testMinStdDevs" ref="a0acb1ad8ffd57032a1be02654a9d0d4a" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void CMAES::testMinStdDevs </td>
+          <td class="memname">void <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::testMinStdDevs </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
-          <td><code> [private]</code></td>
+          <td><code> [inline, private]</code></td>
         </tr>
       </table>
 </div>
@@ -1178,16 +1239,18 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1be4734deb345a72316ecb20755e93d8"></a><!-- doxytag: member="CMAES::updateDistribution" ref="a1be4734deb345a72316ecb20755e93d8" args="(const double *fitnessValues)" -->
+<a class="anchor" id="aca72ba65586cc02ecd9325eb0cc420a0"></a><!-- doxytag: member="CMAES::updateDistribution" ref="aca72ba65586cc02ecd9325eb0cc420a0" args="(const T *fitnessValues)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double * CMAES::updateDistribution </td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::updateDistribution </td>
           <td>(</td>
-          <td class="paramtype">const double *&#160;</td>
+          <td class="paramtype">const T *&#160;</td>
           <td class="paramname"><em>fitnessValues</em></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -1205,16 +1268,18 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3836af14f32d5f224d8e9bac03ced84a"></a><!-- doxytag: member="CMAES::updateEigensystem" ref="a3836af14f32d5f224d8e9bac03ced84a" args="(bool force)" -->
+<a class="anchor" id="ae0dcc966a2b41a9f35724c5f65e87cf5"></a><!-- doxytag: member="CMAES::updateEigensystem" ref="ae0dcc966a2b41a9f35724c5f65e87cf5" args="(bool force)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void CMAES::updateEigensystem </td>
+          <td class="memname">void <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::updateEigensystem </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>force</em></td><td>)</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -1230,12 +1295,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a089b82855c2e9a289365afd55fbdb054"></a><!-- doxytag: member="CMAES::writeToFile" ref="a089b82855c2e9a289365afd55fbdb054" args="(int key, const std::string &amp;filename)" -->
+<a class="anchor" id="a57ea7bb50956aed2aa9eb03f7233f71e"></a><!-- doxytag: member="CMAES::writeToFile" ref="a57ea7bb50956aed2aa9eb03f7233f71e" args="(int key, const std::string &amp;filename)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void CMAES::writeToFile </td>
+          <td class="memname">void <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::writeToFile </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>key</em>, </td>
@@ -1249,7 +1316,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
@@ -1264,12 +1331,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="afb9f250141a96e4032d8c34e7895ec17"></a><!-- doxytag: member="CMAES::writeToStream" ref="afb9f250141a96e4032d8c34e7895ec17" args="(int key, std::ostream &amp;file)" -->
+<a class="anchor" id="a886643be9124a2910aa765ad04e4ca84"></a><!-- doxytag: member="CMAES::writeToStream" ref="a886643be9124a2910aa765ad04e4ca84" args="(int key, std::ostream &amp;file)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void CMAES::writeToStream </td>
+          <td class="memname">void <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::writeToStream </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>key</em>, </td>
@@ -1283,7 +1352,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [private]</code></td>
+          <td></td><td><code> [inline, private]</code></td>
         </tr>
       </table>
 </div>
@@ -1295,12 +1364,14 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="ae1aaa3d9590f5d9e2d619ff3f6584682"></a><!-- doxytag: member="CMAES::arFuncValueHist" ref="ae1aaa3d9590f5d9e2d619ff3f6584682" args="" -->
+<a class="anchor" id="ad5c0bde5c3688de59e830e852ef17e44"></a><!-- doxytag: member="CMAES::arFuncValueHist" ref="ad5c0bde5c3688de59e830e852ef17e44" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#ae1aaa3d9590f5d9e2d619ff3f6584682">CMAES::arFuncValueHist</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#ad5c0bde5c3688de59e830e852ef17e44">arFuncValueHist</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1308,12 +1379,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a68e6210ca488626409d54c19a2839e78"></a><!-- doxytag: member="CMAES::B" ref="a68e6210ca488626409d54c19a2839e78" args="" -->
+<a class="anchor" id="ad8e754e134fdfa39a040a1d421d514f0"></a><!-- doxytag: member="CMAES::B" ref="ad8e754e134fdfa39a040a1d421d514f0" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double** <a class="el" href="classCMAES.html#a68e6210ca488626409d54c19a2839e78">CMAES::B</a><code> [private]</code></td>
+          <td class="memname">T** <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#ad8e754e134fdfa39a040a1d421d514f0">B</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1323,12 +1396,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8eb3ad8ba39c283963235f5d1bc65a04"></a><!-- doxytag: member="CMAES::C" ref="a8eb3ad8ba39c283963235f5d1bc65a04" args="" -->
+<a class="anchor" id="a0298719dac43fe97d073d33b0381169d"></a><!-- doxytag: member="CMAES::C" ref="a0298719dac43fe97d073d33b0381169d" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double** <a class="el" href="classCMAES.html#a8eb3ad8ba39c283963235f5d1bc65a04">CMAES::C</a><code> [private]</code></td>
+          <td class="memname">T** <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a0298719dac43fe97d073d33b0381169d">C</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1338,12 +1413,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4f7fa6fd358536283dee05829c8b15aa"></a><!-- doxytag: member="CMAES::chiN" ref="a4f7fa6fd358536283dee05829c8b15aa" args="" -->
+<a class="anchor" id="af5aff4dfec9d1eabe488c5f03395158f"></a><!-- doxytag: member="CMAES::chiN" ref="af5aff4dfec9d1eabe488c5f03395158f" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classCMAES.html#a4f7fa6fd358536283dee05829c8b15aa">CMAES::chiN</a><code> [private]</code></td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#af5aff4dfec9d1eabe488c5f03395158f">chiN</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1351,12 +1428,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a20167f0a9a3d1379caba2638ac219b17"></a><!-- doxytag: member="CMAES::countevals" ref="a20167f0a9a3d1379caba2638ac219b17" args="" -->
+<a class="anchor" id="a4e328b09739d2fb1a220a3d7cf4bc82c"></a><!-- doxytag: member="CMAES::countevals" ref="a4e328b09739d2fb1a220a3d7cf4bc82c" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classCMAES.html#a20167f0a9a3d1379caba2638ac219b17">CMAES::countevals</a></td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a4e328b09739d2fb1a220a3d7cf4bc82c">countevals</a></td>
         </tr>
       </table>
 </div>
@@ -1366,12 +1445,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8e2081431648f6c1e109c7b72c79795b"></a><!-- doxytag: member="CMAES::dLastMinEWgroesserNull" ref="a8e2081431648f6c1e109c7b72c79795b" args="" -->
+<a class="anchor" id="a89e9afdc9f28b153f6939039117080f1"></a><!-- doxytag: member="CMAES::dLastMinEWgroesserNull" ref="a89e9afdc9f28b153f6939039117080f1" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classCMAES.html#a8e2081431648f6c1e109c7b72c79795b">CMAES::dLastMinEWgroesserNull</a><code> [private]</code></td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a89e9afdc9f28b153f6939039117080f1">dLastMinEWgroesserNull</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1379,12 +1460,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7eac1bd3a60737544ef7da226d63d31d"></a><!-- doxytag: member="CMAES::dMaxSignifKond" ref="a7eac1bd3a60737544ef7da226d63d31d" args="" -->
+<a class="anchor" id="ae2163bc8eb11b8d28662ae985f51429b"></a><!-- doxytag: member="CMAES::dMaxSignifKond" ref="ae2163bc8eb11b8d28662ae985f51429b" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classCMAES.html#a7eac1bd3a60737544ef7da226d63d31d">CMAES::dMaxSignifKond</a><code> [private]</code></td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#ae2163bc8eb11b8d28662ae985f51429b">dMaxSignifKond</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1392,12 +1475,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae2201ed5f53b5ca38753a6f784a76b03"></a><!-- doxytag: member="CMAES::doCheckEigen" ref="ae2201ed5f53b5ca38753a6f784a76b03" args="" -->
+<a class="anchor" id="a09f393f2ef964f14f6b668bc91657650"></a><!-- doxytag: member="CMAES::doCheckEigen" ref="a09f393f2ef964f14f6b668bc91657650" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classCMAES.html#ae2201ed5f53b5ca38753a6f784a76b03">CMAES::doCheckEigen</a><code> [private]</code></td>
+          <td class="memname">bool <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a09f393f2ef964f14f6b668bc91657650">doCheckEigen</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1407,12 +1492,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a43c2cf2241820479db43ad44bf850597"></a><!-- doxytag: member="CMAES::eigensysIsUptodate" ref="a43c2cf2241820479db43ad44bf850597" args="" -->
+<a class="anchor" id="ade7b4d250edba249dfcfdc2e2396246e"></a><!-- doxytag: member="CMAES::eigensysIsUptodate" ref="ade7b4d250edba249dfcfdc2e2396246e" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classCMAES.html#a43c2cf2241820479db43ad44bf850597">CMAES::eigensysIsUptodate</a><code> [private]</code></td>
+          <td class="memname">bool <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#ade7b4d250edba249dfcfdc2e2396246e">eigensysIsUptodate</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1420,12 +1507,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9d52896c658de6f61705b29ac633666c"></a><!-- doxytag: member="CMAES::eigenTimings" ref="a9d52896c658de6f61705b29ac633666c" args="" -->
+<a class="anchor" id="a3ee3b115e387f80b409e94e1127a77dd"></a><!-- doxytag: member="CMAES::eigenTimings" ref="a3ee3b115e387f80b409e94e1127a77dd" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classTiming.html">Timing</a> <a class="el" href="classCMAES.html#a9d52896c658de6f61705b29ac633666c">CMAES::eigenTimings</a></td>
+          <td class="memname"><a class="el" href="classTiming.html">Timing</a> <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a3ee3b115e387f80b409e94e1127a77dd">eigenTimings</a></td>
         </tr>
       </table>
 </div>
@@ -1433,12 +1522,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0ab43f8189b883f426266daf31fb94f8"></a><!-- doxytag: member="CMAES::firstprinttime" ref="a0ab43f8189b883f426266daf31fb94f8" args="" -->
+<a class="anchor" id="ae5b668b5b4bacd4048c6742650801356"></a><!-- doxytag: member="CMAES::firstprinttime" ref="ae5b668b5b4bacd4048c6742650801356" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">time_t <a class="el" href="classCMAES.html#a0ab43f8189b883f426266daf31fb94f8">CMAES::firstprinttime</a><code> [private]</code></td>
+          <td class="memname">time_t <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#ae5b668b5b4bacd4048c6742650801356">firstprinttime</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1446,12 +1537,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8fd087acb3cd86d16caf751e966781dc"></a><!-- doxytag: member="CMAES::firstwritetime" ref="a8fd087acb3cd86d16caf751e966781dc" args="" -->
+<a class="anchor" id="a72e456703b11bdcd7c273a2b764faf70"></a><!-- doxytag: member="CMAES::firstwritetime" ref="a72e456703b11bdcd7c273a2b764faf70" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">time_t <a class="el" href="classCMAES.html#a8fd087acb3cd86d16caf751e966781dc">CMAES::firstwritetime</a><code> [private]</code></td>
+          <td class="memname">time_t <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a72e456703b11bdcd7c273a2b764faf70">firstwritetime</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1459,12 +1552,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a439bc63b5c1f46085f09e943e88b4c05"></a><!-- doxytag: member="CMAES::gen" ref="a439bc63b5c1f46085f09e943e88b4c05" args="" -->
+<a class="anchor" id="ad9d6f162f80c8163903883694d3970c3"></a><!-- doxytag: member="CMAES::gen" ref="ad9d6f162f80c8163903883694d3970c3" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classCMAES.html#a439bc63b5c1f46085f09e943e88b4c05">CMAES::gen</a><code> [private]</code></td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#ad9d6f162f80c8163903883694d3970c3">gen</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1474,12 +1569,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af179ac88e72245f413ede0bf69111b2a"></a><!-- doxytag: member="CMAES::genOfEigensysUpdate" ref="af179ac88e72245f413ede0bf69111b2a" args="" -->
+<a class="anchor" id="a6f4acfc9073c8320c00bb0faa9efcdcb"></a><!-- doxytag: member="CMAES::genOfEigensysUpdate" ref="a6f4acfc9073c8320c00bb0faa9efcdcb" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classCMAES.html#af179ac88e72245f413ede0bf69111b2a">CMAES::genOfEigensysUpdate</a><code> [private]</code></td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a6f4acfc9073c8320c00bb0faa9efcdcb">genOfEigensysUpdate</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1487,12 +1584,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a327af2d124781cac8f0cf7cbac38e829"></a><!-- doxytag: member="CMAES::index" ref="a327af2d124781cac8f0cf7cbac38e829" args="" -->
+<a class="anchor" id="a6e665f59b72e11cda732b4461a450eb3"></a><!-- doxytag: member="CMAES::index" ref="a6e665f59b72e11cda732b4461a450eb3" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int* <a class="el" href="classCMAES.html#a327af2d124781cac8f0cf7cbac38e829">CMAES::index</a><code> [private]</code></td>
+          <td class="memname">int* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a6e665f59b72e11cda732b4461a450eb3">index</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1502,12 +1601,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac6f52c15160194a876d035c7d0641a44"></a><!-- doxytag: member="CMAES::isResumeDone" ref="ac6f52c15160194a876d035c7d0641a44" args="" -->
+<a class="anchor" id="a5ef76c4c2d5833429dc868ed8d2c6709"></a><!-- doxytag: member="CMAES::isResumeDone" ref="a5ef76c4c2d5833429dc868ed8d2c6709" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classCMAES.html#ac6f52c15160194a876d035c7d0641a44">CMAES::isResumeDone</a><code> [private]</code></td>
+          <td class="memname">bool <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a5ef76c4c2d5833429dc868ed8d2c6709">isResumeDone</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1515,12 +1616,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a534013409293cb9ae3bdb8d03bfa9703"></a><!-- doxytag: member="CMAES::maxdiagC" ref="a534013409293cb9ae3bdb8d03bfa9703" args="" -->
+<a class="anchor" id="a93eee1dc0a955f05fcabb5db15b64886"></a><!-- doxytag: member="CMAES::maxdiagC" ref="a93eee1dc0a955f05fcabb5db15b64886" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classCMAES.html#a534013409293cb9ae3bdb8d03bfa9703">CMAES::maxdiagC</a><code> [private]</code></td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a93eee1dc0a955f05fcabb5db15b64886">maxdiagC</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1530,12 +1633,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3d34af1a0b5e99070ddbb7b371fdb0f6"></a><!-- doxytag: member="CMAES::maxEW" ref="a3d34af1a0b5e99070ddbb7b371fdb0f6" args="" -->
+<a class="anchor" id="ae36bc85cdd41cb3db39b99a0303f6b6e"></a><!-- doxytag: member="CMAES::maxEW" ref="ae36bc85cdd41cb3db39b99a0303f6b6e" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classCMAES.html#a3d34af1a0b5e99070ddbb7b371fdb0f6">CMAES::maxEW</a><code> [private]</code></td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#ae36bc85cdd41cb3db39b99a0303f6b6e">maxEW</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1543,12 +1648,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac487518f220a5fc61704303bed198154"></a><!-- doxytag: member="CMAES::mindiagC" ref="ac487518f220a5fc61704303bed198154" args="" -->
+<a class="anchor" id="a0fc9beb46f3685e1f49f2575de3ce026"></a><!-- doxytag: member="CMAES::mindiagC" ref="a0fc9beb46f3685e1f49f2575de3ce026" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classCMAES.html#ac487518f220a5fc61704303bed198154">CMAES::mindiagC</a><code> [private]</code></td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a0fc9beb46f3685e1f49f2575de3ce026">mindiagC</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1556,12 +1663,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a360f7434691b26fdb924f6afb772ad4b"></a><!-- doxytag: member="CMAES::minEW" ref="a360f7434691b26fdb924f6afb772ad4b" args="" -->
+<a class="anchor" id="a9796be17293ba4549946392565368f41"></a><!-- doxytag: member="CMAES::minEW" ref="a9796be17293ba4549946392565368f41" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classCMAES.html#a360f7434691b26fdb924f6afb772ad4b">CMAES::minEW</a><code> [private]</code></td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a9796be17293ba4549946392565368f41">minEW</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1569,12 +1678,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ade3c99de4e1fd6ceceef0d9d03ce7bac"></a><!-- doxytag: member="CMAES::printtime" ref="ade3c99de4e1fd6ceceef0d9d03ce7bac" args="" -->
+<a class="anchor" id="a31915e1cc29d88faee41c1f45d3d5a2a"></a><!-- doxytag: member="CMAES::printtime" ref="a31915e1cc29d88faee41c1f45d3d5a2a" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">time_t <a class="el" href="classCMAES.html#ade3c99de4e1fd6ceceef0d9d03ce7bac">CMAES::printtime</a><code> [private]</code></td>
+          <td class="memname">time_t <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a31915e1cc29d88faee41c1f45d3d5a2a">printtime</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1582,27 +1693,31 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aac908352cba564b9c9dfb30bd0e888b6"></a><!-- doxytag: member="CMAES::publicFitness" ref="aac908352cba564b9c9dfb30bd0e888b6" args="" -->
+<a class="anchor" id="a4ed94ed86d47a4903cb11eacd1f703e5"></a><!-- doxytag: member="CMAES::publicFitness" ref="a4ed94ed86d47a4903cb11eacd1f703e5" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#aac908352cba564b9c9dfb30bd0e888b6">CMAES::publicFitness</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a4ed94ed86d47a4903cb11eacd1f703e5">publicFitness</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>returned by <a class="el" href="classCMAES.html#a55fc3154b6e7be236fa86e6cc24f0b79" title="Initializes the CMA-ES algorithm.">init()</a> </p>
+<p>returned by <a class="el" href="classCMAES.html#ad9f4e1888c672a88821fef4de2d71193" title="Initializes the CMA-ES algorithm.">init()</a> </p>
 
 </div>
 </div>
-<a class="anchor" id="a07a72482c6fc177ece2cb353600bc71c"></a><!-- doxytag: member="CMAES::rand" ref="a07a72482c6fc177ece2cb353600bc71c" args="" -->
+<a class="anchor" id="a73e60929e1e08ea6f9f4a5cec6f020b4"></a><!-- doxytag: member="CMAES::rand" ref="a73e60929e1e08ea6f9f4a5cec6f020b4" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classRandom.html">Random</a> <a class="el" href="classCMAES.html#a07a72482c6fc177ece2cb353600bc71c">CMAES::rand</a><code> [private]</code></td>
+          <td class="memname"><a class="el" href="classRandom.html">Random</a>&lt;T&gt; <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a73e60929e1e08ea6f9f4a5cec6f020b4">rand</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1612,12 +1727,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af80f9d67de1750619de092bbf2a817e9"></a><!-- doxytag: member="CMAES::rgBDz" ref="af80f9d67de1750619de092bbf2a817e9" args="" -->
+<a class="anchor" id="af70aca7676a8a393591e3813dfd244c6"></a><!-- doxytag: member="CMAES::rgBDz" ref="af70aca7676a8a393591e3813dfd244c6" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#af80f9d67de1750619de092bbf2a817e9">CMAES::rgBDz</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#af70aca7676a8a393591e3813dfd244c6">rgBDz</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1627,12 +1744,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2a64769c76a7494acd4bd866213aa59a"></a><!-- doxytag: member="CMAES::rgD" ref="a2a64769c76a7494acd4bd866213aa59a" args="" -->
+<a class="anchor" id="a477663d643d114c667965d299221a1e1"></a><!-- doxytag: member="CMAES::rgD" ref="a477663d643d114c667965d299221a1e1" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#a2a64769c76a7494acd4bd866213aa59a">CMAES::rgD</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a477663d643d114c667965d299221a1e1">rgD</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1642,12 +1761,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aace1f3ba3e4b281f9f38b53ce56f33c2"></a><!-- doxytag: member="CMAES::rgdTmp" ref="aace1f3ba3e4b281f9f38b53ce56f33c2" args="" -->
+<a class="anchor" id="a75bd9d32b150084d1e6771c7806367b9"></a><!-- doxytag: member="CMAES::rgdTmp" ref="a75bd9d32b150084d1e6771c7806367b9" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#aace1f3ba3e4b281f9f38b53ce56f33c2">CMAES::rgdTmp</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a75bd9d32b150084d1e6771c7806367b9">rgdTmp</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1657,12 +1778,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8d14f2dedaa8232751deef2dfe3b790c"></a><!-- doxytag: member="CMAES::rgFuncValue" ref="a8d14f2dedaa8232751deef2dfe3b790c" args="" -->
+<a class="anchor" id="a3766a33cf5871b68715921aa5df60118"></a><!-- doxytag: member="CMAES::rgFuncValue" ref="a3766a33cf5871b68715921aa5df60118" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#a8d14f2dedaa8232751deef2dfe3b790c">CMAES::rgFuncValue</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a3766a33cf5871b68715921aa5df60118">rgFuncValue</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1670,12 +1793,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0a6f4d56111c77de1804fb7c645932bd"></a><!-- doxytag: member="CMAES::rgout" ref="a0a6f4d56111c77de1804fb7c645932bd" args="" -->
+<a class="anchor" id="a0632e9bfd6e6f6db52df1e988b7d3758"></a><!-- doxytag: member="CMAES::rgout" ref="a0632e9bfd6e6f6db52df1e988b7d3758" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#a0a6f4d56111c77de1804fb7c645932bd">CMAES::rgout</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a0632e9bfd6e6f6db52df1e988b7d3758">rgout</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1683,12 +1808,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae304983b2c99abcf6dc36ea1ebd74642"></a><!-- doxytag: member="CMAES::rgpc" ref="ae304983b2c99abcf6dc36ea1ebd74642" args="" -->
+<a class="anchor" id="a959adefafdb32f8e1f56a478c28cc2b7"></a><!-- doxytag: member="CMAES::rgpc" ref="a959adefafdb32f8e1f56a478c28cc2b7" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#ae304983b2c99abcf6dc36ea1ebd74642">CMAES::rgpc</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a959adefafdb32f8e1f56a478c28cc2b7">rgpc</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1696,12 +1823,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad7a758c45c95ef37a177d8adb18591ec"></a><!-- doxytag: member="CMAES::rgps" ref="ad7a758c45c95ef37a177d8adb18591ec" args="" -->
+<a class="anchor" id="af032f05a04ebce55701225bccc9c60f7"></a><!-- doxytag: member="CMAES::rgps" ref="af032f05a04ebce55701225bccc9c60f7" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#ad7a758c45c95ef37a177d8adb18591ec">CMAES::rgps</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#af032f05a04ebce55701225bccc9c60f7">rgps</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1709,12 +1838,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5131f541c816fe648e3d4bfc8e738013"></a><!-- doxytag: member="CMAES::rgrgx" ref="a5131f541c816fe648e3d4bfc8e738013" args="" -->
+<a class="anchor" id="ae85f01391da333e830437e46671b5b4d"></a><!-- doxytag: member="CMAES::rgrgx" ref="ae85f01391da333e830437e46671b5b4d" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double** <a class="el" href="classCMAES.html#a5131f541c816fe648e3d4bfc8e738013">CMAES::rgrgx</a><code> [private]</code></td>
+          <td class="memname">T** <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#ae85f01391da333e830437e46671b5b4d">rgrgx</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1724,12 +1855,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad5f00690bceebe568304f3036293cfaa"></a><!-- doxytag: member="CMAES::rgxbestever" ref="ad5f00690bceebe568304f3036293cfaa" args="" -->
+<a class="anchor" id="a33b5fc42be0304dc3ca66f3923d6d6ed"></a><!-- doxytag: member="CMAES::rgxbestever" ref="a33b5fc42be0304dc3ca66f3923d6d6ed" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#ad5f00690bceebe568304f3036293cfaa">CMAES::rgxbestever</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a33b5fc42be0304dc3ca66f3923d6d6ed">rgxbestever</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1739,12 +1872,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa85ff315974b22a75c29b33a704596f7"></a><!-- doxytag: member="CMAES::rgxold" ref="aa85ff315974b22a75c29b33a704596f7" args="" -->
+<a class="anchor" id="a09e7f98cfed00b8847c411faaa28a935"></a><!-- doxytag: member="CMAES::rgxold" ref="a09e7f98cfed00b8847c411faaa28a935" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#aa85ff315974b22a75c29b33a704596f7">CMAES::rgxold</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a09e7f98cfed00b8847c411faaa28a935">rgxold</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1752,12 +1887,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3ae16f2606eee1dc028b82c965c139d0"></a><!-- doxytag: member="CMAES::sigma" ref="a3ae16f2606eee1dc028b82c965c139d0" args="" -->
+<a class="anchor" id="a8d4d03e74abcb95d665288c4f6298af4"></a><!-- doxytag: member="CMAES::sigma" ref="a8d4d03e74abcb95d665288c4f6298af4" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classCMAES.html#a3ae16f2606eee1dc028b82c965c139d0">CMAES::sigma</a><code> [private]</code></td>
+          <td class="memname">T <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a8d4d03e74abcb95d665288c4f6298af4">sigma</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1767,12 +1904,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a646d12979e9ce1e0cc4976ed328983ae"></a><!-- doxytag: member="CMAES::sp" ref="a646d12979e9ce1e0cc4976ed328983ae" args="" -->
+<a class="anchor" id="a1471339fa263d00131424b3436c7b2ab"></a><!-- doxytag: member="CMAES::sp" ref="a1471339fa263d00131424b3436c7b2ab" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classParameters.html">Parameters</a> <a class="el" href="classCMAES.html#a646d12979e9ce1e0cc4976ed328983ae">CMAES::sp</a><code> [private]</code></td>
+          <td class="memname"><a class="el" href="classParameters.html">Parameters</a>&lt;T&gt; <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a1471339fa263d00131424b3436c7b2ab">sp</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1782,12 +1921,12 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a125bbfab3f9a3de9f09ee1eca83a9539"></a><!-- doxytag: member="CMAES::state" ref="a125bbfab3f9a3de9f09ee1eca83a9539" args="" -->
+<a class="anchor" id="a2259ba2fee168dac1aed9a5de7e9703e"></a><!-- doxytag: member="CMAES::state" ref="a2259ba2fee168dac1aed9a5de7e9703e" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum { ... }   <a class="el" href="classCMAES.html#a125bbfab3f9a3de9f09ee1eca83a9539">CMAES::state</a><code> [private]</code></td>
+          <td class="memname">enum { ... }   <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a2259ba2fee168dac1aed9a5de7e9703e">state</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1797,12 +1936,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2f8a2dcc1661ebbb3cef5bf81eca603b"></a><!-- doxytag: member="CMAES::stopMessage" ref="a2f8a2dcc1661ebbb3cef5bf81eca603b" args="" -->
+<a class="anchor" id="a0146e5c3a576c5f04e33c0ec3978a2e8"></a><!-- doxytag: member="CMAES::stopMessage" ref="a0146e5c3a576c5f04e33c0ec3978a2e8" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::string <a class="el" href="classCMAES.html#a2f8a2dcc1661ebbb3cef5bf81eca603b">CMAES::stopMessage</a><code> [private]</code></td>
+          <td class="memname">std::string <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a0146e5c3a576c5f04e33c0ec3978a2e8">stopMessage</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1812,12 +1953,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4d523fa10b04d39b27286edac57e26e5"></a><!-- doxytag: member="CMAES::version" ref="a4d523fa10b04d39b27286edac57e26e5" args="" -->
+<a class="anchor" id="a39f33a47d224feccbb0f31bc3b24f922"></a><!-- doxytag: member="CMAES::version" ref="a39f33a47d224feccbb0f31bc3b24f922" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::string <a class="el" href="classCMAES.html#a4d523fa10b04d39b27286edac57e26e5">CMAES::version</a><code> [private]</code></td>
+          <td class="memname">std::string <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a39f33a47d224feccbb0f31bc3b24f922">version</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1827,12 +1970,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a53c42b86b83bd87c40b9ba739dcc8d6e"></a><!-- doxytag: member="CMAES::writetime" ref="a53c42b86b83bd87c40b9ba739dcc8d6e" args="" -->
+<a class="anchor" id="a9f27aaa233806a6823b96d83059c68e1"></a><!-- doxytag: member="CMAES::writetime" ref="a9f27aaa233806a6823b96d83059c68e1" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">time_t <a class="el" href="classCMAES.html#a53c42b86b83bd87c40b9ba739dcc8d6e">CMAES::writetime</a><code> [private]</code></td>
+          <td class="memname">time_t <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#a9f27aaa233806a6823b96d83059c68e1">writetime</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1842,12 +1987,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abcb0bb1c0ce6bb74151a718f1b3a22d6"></a><!-- doxytag: member="CMAES::xmean" ref="abcb0bb1c0ce6bb74151a718f1b3a22d6" args="" -->
+<a class="anchor" id="ac98e58c55d6b24c324f4f4d520983191"></a><!-- doxytag: member="CMAES::xmean" ref="ac98e58c55d6b24c324f4f4d520983191" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">double* <a class="el" href="classCMAES.html#abcb0bb1c0ce6bb74151a718f1b3a22d6">CMAES::xmean</a><code> [private]</code></td>
+          <td class="memname">T* <a class="el" href="classCMAES.html">CMAES</a>&lt; T &gt;::<a class="el" href="classCMAES.html#ac98e58c55d6b24c324f4f4d520983191">xmean</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1857,9 +2004,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>cma-es/<a class="el" href="cmaes_8h_source.html">cmaes.h</a></li>
-<li>cma-es/<a class="el" href="cmaes_8cpp.html">cmaes.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -1876,7 +2022,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 6 2011 12:18:09 for CMA-ES by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 6 2011 12:21:04 for CMA-ES by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
