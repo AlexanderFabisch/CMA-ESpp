@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCMAES.html#a1391b6b951adf8726a41590d7cfce7a6" title="CMAES::writeToFile" alt="" coords="217,32,359,61"/>
-<area shape="rect" id="node5" href="$example1_8cpp.html#af80d58cee74312ffc22deebb824233aa" title="the optimization loop" alt="" coords="419,5,469,35"/>
-<area shape="rect" id="node7" href="$example2_8cpp.html#a91d4ba1b8effde088c93c73df924ac6f" title="Somewhat extended interface for optimizing pFun with CMAES implementing a restart procedure with incr..." alt="" coords="409,59,479,88"/>
-<area shape="rect" id="node9" href="$example2_8cpp.html#af80d58cee74312ffc22deebb824233aa" title="main" alt="" coords="528,59,579,88"/>
-</map>

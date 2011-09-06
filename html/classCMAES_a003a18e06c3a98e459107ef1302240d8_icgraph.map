@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCMAES.html#a1be4734deb345a72316ecb20755e93d8" title="Core procedure of the CMA&#45;ES algorithm." alt="" coords="183,32,364,61"/>
-<area shape="rect" id="node5" href="$example1_8cpp.html#af80d58cee74312ffc22deebb824233aa" title="the optimization loop" alt="" coords="424,5,475,35"/>
-<area shape="rect" id="node7" href="$example2_8cpp.html#a91d4ba1b8effde088c93c73df924ac6f" title="Somewhat extended interface for optimizing pFun with CMAES implementing a restart procedure with incr..." alt="" coords="415,59,484,88"/>
-<area shape="rect" id="node9" href="$example2_8cpp.html#af80d58cee74312ffc22deebb824233aa" title="main" alt="" coords="533,59,584,88"/>
-</map>
