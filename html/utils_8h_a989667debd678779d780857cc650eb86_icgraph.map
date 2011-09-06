@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCMAES.html#a722fde109ceab510d126d775ead6de28" title="CMAES::samplePopulation" alt="" coords="115,32,296,61"/>
-<area shape="rect" id="node5" href="$example1_8cpp.html#af80d58cee74312ffc22deebb824233aa" title="the optimization loop" alt="" coords="355,5,405,35"/>
-<area shape="rect" id="node7" href="$example2_8cpp.html#a91d4ba1b8effde088c93c73df924ac6f" title="Somewhat extended interface for optimizing pFun with CMAES implementing a restart procedure with incr..." alt="" coords="345,59,415,88"/>
-<area shape="rect" id="node9" href="$example2_8cpp.html#af80d58cee74312ffc22deebb824233aa" title="main" alt="" coords="464,59,515,88"/>
-</map>

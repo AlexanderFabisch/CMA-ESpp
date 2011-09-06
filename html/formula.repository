@@ -7,6 +7,5 @@
 \form#6:$\mu$
 \form#7:$\epsilon$
 \form#8:$x \sim \mu + \epsilon \sigma N(0,C)$
-\form#9:$\sigma*\sqrt{C_{ii}}$
-\form#10:$C = B \cdot D \cdot D \cdot B^T$
-\form#11:$B \cdot B^T = I$
+\form#9:$C = B \cdot D \cdot D \cdot B^T$
+\form#10:$B \cdot B^T = I$
