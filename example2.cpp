@@ -35,7 +35,6 @@ double f_gleichsys5( double const *x);
 double * optimize(double(*pFun)(double const *), int number_of_restarts, 
       double increment_factor_for_population_size);
 
-// reads from file "initials.par" here and in cmaes_init()
 int main(int argn, char **args)
 {
   typedef double (*pfun_t)(double const *); 
@@ -83,7 +82,7 @@ int main(int argn, char **args)
  */
 double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsize)
 {
-  CMAES evo;       // the optimizer
+  CMAES<double> evo; // the optimizer
   double *const*pop; // sampled population
   double *fitvals;   // objective function values of sampled population
   double fbestever=0, *xbestever=NULL; // store best solution
@@ -103,7 +102,7 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
     for(int i=0; i<dim; i++) xstart[i] = 0.5;
     double stddev[dim];
     for(int i=0; i<dim; i++) stddev[i] = 0.3;
-    Parameters parameters;
+    Parameters<double> parameters;
     // You can resume a previous run by specifying a file that contains the
     // resume data:
     //parameters.resumefile = "resumeevo2.dat";
@@ -121,7 +120,7 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
       pop = evo.samplePopulation(); // do not change content of pop
 
       /* Here optionally handle constraints etc. on pop. You may
-       * call cmaes_ReSampleSingle(&evo, i) to resample the i-th
+       * call reSampleSingle(&evo, i) to resample the i-th
        * vector pop[i], see below.  Do not change pop in any other
        * way. You may also copy and modify (repair) pop[i] only
        * for the evaluation of the fitness function and consider
@@ -130,7 +129,7 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
        */
 
       // Compute fitness value for each candidate solution
-      for(int i = 0; i < evo.get(CMAES::PopSize); ++i)
+      for(int i = 0; i < evo.get(CMAES<double>::PopSize); ++i)
       {
       /* You may resample the solution i until it lies within the
          feasible domain here, e.g. until it satisfies given  
@@ -143,7 +142,7 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
          sufficiently small to prevent quasi-infinite looping.
         */
         /* while (!is_feasible(pop[i])) 
-             cmaes_ReSampleSingle(&evo, i); 
+             evo.reSampleSingle(i); 
         */
         fitvals[i] = (*pFun)(pop[i]); 
       }
@@ -154,33 +153,33 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
       fflush(stdout);
     }
 
-    lambda = (int) (incpopsize * evo.get(CMAES::Lambda)); // needed for the restart
-    countevals = (int) evo.get(CMAES::Eval); // dito
+    lambda = (int) (incpopsize * evo.get(CMAES<double>::Lambda)); // needed for the restart
+    countevals = (int) evo.get(CMAES<double>::Eval); // dito
 
     // print some "final" output
-    std::cout << (int) evo.get(CMAES::Generation) << " generations, "
-        << (int) evo.get(CMAES::Eval) << " fevals (" << evo.eigenTimings.totaltime
-        << " sec): f(x)=" << evo.get(CMAES::Fitness) << std::endl
-        << "  (axis-ratio=" << evo.get(CMAES::MaxAxisLength) / evo.get(CMAES::MinAxisLength)
-        << ", max/min-stddev=" << evo.get(CMAES::MaxStdDev) << "/"
-        << evo.get(CMAES::MinStdDev) << ")" << std::endl
+    std::cout << (int) evo.get(CMAES<double>::Generation) << " generations, "
+        << (int) evo.get(CMAES<double>::Eval) << " fevals (" << evo.eigenTimings.totaltime
+        << " sec): f(x)=" << evo.get(CMAES<double>::Fitness) << std::endl
+        << "  (axis-ratio=" << evo.get(CMAES<double>::MaxAxisLength) / evo.get(CMAES<double>::MinAxisLength)
+        << ", max/min-stddev=" << evo.get(CMAES<double>::MaxStdDev) << "/"
+        << evo.get(CMAES<double>::MinStdDev) << ")" << std::endl
         << "Stop (run " << (irun+1) << "):" << std::endl
         << evo.getStopMessage();
 
     // write resume data
-    evo.writeToFile(CMAES::WKResume, "resumeevo2.dat");
+    evo.writeToFile(CMAES<double>::WKResume, "resumeevo2.dat");
 
     // keep best ever solution
-    if (irun == 0 || evo.get(CMAES::FBestEver) < fbestever)
+    if (irun == 0 || evo.get(CMAES<double>::FBestEver) < fbestever)
     {
-      fbestever = evo.get(CMAES::FBestEver); 
-      xbestever = evo.getInto(CMAES::XBestEver, xbestever); // alloc mem if needed
+      fbestever = evo.get(CMAES<double>::FBestEver); 
+      xbestever = evo.getInto(CMAES<double>::XBestEver, xbestever); // alloc mem if needed
     }
     // best estimator for the optimum is xmean, therefore check
-    if((fmean = (*pFun)(evo.getPtr(CMAES::XMean))) < fbestever)
+    if((fmean = (*pFun)(evo.getPtr(CMAES<double>::XMean))) < fbestever)
     {
       fbestever = fmean;
-      xbestever = evo.getInto(CMAES::XMean, xbestever);
+      xbestever = evo.getInto(CMAES<double>::XMean, xbestever);
     }
 
     // abandon restarts if target fitness value was achieved or MaxFunEvals reached
@@ -277,7 +276,7 @@ double **OrthogonalBasis(int DIM) {
   static double **b;
   double sp; 
   int i,j,k;
-  Random R(2);
+  Random<double> R(2);
 
   if(b_dim != 0)
   { // Initialization was done

@@ -19,7 +19,7 @@ double fitfun(double const *x, int N)
 
 /** the optimization loop */
 int main(int argn, char **args) {
-  CMAES evo;
+  CMAES<double> evo;
   double *arFunvals, *const*pop, *xfinal;
 
   // Initialize everything into the struct evo.
@@ -28,7 +28,7 @@ int main(int argn, char **args) {
   for(int i=0; i<dim; i++) xstart[i] = 0.5;
   double stddev[dim];
   for(int i=0; i<dim; i++) stddev[i] = 0.3;
-  Parameters parameters;
+  Parameters<double> parameters;
   // TODO adjust parameters here
   parameters.init(dim, xstart, stddev);
   arFunvals = evo.init(parameters);
@@ -56,17 +56,17 @@ int main(int argn, char **args) {
     */
 
     // evaluate the new search points using fitfun from above
-    for (int i = 0; i < evo.get(CMAES::Lambda); ++i)
-      arFunvals[i] = fitfun(pop[i], (int) evo.get(CMAES::Dimension));
+    for (int i = 0; i < evo.get(CMAES<double>::Lambda); ++i)
+      arFunvals[i] = fitfun(pop[i], (int) evo.get(CMAES<double>::Dimension));
 
-    // update the search distribution used for cmaes_SampleDistribution()
+    // update the search distribution used for sampleDistribution()
     evo.updateDistribution(arFunvals);
   }
   std::cout << "Stop:" << std::endl << evo.getStopMessage() << std::endl;
-  evo.writeToFile(CMAES::WKResume, "resumeevo1.dat"); // write resumable
+  evo.writeToFile(CMAES<double>::WKResume, "resumeevo1.dat"); // write resumable
 
   // get best estimator for the optimum, xmean
-  xfinal = evo.getNew(CMAES::XMean); // "xbestever" might be used as well
+  xfinal = evo.getNew(CMAES<double>::XMean); // "xbestever" might be used as well
 
   // do something with final solution and finally release memory
   delete[] xfinal;
