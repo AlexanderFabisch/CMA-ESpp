@@ -32,7 +32,6 @@ public:
   T stopMaxFunEvals;
   T facmaxeval;
   T stopMaxIter;
-
   struct { bool flg; T val; } stStopFitness;
   T stopTolFun;
   T stopTolFunHist;
@@ -40,15 +39,41 @@ public:
   T stopTolUpXFactor;
 
   /* internal evolution strategy parameters */
-  int lambda; //!< population size
-  int mu; //!< offspring size
-  T mucov, mueff; //!< <- weights
-  T* weights; //!< <- mu, -> mueff, mucov, ccov
-  T damps; //!< <- cs, maxeval, lambda
-  T cs; //!< -> damps, <- N
-  T ccumcov; //!< <- N
-  T ccov; //!< <- mucov, <- N
-  T diagonalCov; //!< number of initial iterations
+  /**
+   * population size, number of samples per iteration, at least two,
+   * generally > 4
+   */
+  int lambda;
+  /**
+   * number of individuals used to recompute the mean
+   */
+  int mu;
+  T mucov;
+  /**
+   * variance effective selection mass, should be lambda/4
+   */
+  T mueff;
+  /**
+   * weights used to recombinate the mean sum up to one
+   */
+  T* weights;
+  /**
+   * damping parameter for step-size adaption, d = inifinity or 0 means adaption
+   * is turned off, usually close to one
+   */
+  T damps;
+  /**
+   * cs^-1 (approx. n/3) is the backward time horizon for the evolution path
+   * ps and larger than one
+   */
+  T cs;
+  T ccumcov;
+  /**
+   * ccov^-1 (approx. n/4) is the backward time horizon for the evolution path
+   * pc and larger than one
+   */
+  T ccov;
+  T diagonalCov;
   struct { T modulo; T maxtime; } updateCmode;
   T facupdateCmode;
 
@@ -116,7 +141,7 @@ public:
     return *this;
   }
 
-  /*
+  /**
    * @param dimension Dimension of the search space \f$N\f$. No default
    *                  available, must be defined here or you have to set the
    *                  member manually.
@@ -131,11 +156,8 @@ public:
    *                  several orders of magnitude. Default (NULL) is
    *                  \f$(0.3,\ldots,0.3)^T \in R^N\f$. This must be an array of
    *                  size \f$N\f$.
-   * @param lambda Population size, number of sampled candidate solutions per
-   *               generation. Default (0) is \f$4 + \lfloor 3\log{N} \rfloor\f$
    */
-  void init(int dimension = 0, const T* inxstart = 0,
-      const T* inrgsigma = 0)
+  void init(int dimension = 0, const T* inxstart = 0, const T* inrgsigma = 0)
   {
     assert((xstart || inxstart || typicalX) && "Warning: initialX undefined. "
         "typicalX = 0.5...0.5 used with NDEBUG.");

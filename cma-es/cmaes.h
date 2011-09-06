@@ -190,7 +190,13 @@ private:
   T** B; //!< matrix with normalize eigenvectors in columns
   T* rgD; //!< axis lengths
 
+  /**
+   * anisotropic evolution path (for covariance)
+   */
   T* rgpc;
+  /**
+   * isotropic evolution path (for step length)
+   */
   T* rgps;
   T* rgxold;
   T* rgout;
