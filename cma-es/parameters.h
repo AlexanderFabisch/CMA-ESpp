@@ -18,7 +18,6 @@ template<typename T>
 class Parameters
 {
   friend class CMAES<T>;
-
 public:
 
   /* input parameter */
@@ -66,7 +65,7 @@ public:
         typicalXcase(false),
         rgInitialStds(0),
         rgDiffMinChange(0),
-        stopMaxFunEvals(-1.0),
+        stopMaxFunEvals(-1),
         facmaxeval(1.0),
         stopMaxIter(-1.0),
         stopTolFun(1e-12),
@@ -186,7 +185,7 @@ public:
       else
       {
         for(int i = 0; i < N; ++i)
-          rgInitialStds[i] = 0.3;
+          rgInitialStds[i] = T(0.3);
       }
     }
 
@@ -320,12 +319,12 @@ private:
     if(stopMaxIter <= 0)
       stopMaxIter = ceil((double) (stopMaxFunEvals / lambda));
 
-    if(damps < 0)
-      damps = 1;
+    if(damps < T(0))
+      damps = T(1);
     damps = damps
-       * (1 + 2* std::max(0., sqrt((mueff - 1.) / (N + 1.)) - 1))
-       * std::max(0.3, 1. - // modify for short runs
-        (double) N / (1e-6 + std::min(stopMaxIter, stopMaxFunEvals / lambda)))
+        * (T(1) + T(2)*std::max(T(0), std::sqrt((mueff - T(1)) / (N + T(1))) - T(1)))
+        * (T) std::max(T(0.3), T(1) - // modify for short runs
+          (T) N / (T(1e-6) + std::min(stopMaxIter, stopMaxFunEvals / lambda)))
         + cs;
 
     if(updateCmode.modulo < 0)

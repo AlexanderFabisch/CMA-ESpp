@@ -260,7 +260,6 @@ private:
   {
     // compute Q diag Q^T and Q Q^T to check
     int res = 0;
-    static char s[324];
     for(int i = 0; i < sp.N; ++i)
       for(int j = 0; j < sp.N; ++j) {
         T cc = 0., dd = 0.;
@@ -270,19 +269,21 @@ private:
           dd += Q[i][k]*Q[j][k];
         }
         // check here, is the normalization the right one?
-        const bool cond1 = fabs(cc - C[i > j ? i : j][i > j ? j : i]) / sqrt(C[i][i]* C[j][j]) > 1e-10;
-        const bool cond2 = fabs(cc - C[i > j ? i : j][i > j ? j : i]) > 3e-14;
+        const bool cond1 = fabs(cc - C[i > j ? i : j][i > j ? j : i]) / sqrt(C[i][i]* C[j][j]) > T(1e-10);
+        const bool cond2 = fabs(cc - C[i > j ? i : j][i > j ? j : i]) > T(3e-14);
         if(cond1 && cond2)
         {
-          sprintf(s, "%d %d: %.17e %.17e, %e",
-                  i, j, cc, C[i > j ? i : j][i > j ? j : i], cc - C[i > j ? i : j][i > j ? j : i]);
-          assert(false && ("eigen(): imprecise result detected " + std::string(s)).c_str());
+          std::stringstream s;
+          s << i << " " << j << ": " << cc << " " << C[i > j ? i : j][i > j ? j : i]
+              << ", " << cc - C[i > j ? i : j][i > j ? j : i];
+          assert(false && ("eigen(): imprecise result detected " + s.str()).c_str());
           ++res;
         }
-        if(fabs(dd - (i == j)) > 1e-10)
+        if(std::fabs(dd - (i == j)) > T(1e-10))
         {
-          sprintf(s, "%d %d %.17e ", i, j, dd);
-          assert(false && ("eigen(): imprecise result detected (Q not orthog.)" + std::string(s)).c_str());
+          std::stringstream s;
+          s << i << " " << j << " " << dd;
+          assert(false && ("eigen(): imprecise result detected (Q not orthog.)" + s.str()).c_str());
           ++res;
         }
       }
@@ -301,29 +302,29 @@ private:
   void ql(T* d, T* e, T** V)
   {
     const int n = sp.N;
-    T f = 0.0;
-    T tst1 = 0.0;
-    const T eps = 2.22e-16; // 2.0^-52.0 = 2.22e-16
+    T f(0);
+    T tst1(0);
+    const T eps(2.22e-16); // 2.0^-52.0 = 2.22e-16
 
     // shift input e
     T* ep1 = e;
     for(T *ep2 = e+1, *const end = e+n; ep2 != end; ep1++, ep2++)
       *ep1 = *ep2;
-    *ep1 = 0.0; // never changed again
+    *ep1 = T(0); // never changed again
 
     for(int l = 0; l < n; l++)
     {
       // find small subdiagonal element
       T& el = e[l];
       T& dl = d[l];
-      const T smallSDElement = fabs(dl) + fabs(el);
+      const T smallSDElement = std::fabs(dl) + std::fabs(el);
       if(tst1 < smallSDElement)
         tst1 = smallSDElement;
       const T epsTst1 = eps*tst1;
       int m = l;
       while(m < n)
       {
-        if(fabs(e[m]) <= epsTst1) break;
+        if(std::fabs(e[m]) <= epsTst1) break;
         m++;
       }
 
@@ -333,8 +334,8 @@ private:
         do {
           T h, g = dl;
           T& dl1r = d[l+1];
-          T p = (dl1r - g) / (2.0*el);
-          T r = myhypot(p, 1.);
+          T p = (dl1r - g) / (T(2)*el);
+          T r = myhypot(p, T(1));
 
           // compute implicit shift
           if(p < 0) r = -r;
@@ -348,12 +349,12 @@ private:
 
           // implicit QL transformation.
           p = d[m];
-          T c = 1.0;
-          T c2 = 1.0;
-          T c3 = 1.0;
+          T c(1);
+          T c2(1);
+          T c3(1);
           const T el1 = e[l+1];
-          T s = 0.0;
-          T s2 = 0.0;
+          T s(0);
+          T s2(0);
           for(int i = m-1; i >= l; i--)
           {
             c3 = c2;
@@ -383,7 +384,7 @@ private:
           p = -s*s2*c3*el1*el/dl1;
           el = s*p;
           dl = c*p;
-        } while(fabs(el) > epsTst1);
+        } while(std::fabs(el) > epsTst1);
       }
       dl += f;
       el = 0.0;
@@ -416,7 +417,7 @@ private:
       T h = 0.0;
       for(T *pd = d, *const dend = d+i; pd != dend; pd++)
       {
-        scale += fabs(*pd);
+        scale += std::fabs(*pd);
       }
       if(scale == 0.0)
       {
@@ -438,7 +439,7 @@ private:
         }
         T& dim1 = d[i-1];
         T f = dim1;
-        T g = f > 0 ? -sqrt(h) : sqrt(h);
+        T g = f > 0 ? -std::sqrt(h) : std::sqrt(h);
         e[i] = scale*g;
         h = h - f* g;
         dim1 = f - g;
@@ -553,16 +554,16 @@ private:
     const int N = sp.N;
     bool diag = sp.diagonalCov == 1 || sp.diagonalCov >= gen;
 
-    if(sp.ccov != 0.)
+    if(sp.ccov != T(0))
     {
       // definitions for speeding up inner-most loop
-      const T mucovinv = 1./sp.mucov;
-      const T commonFactor = sp.ccov * (diag ? (N + 1.5) / 3. : 1.);
-      const T ccov1 = std::min(commonFactor*mucovinv, 1.);
-      const T ccovmu = std::min(commonFactor*(1.-mucovinv), 1.-ccov1);
+      const T mucovinv = T(1)/sp.mucov;
+      const T commonFactor = sp.ccov * (diag ? (N + T(1.5)) / T(3) : T(1));
+      const T ccov1 = std::min(commonFactor*mucovinv, T(1));
+      const T ccovmu = std::min(commonFactor*(T(1)-mucovinv), T(1)-ccov1);
       const T sigmasquare = sigma*sigma;
-      const T onemccov1ccovmu = 1.-ccov1-ccovmu;
-      const T longFactor = (1.-hsig)*sp.ccumcov*(2.-sp.ccumcov);
+      const T onemccov1ccovmu = T(1)-ccov1-ccovmu;
+      const T longFactor = (T(1)-hsig)*sp.ccumcov*(T(2)-sp.ccumcov);
 
       eigensysIsUptodate = false;
 
@@ -601,8 +602,8 @@ private:
       return;
 
     for(int i = 0; i < sp.N; ++i)
-      while(this->sigma* sqrt(this->C[i][i]) < this->sp.rgDiffMinChange[i])
-        this->sigma *= exp(0.05 + this->sp.cs / this->sp.damps);
+      while(this->sigma*std::sqrt(this->C[i][i]) < this->sp.rgDiffMinChange[i])
+        this->sigma *= std::exp(T(0.05) + this->sp.cs / this->sp.damps);
   }
 
   /**
@@ -674,8 +675,8 @@ private:
       file << "function evaluations " << (long) countevals << std::endl;
       file << "elapsed (CPU) time [s] " << std::setprecision(2) << eigenTimings.totaltotaltime << std::endl;
       file << "function value f(x)=" << rgrgx[index[0]][sp.N] << std::endl;
-      file << "maximal standard deviation " << sigma*sqrt(maxdiagC) << std::endl;
-      file << "minimal standard deviation " << sigma*sqrt(mindiagC) << std::endl;
+      file << "maximal standard deviation " << sigma*std::sqrt(maxdiagC) << std::endl;
+      file << "minimal standard deviation " << sigma*std::sqrt(mindiagC) << std::endl;
       file << "sigma " << sigma << std::endl;
       file << "axisratio " << (maxElement(rgD, sp.N) / minElement(rgD, sp.N)) << std::endl;
       file << "xbestever found after " << std::setprecision(0) << rgxbestever[sp.N+1]
@@ -690,7 +691,7 @@ private:
         file << " " << std::setw(12) << xmean[i] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
       file << "Standard deviation of coordinate axes (sigma*sqrt(diag(C)))" << std::endl;
       for(int i = 0; i < sp.N; ++i)
-        file << " " << std::setw(12) << sigma*sqrt(C[i][i]) << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+        file << " " << std::setw(12) << sigma*std::sqrt(C[i][i]) << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
       file << "Main axis lengths of mutation ellipsoid (sigma*diag(D))" << std::endl;
       for(int i = 0; i < sp.N; ++i)
           rgdTmp[i] = rgD[i];
@@ -717,9 +718,9 @@ private:
     {
       file << (int) gen << "\t" << (int) countevals << "\t"
           << rgFuncValue[index[0]] << "\t\t" << sigma << "  "
-          << sigma*sqrt(maxdiagC) << "\t" << sigma*sqrt(mindiagC)
+          << sigma*std::sqrt(maxdiagC) << "\t" << sigma*std::sqrt(mindiagC)
           << "\t" << std::scientific << std::setprecision(2)
-          << sqrt(maxEW / minEW) << "\t" << sqrt(minEW)
+          << std::sqrt(maxEW / minEW) << "\t" << std::sqrt(minEW)
           << "  " << eigenTimings.totaltotaltime;
       file << std::endl;
     }
@@ -836,27 +837,27 @@ public:
     version = "1.0alpha";
     stopMessage = "";
 
-    T trace = 0.;
+    T trace(0);
     for(int i = 0; i < sp.N; ++i)
       trace += sp.rgInitialStds[i]*sp.rgInitialStds[i];
-    sigma = sqrt(trace/sp.N);
+    sigma = std::sqrt(trace/sp.N);
 
-    chiN = sqrt((double) sp.N)* (1. - 1./(4.*sp.N) + 1./(21.*sp.N*sp.N));
+    chiN = std::sqrt((T) sp.N) * (T(1) - T(1)/(T(4)*sp.N) + T(1)/(T(21)*sp.N*sp.N));
     eigensysIsUptodate = true;
     doCheckEigen = false;
     genOfEigensysUpdate = 0;
     isResumeDone = false;
 
     T dtest;
-    for(dtest = 1.; dtest && dtest < 1.1*dtest; dtest *= 2.)
-      if(dtest == dtest + 1.)
+    for(dtest = T(1); dtest && dtest < T(1.1)*dtest; dtest *= T(2))
+      if(dtest == dtest + T(1))
         break;
-    dMaxSignifKond = dtest / 1000.; // not sure whether this is really save, 100 does not work well enough
+    dMaxSignifKond = dtest / T(1000); // not sure whether this is really save, 100 does not work well enough
 
     gen = 0;
     countevals = 0;
     state = INITIALIZED;
-    dLastMinEWgroesserNull = 1.0;
+    dLastMinEWgroesserNull = T(1);
     printtime = writetime = firstwritetime = firstprinttime = 0;
 
     rgpc = new T[sp.N];
@@ -921,10 +922,10 @@ public:
 
     for(int i = 0; i < sp.N; ++i)
     {
-      B[i][i] = 1.;
-      C[i][i] = rgD[i] = sp.rgInitialStds[i]*sqrt(sp.N/trace);
+      B[i][i] = T(1);
+      C[i][i] = rgD[i] = sp.rgInitialStds[i]*std::sqrt(sp.N/trace);
       C[i][i] *= C[i][i];
-      rgpc[i] = rgps[i] = 0.;
+      rgpc[i] = rgps[i] = T(0);
     }
     minEW = minElement(rgD, sp.N);
     minEW = minEW*minEW;
@@ -1123,7 +1124,7 @@ public:
       else
       {
         for(int i = 0; i < sp.N; ++i)
-          rgD[i] = sqrt(C[i][i]);
+          rgD[i] = std::sqrt(C[i][i]);
         minEW = square(minElement(rgD, sp.N));
         maxEW = square(maxElement(rgD, sp.N));
         eigensysIsUptodate = true;
@@ -1268,7 +1269,7 @@ public:
     // Test if function values are identical, escape flat fitness
     if(fitnessValues[index[0]] == fitnessValues[index[(int) sp.lambda / 2]])
     {
-      sigma *= exp(0.2 + sp.cs / sp.damps);
+      sigma *= std::exp(T(0.2) + sp.cs / sp.damps);
       assert(false && "Warning: sigma increased due to equal function values\n"
           "   Reconsider the formulation of the objective function");
     }
@@ -1286,7 +1287,7 @@ public:
         rgxbestever[N+1] = countevals;
       }
 
-    const T sqrtmueffdivsigma = sqrt(sp.mueff) / sigma;
+    const T sqrtmueffdivsigma = std::sqrt(sp.mueff) / sigma;
     // calculate xmean and rgBDz~N(0,C)
     for(int i = 0; i < N; ++i)
     {
@@ -1313,8 +1314,8 @@ public:
     }
 
     // cumulation for sigma (ps) using B*z
-    const T sqrtFactor = sqrt(sp.cs*(2.-sp.cs));
-    const T invps = 1.-sp.cs;
+    const T sqrtFactor = std::sqrt(sp.cs*(T(2)-sp.cs));
+    const T invps = T(1)-sp.cs;
     for(int i = 0; i < N; ++i)
     {
       T sum;
@@ -1322,7 +1323,7 @@ public:
         sum = rgdTmp[i];
       else
       {
-        sum = 0.;
+        sum = T(0);
         T* Bi = B[i];
         for(int j = 0; j < N; ++j)
           sum += Bi[j]*rgdTmp[j];
@@ -1331,7 +1332,7 @@ public:
     }
 
     // calculate norm(ps)^2
-    T psxps = 0.;
+    T psxps(0);
     for(int i = 0; i < N; ++i)
     {
       const T& rgpsi = rgps[i];
@@ -1339,17 +1340,18 @@ public:
     }
 
     // cumulation for covariance matrix (pc) using B*D*z~N(0,C)
-    int hsig = sqrt(psxps) / sqrt(1. - pow(1. - sp.cs, 2.* gen)) / chiN < 1.4 + 2. / (N + 1);
+    int hsig = std::sqrt(psxps) / std::sqrt(T(1) - std::pow(T(1) - sp.cs, T(2)* gen))
+        / chiN < T(1.4) + T(2) / (N + 1);
     const T ccumcovinv = 1.-sp.ccumcov;
-    const T hsigFactor = hsig*sqrt(sp.ccumcov*(2.-sp.ccumcov));
+    const T hsigFactor = hsig*std::sqrt(sp.ccumcov*(T(2)-sp.ccumcov));
     for(int i = 0; i < N; ++i)
-      rgpc[i] = ccumcovinv* rgpc[i] + hsigFactor*rgBDz[i];
+      rgpc[i] = ccumcovinv*rgpc[i] + hsigFactor*rgBDz[i];
 
     // update of C
     adaptC2(hsig);
 
     // update of sigma
-    sigma *= exp(((sqrt(psxps) / chiN) - 1.)* sp.cs / sp.damps);
+    sigma *= std::exp(((std::sqrt(psxps) / chiN) - T(1))* sp.cs / sp.damps);
 
     state = UPDATED;
     return xmean;
@@ -1377,15 +1379,15 @@ public:
       case MaxEval:
         return sp.stopMaxFunEvals;
       case MaxIter:
-        return ceil(sp.stopMaxIter);
+        return std::ceil(sp.stopMaxIter);
       case MaxAxisLength:
-        return sigma*sqrt(maxEW);
+        return sigma*std::sqrt(maxEW);
       case MinAxisLength:
-        return sigma*sqrt(minEW);
+        return sigma*std::sqrt(minEW);
       case MaxStdDev:
-        return sigma*sqrt(maxdiagC);
+        return sigma*std::sqrt(maxdiagC);
       case MinStdDev:
-        return sigma*sqrt(mindiagC);
+        return sigma*std::sqrt(mindiagC);
       case Dimension:
         return sp.N;
       case SampleSize:
@@ -1419,7 +1421,7 @@ public:
       case StdDev:
       {
         for(int i = 0; i < sp.N; ++i)
-          rgout[i] = sigma* sqrt(C[i][i]);
+          rgout[i] = sigma*std::sqrt(C[i][i]);
         return rgout;
       }
       case XBestEver:
@@ -1516,10 +1518,10 @@ public:
     // TolX
     for(i = 0, cTemp = 0; i < N; ++i)
     {
-      cTemp += (sigma* sqrt(C[i][i]) < sp.stopTolX) ? 1 : 0;
-      cTemp += (sigma* rgpc[i] < sp.stopTolX) ? 1 : 0;
+      cTemp += (sigma*std::sqrt(C[i][i]) < sp.stopTolX) ? 1 : 0;
+      cTemp += (sigma*rgpc[i] < sp.stopTolX) ? 1 : 0;
     }
-    if(cTemp == 2* N)
+    if(cTemp == 2*N)
     {
       message << "TolX: object variable changes below " << sp.stopTolX << std::endl;
     }
@@ -1527,7 +1529,7 @@ public:
     // TolUpX
     for(i = 0; i < N; ++i)
     {
-      if(sigma* sqrt(C[i][i]) > sp.stopTolUpXFactor* sp.rgInitialStds[i])
+      if(sigma*std::sqrt(C[i][i]) > sp.stopTolUpXFactor*sp.rgInitialStds[i])
         break;
     }
     if(i < N)
@@ -1567,10 +1569,10 @@ public:
     // Component of xmean is not changed anymore
     for(iKoo = 0; iKoo < N; ++iKoo)
     {
-      if(xmean[iKoo] == xmean[iKoo] + 0.2* sigma* sqrt(C[iKoo][iKoo]))
+      if(xmean[iKoo] == xmean[iKoo] + sigma*std::sqrt(C[iKoo][iKoo])/T(5))
       {
         message << "NoEffectCoordinate: standard deviation 0.2*"
-            << (sigma*sqrt(C[iKoo][iKoo])) << " in coordinate " << iKoo
+            << (sigma*std::sqrt(C[iKoo][iKoo])) << " in coordinate " << iKoo
             << " without effect" << std::endl;
         break;
       }
@@ -1659,7 +1661,7 @@ public:
       checkEigen(rgD, B);
 
     for(int i = 0; i < sp.N; ++i)
-      rgD[i] = sqrt(rgD[i]);
+      rgD[i] = std::sqrt(rgD[i]);
 
     eigensysIsUptodate = true;
     genOfEigensysUpdate = gen;
