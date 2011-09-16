@@ -112,24 +112,22 @@ Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#ae0be942ebf81f0545414294cde956305">stopTolX</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#a8c95db0771b90808700c705def716425">stopTolUpXFactor</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#af091e261d5ed864859cbba1b6ed38b8b">lambda</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">population size  <a href="#af091e261d5ed864859cbba1b6ed38b8b"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">population size, number of samples per iteration, at least two, generally &gt; 4  <a href="#af091e261d5ed864859cbba1b6ed38b8b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#a218e778535a9538e4ca24483b74505e8">mu</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">offspring size  <a href="#a218e778535a9538e4ca24483b74505e8"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">number of individuals used to recompute the mean  <a href="#a218e778535a9538e4ca24483b74505e8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#a403002fa1128091a23d40deec6158ff7">mucov</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#a0dea53bad82fba45a0bc6b45922b9cfd">mueff</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;- weights  <a href="#a0dea53bad82fba45a0bc6b45922b9cfd"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">variance effective selection mass, should be lambda/4  <a href="#a0dea53bad82fba45a0bc6b45922b9cfd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#a517ffc44e157e7c8c87073af10c3e4a4">weights</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;- mu, -&gt; mueff, mucov, ccov  <a href="#a517ffc44e157e7c8c87073af10c3e4a4"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">weights used to recombinate the mean sum up to one  <a href="#a517ffc44e157e7c8c87073af10c3e4a4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#a6f4b9da4066bc29530419997e9fd4d0a">damps</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;- cs, maxeval, lambda  <a href="#a6f4b9da4066bc29530419997e9fd4d0a"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">damping parameter for step-size adaption, d = inifinity or 0 means adaption is turned off, usually close to one  <a href="#a6f4b9da4066bc29530419997e9fd4d0a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#a610b5f60c42060b8507e060e4707f911">cs</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">-&gt; damps, &lt;- N  <a href="#a610b5f60c42060b8507e060e4707f911"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">cs^-1 (approx.  <a href="#a610b5f60c42060b8507e060e4707f911"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#a9380080c0abda9939e8151a9dd368fb1">ccumcov</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;- N  <a href="#a9380080c0abda9939e8151a9dd368fb1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#add6890b6cffb7022d3a024bb3c48dfaf">ccov</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;- mucov, &lt;- N  <a href="#add6890b6cffb7022d3a024bb3c48dfaf"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">ccov^-1 (approx.  <a href="#add6890b6cffb7022d3a024bb3c48dfaf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParameters.html#a13b4839f3654955250da309b28b79050">diagonalCov</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">number of initial iterations  <a href="#a13b4839f3654955250da309b28b79050"></a><br/></td></tr>
 <tr><td class="memItemLeft" >struct {</td></tr>
 <tr><td class="memItemLeft" >&#160;&#160;&#160;T&#160;&#160;&#160;<a class="el" href="classParameters.html#a4078de67f938c23659f362b51298b83a">modulo</a></td></tr>
 <tr><td class="memItemLeft" >&#160;&#160;&#160;T&#160;&#160;&#160;<a class="el" href="classParameters.html#a04727bb2be136b6711b4296cf6ca43d0">maxtime</a></td></tr>
@@ -289,6 +287,14 @@ template&lt;typename T&gt; </div>
       </table>
 </div>
 <div class="memdoc">
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dimension</td><td>Dimension of the search space <img class="formulaInl" alt="$N$" src="form_11.png"/>. No default available, must be defined here or you have to set the member manually. </td></tr>
+    <tr><td class="paramname">inxstart</td><td>Initial point in search space <img class="formulaInl" alt="$x_0$" src="form_12.png"/>, default (NULL) is <img class="formulaInl" alt="$(0.5,\ldots,0.5)^T + N(0, initialStdDev^2) \in R^N$" src="form_13.png"/>. This must be an array of size <img class="formulaInl" alt="$N$" src="form_11.png"/>. </td></tr>
+    <tr><td class="paramname">inrgsigma</td><td>Coordinatewise initial standard deviation of the sample distribution ( <img class="formulaInl" alt="$\sigma \cdot \sqrt{C_{ii}} = initialStdDev[i]$" src="form_14.png"/>). The expected initial distance between initialX and the optimum per coordinate should be roughly initialStdDev. The entries should not differ by several orders of magnitude. Default (NULL) is <img class="formulaInl" alt="$(0.3,\ldots,0.3)^T \in R^N$" src="form_15.png"/>. This must be an array of size <img class="formulaInl" alt="$N$" src="form_11.png"/>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -382,7 +388,8 @@ template&lt;typename T&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>&lt;- mucov, &lt;- N </p>
+<p>ccov^-1 (approx. </p>
+<p>n/4) is the backward time horizon for the evolution path pc and larger than one </p>
 
 </div>
 </div>
@@ -399,8 +406,6 @@ template&lt;typename T&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>&lt;- N </p>
-
 </div>
 </div>
 <a class="anchor" id="a610b5f60c42060b8507e060e4707f911"></a><!-- doxytag: member="Parameters::cs" ref="a610b5f60c42060b8507e060e4707f911" args="" -->
@@ -416,7 +421,8 @@ template&lt;typename T&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>-&gt; damps, &lt;- N </p>
+<p>cs^-1 (approx. </p>
+<p>n/3) is the backward time horizon for the evolution path ps and larger than one </p>
 
 </div>
 </div>
@@ -433,7 +439,7 @@ template&lt;typename T&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>&lt;- cs, maxeval, lambda </p>
+<p>damping parameter for step-size adaption, d = inifinity or 0 means adaption is turned off, usually close to one </p>
 
 </div>
 </div>
@@ -449,8 +455,6 @@ template&lt;typename T&gt; </div>
       </table>
 </div>
 <div class="memdoc">
-
-<p>number of initial iterations </p>
 
 </div>
 </div>
@@ -512,7 +516,7 @@ template&lt;typename T&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>population size </p>
+<p>population size, number of samples per iteration, at least two, generally &gt; 4 </p>
 
 </div>
 </div>
@@ -559,7 +563,7 @@ template&lt;typename T&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>offspring size </p>
+<p>number of individuals used to recompute the mean </p>
 
 </div>
 </div>
@@ -591,7 +595,7 @@ template&lt;typename T&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>&lt;- weights </p>
+<p>variance effective selection mass, should be lambda/4 </p>
 
 </div>
 </div>
@@ -846,7 +850,7 @@ template&lt;typename T&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>&lt;- mu, -&gt; mueff, mucov, ccov </p>
+<p>weights used to recombinate the mean sum up to one </p>
 
 </div>
 </div>
@@ -883,7 +887,7 @@ template&lt;typename T&gt; </div>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Sep 6 2011 12:21:04 for CMA-ES by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Sep 16 2011 17:34:54 for CMA-ES by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

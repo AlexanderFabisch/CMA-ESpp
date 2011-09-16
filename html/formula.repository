@@ -9,3 +9,8 @@
 \form#8:$x \sim \mu + \epsilon \sigma N(0,C)$
 \form#9:$C = B \cdot D \cdot D \cdot B^T$
 \form#10:$B \cdot B^T = I$
+\form#11:$N$
+\form#12:$x_0$
+\form#13:$(0.5,\ldots,0.5)^T + N(0, initialStdDev^2) \in R^N$
+\form#14:$\sigma \cdot \sqrt{C_{ii}} = initialStdDev[i]$
+\form#15:$(0.3,\ldots,0.3)^T \in R^N$
