@@ -22,7 +22,7 @@ public:
   /**
    * @param seed use clock if 0
    */
-  Random(long unsigned seed = 0)
+  Random(long unsigned seed = 0) : hold(0.0)
   {
     stored = false;
     if(seed < 1)

@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 project(cmaes)
 
 add_definitions(
-  -g
-  #-O3
+  #-g
+  -O3
   -pedantic
   -Wall
   -Wshadow
