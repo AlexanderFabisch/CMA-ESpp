@@ -66,7 +66,7 @@ int main(int argn, char **args) {
     // update the search distribution used for sampleDistribution()
     evo.updateDistribution(arFunvals);
   }
-  std::cout << "Stop:" << std::endl << evo.getStopMessage() << std::endl;
+  std::cout << "Stop:" << std::endl << evo.getStopMessage();
   evo.writeToFile(CMAES<double>::WKResume, "resumeevo1.dat"); // write resumable state of CMA-ES
 
   // get best estimator for the optimum, xmean

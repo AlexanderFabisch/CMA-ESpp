@@ -290,14 +290,18 @@ private:
           std::stringstream s;
           s << i << " " << j << ": " << cc << " " << C[i > j ? i : j][i > j ? j : i]
               << ", " << cc - C[i > j ? i : j][i > j ? j : i];
-          assert(false && ("eigen(): imprecise result detected " + s.str()).c_str());
+          if(sp.logWarnings)
+            sp.logStream << "eigen(): imprecise result detected " << s.str()
+                << std::endl;
           ++res;
         }
         if(std::fabs(dd - (i == j)) > T(1e-10))
         {
           std::stringstream s;
           s << i << " " << j << " " << dd;
-          assert(false && ("eigen(): imprecise result detected (Q not orthog.)" + s.str()).c_str());
+          if(sp.logWarnings)
+            sp.logStream << "eigen(): imprecise result detected (Q not orthog.)"
+                << s.str() << std::endl;
           ++res;
         }
       }
@@ -1270,8 +1274,8 @@ public:
 
     if(state == SAMPLED) // function values are delivered here
       countevals += sp.lambda;
-    else
-      assert(false && "updateDistribution(): unexpected state");
+    else if(sp.logWarnings)
+      sp.logStream <<  "updateDistribution(): unexpected state" << std::endl;
 
     // assign function values
     for(int i = 0; i < sp.lambda; ++i)
@@ -1284,8 +1288,11 @@ public:
     if(fitnessValues[index[0]] == fitnessValues[index[(int) sp.lambda / 2]])
     {
       sigma *= std::exp(T(0.2) + sp.cs / sp.damps);
-      assert(false && "Warning: sigma increased due to equal function values\n"
-          "   Reconsider the formulation of the objective function");
+      if(sp.logWarnings)
+      {
+        sp.logStream << "Warning: sigma increased due to equal function values"
+            << std::endl << "   Reconsider the formulation of the objective function";
+      }
     }
 
     // update function value history
@@ -1689,8 +1696,8 @@ public:
    */
   T const* setMean(const T* newxmean)
   {
-    assert(state != SAMPLED &&
-        "setMean: mean cannot be set inbetween the calls of samplePopulation and updateDistribution");
+    assert(state != SAMPLED && "setMean: mean cannot be set inbetween the calls"
+        "of samplePopulation and updateDistribution");
 
     if(newxmean && newxmean != xmean)
       for(int i = 0; i < sp.N; ++i)

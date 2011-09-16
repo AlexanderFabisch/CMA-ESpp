@@ -106,6 +106,7 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
     // You can resume a previous run by specifying a file that contains the
     // resume data:
     //parameters.resumefile = "resumeevo2.dat";
+    parameters.logWarnings = true; // warnings will be printed on std::cerr
     parameters.stopTolX = 1e-11;
     parameters.updateCmode.maxtime = 1.0;
     parameters.init(dim, xstart, stddev);

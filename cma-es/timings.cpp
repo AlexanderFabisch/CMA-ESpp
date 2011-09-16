@@ -50,14 +50,14 @@ double Timing::update()
 
 void Timing::tic()
 {
-  assert(!istic && "Warning: Timingic called twice without toc");
+  assert(!istic && "Timingic called twice without toc");
   update();
   istic = 1;
 }
 
 double Timing::toc()
 {
-  assert(istic && "Warning: Timingoc called without tic");
+  assert(istic && "Timingoc called without tic");
   update();
   lasttictoctime = tictoczwischensumme;
   tictoczwischensumme = 0;

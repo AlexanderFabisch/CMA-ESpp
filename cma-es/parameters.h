@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cassert>
 #include <cmath>
 #include <limits>
 #include <ostream>
@@ -83,6 +82,9 @@ public:
   } weightMode;
   std::string resumefile;
 
+  bool logWarnings;
+  std::ostream& logStream;
+
   Parameters()
       : N(-1),
         xstart(0),
@@ -108,7 +110,9 @@ public:
         ccov(-1),
         facupdateCmode(1),
         weightMode(UNINITIALIZED_WEIGHTS),
-        resumefile("")
+        resumefile(""),
+        logWarnings(false),
+        logStream(std::cerr)
   {
     stStopFitness.flg = false;
     stStopFitness.val = -std::numeric_limits<T>::max();
@@ -159,10 +163,13 @@ public:
    */
   void init(int dimension = 0, const T* inxstart = 0, const T* inrgsigma = 0)
   {
-    assert((xstart || inxstart || typicalX) && "Warning: initialX undefined. "
-        "typicalX = 0.5...0.5 used with NDEBUG.");
-    assert((rgInitialStds || inrgsigma) && "Warning: initialStandardDeviations "
-        "undefined. 0.3...0.3 used with NDEBUG.");
+    if(logWarnings)
+    {
+      if(!(xstart || inxstart || typicalX))
+        logStream << "Warning: initialX undefined. typicalX = 0.5...0.5." << std::endl;
+      if(!(rgInitialStds || inrgsigma))
+        logStream << "Warning: initialStandardDeviations undefined. 0.3...0.3." << std::endl;
+    }
 
     if(dimension <= 0 && N <= 0)
       throw std::runtime_error("Problem dimension N undefined.");
