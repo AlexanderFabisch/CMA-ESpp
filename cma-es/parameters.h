@@ -19,70 +19,89 @@ class Parameters
   friend class CMAES<T>;
 public:
 
-  /* input parameter */
-  int N; //!< problem dimension, must stay constant
+  /* Input parameters. */
+  //! Problem dimension, must stay constant.
+  int N;
+  //! Initial search space vector.
   T* xstart;
+  //! A typical value for a search space vector.
   T* typicalX;
+  //! Indicates that the typical x is the initial point.
   bool typicalXcase;
+  //! Initial standard deviations.
   T* rgInitialStds;
   T* rgDiffMinChange;
 
-  /* termination parameters */
+  /* Termination parameters. */
+  //! Maximal number of objective function evaluations.
   T stopMaxFunEvals;
   T facmaxeval;
+  //! Maximal number of iterations.
   T stopMaxIter;
+  //! Minimal fitness value. Only activated if flg is true.
   struct { bool flg; T val; } stStopFitness;
+  //! Minimal value difference.
   T stopTolFun;
+  //! Minimal history value difference.
   T stopTolFunHist;
+  //! Minimal search space step size.
   T stopTolX;
+  //! Defines the maximal condition number.
   T stopTolUpXFactor;
 
   /* internal evolution strategy parameters */
   /**
-   * population size, number of samples per iteration, at least two,
-   * generally > 4
+   * Population size. Number of samples per iteration, at least two,
+   * generally > 4.
    */
   int lambda;
   /**
-   * number of individuals used to recompute the mean
+   * Number of individuals used to recompute the mean.
    */
   int mu;
   T mucov;
   /**
-   * variance effective selection mass, should be lambda/4
+   * Variance effective selection mass, should be lambda/4.
    */
   T mueff;
   /**
-   * weights used to recombinate the mean sum up to one
+   * Weights used to recombinate the mean sum up to one.
    */
   T* weights;
   /**
-   * damping parameter for step-size adaption, d = inifinity or 0 means adaption
-   * is turned off, usually close to one
+   * Damping parameter for step-size adaption, d = inifinity or 0 means adaption
+   * is turned off, usually close to one.
    */
   T damps;
   /**
    * cs^-1 (approx. n/3) is the backward time horizon for the evolution path
-   * ps and larger than one
+   * ps and larger than one.
    */
   T cs;
   T ccumcov;
   /**
    * ccov^-1 (approx. n/4) is the backward time horizon for the evolution path
-   * pc and larger than one
+   * pc and larger than one.
    */
   T ccov;
   T diagonalCov;
   struct { T modulo; T maxtime; } updateCmode;
   T facupdateCmode;
 
+  /**
+   * Determines the method used to initialize the weights.
+   */
   enum Weights
   {
     UNINITIALIZED_WEIGHTS, LINEAR_WEIGHTS, EQUAL_WEIGHTS, LOG_WEIGHTS
   } weightMode;
+
+  //! File that contains an optimization state that should be resumed.
   std::string resumefile;
 
+  //! Set to true to activate logging warnings.
   bool logWarnings;
+  //! Output stream that is used to log warnings, usually std::cerr.
   std::ostream& logStream;
 
   Parameters()

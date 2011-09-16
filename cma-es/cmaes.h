@@ -1498,7 +1498,7 @@ public:
     T range, fac;
     int iAchse, iKoo;
     int diag = sp.diagonalCov == 1 || sp.diagonalCov >= gen;
-    int i, cTemp, N = sp.N;
+    int N = sp.N;
     std::stringstream message;
 
     if(stopMessage != "")
@@ -1537,7 +1537,8 @@ public:
     }
 
     // TolX
-    for(i = 0, cTemp = 0; i < N; ++i)
+    int cTemp = 0;
+    for(int i = 0; i < N; ++i)
     {
       cTemp += (sigma*std::sqrt(C[i][i]) < sp.stopTolX) ? 1 : 0;
       cTemp += (sigma*rgpc[i] < sp.stopTolX) ? 1 : 0;
@@ -1548,16 +1549,15 @@ public:
     }
 
     // TolUpX
-    for(i = 0; i < N; ++i)
+    for(int i = 0; i < N; ++i)
     {
       if(sigma*std::sqrt(C[i][i]) > sp.stopTolUpXFactor*sp.rgInitialStds[i])
+      {
+        message << "TolUpX: standard deviation increased by more than "
+            << sp.stopTolUpXFactor << ", larger initial standard deviation recommended."
+            << std::endl;
         break;
-    }
-    if(i < N)
-    {
-      message << "TolUpX: standard deviation increased by more than "
-          << sp.stopTolUpXFactor << ", larger initial standard deviation recommended \n"
-          << std::endl;
+      }
     }
 
     // Condition of C greater than dMaxSignifKond
