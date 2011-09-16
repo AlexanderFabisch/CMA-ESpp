@@ -187,7 +187,7 @@ private:
   //!< Random number generator.
   Random<T> rand;
   //!< CMA-ES parameters.
-  Parameters<T> sp;
+  Parameters<T> params;
 
   //! Step size.
   T sigma;
@@ -261,7 +261,7 @@ private:
     return timeStr.substr(0, 24);
   }
 
-  /** 
+  /**
    * Calculating eigenvalues and vectors.
    * @param rgtmp (input) N+1-dimensional vector for temporal use. 
    * @param diag (output) N eigenvalues. 
@@ -273,7 +273,7 @@ private:
 
     if(C != Q) // copy C to Q
     {
-      for(int i = 0; i < sp.N; ++i)
+      for(int i = 0; i < params.N; ++i)
         for(int j = 0; j <= i; ++j)
           Q[i][j] = Q[j][i] = C[i][j];
     }
@@ -291,10 +291,10 @@ private:
   {
     // compute Q diag Q^T and Q Q^T to check
     int res = 0;
-    for(int i = 0; i < sp.N; ++i)
-      for(int j = 0; j < sp.N; ++j) {
+    for(int i = 0; i < params.N; ++i)
+      for(int j = 0; j < params.N; ++j) {
         T cc = 0., dd = 0.;
-        for(int k = 0; k < sp.N; ++k)
+        for(int k = 0; k < params.N; ++k)
         {
           cc += diag[k]*Q[i][k]*Q[j][k];
           dd += Q[i][k]*Q[j][k];
@@ -307,8 +307,8 @@ private:
           std::stringstream s;
           s << i << " " << j << ": " << cc << " " << C[i > j ? i : j][i > j ? j : i]
               << ", " << cc - C[i > j ? i : j][i > j ? j : i];
-          if(sp.logWarnings)
-            sp.logStream << "eigen(): imprecise result detected " << s.str()
+          if(params.logWarnings)
+            params.logStream << "eigen(): imprecise result detected " << s.str()
                 << std::endl;
           ++res;
         }
@@ -316,8 +316,8 @@ private:
         {
           std::stringstream s;
           s << i << " " << j << " " << dd;
-          if(sp.logWarnings)
-            sp.logStream << "eigen(): imprecise result detected (Q not orthog.)"
+          if(params.logWarnings)
+            params.logStream << "eigen(): imprecise result detected (Q not orthog.)"
                 << s.str() << std::endl;
           ++res;
         }
@@ -336,7 +336,7 @@ private:
    */
   void ql(T* d, T* e, T** V)
   {
-    const int n = sp.N;
+    const int n = params.N;
     T f(0);
     T tst1(0);
     const T eps(2.22e-16); // 2.0^-52.0 = 2.22e-16
@@ -436,7 +436,7 @@ private:
    */
   void householder(T** V, T* d, T* e)
   {
-    const int n = sp.N;
+    const int n = params.N;
 
     for(int j = 0; j < n; j++)
     {
@@ -586,19 +586,19 @@ private:
 
   void adaptC2(const int hsig)
   {
-    const int N = sp.N;
-    bool diag = sp.diagonalCov == 1 || sp.diagonalCov >= gen;
+    const int N = params.N;
+    bool diag = params.diagonalCov == 1 || params.diagonalCov >= gen;
 
-    if(sp.ccov != T(0))
+    if(params.ccov != T(0))
     {
       // definitions for speeding up inner-most loop
-      const T mucovinv = T(1)/sp.mucov;
-      const T commonFactor = sp.ccov * (diag ? (N + T(1.5)) / T(3) : T(1));
+      const T mucovinv = T(1)/params.mucov;
+      const T commonFactor = params.ccov * (diag ? (N + T(1.5)) / T(3) : T(1));
       const T ccov1 = std::min(commonFactor*mucovinv, T(1));
       const T ccovmu = std::min(commonFactor*(T(1)-mucovinv), T(1)-ccov1);
       const T sigmasquare = sigma*sigma;
       const T onemccov1ccovmu = T(1)-ccov1-ccovmu;
-      const T longFactor = (T(1)-hsig)*sp.ccumcov*(T(2)-sp.ccumcov);
+      const T longFactor = (T(1)-hsig)*params.ccumcov*(T(2)-params.ccumcov);
 
       eigensysIsUptodate = false;
 
@@ -608,10 +608,10 @@ private:
         {
           T& Cij = C[i][j];
           Cij = onemccov1ccovmu*Cij + ccov1 * (pc[i]*pc[j] + longFactor*Cij);
-          for(int k = 0; k < sp.mu; ++k)
+          for(int k = 0; k < params.mu; ++k)
           { // additional rank mu update
             const T* rgrgxindexk = population[index[k]];
-            Cij += ccovmu*sp.weights[k] * (rgrgxindexk[i] - xold[i])
+            Cij += ccovmu*params.weights[k] * (rgrgxindexk[i] - xold[i])
                 * (rgrgxindexk[j] - xold[j]) / sigmasquare;
           }
         }
@@ -633,12 +633,12 @@ private:
    */
   void testMinStdDevs(void)
   {
-    if(!this->sp.rgDiffMinChange)
+    if(!this->params.rgDiffMinChange)
       return;
 
-    for(int i = 0; i < sp.N; ++i)
-      while(this->sigma*std::sqrt(this->C[i][i]) < this->sp.rgDiffMinChange[i])
-        this->sigma *= std::exp(T(0.05) + this->sp.cs / this->sp.damps);
+    for(int i = 0; i < params.N; ++i)
+      while(this->sigma*std::sqrt(this->C[i][i]) < this->params.rgDiffMinChange[i])
+        this->sigma *= std::exp(T(0.05) + this->params.cs / this->params.damps);
   }
 
   /**
@@ -648,12 +648,12 @@ private:
    */
   void addMutation(T* x, T eps = 1.0)
   {
-    for(int i = 0; i < sp.N; ++i)
+    for(int i = 0; i < params.N; ++i)
       tempRandom[i] = rgD[i]*rand.gauss();
-    for(int i = 0; i < sp.N; ++i)
+    for(int i = 0; i < params.N; ++i)
     {
       T sum = 0.0;
-      for(int j = 0; j < sp.N; ++j)
+      for(int j = 0; j < params.N; ++j)
         sum += B[i][j]*tempRandom[j];
       x[i] = xmean[i] + eps*sigma*sum;
     }
@@ -669,15 +669,15 @@ private:
   {
     if(key & WKResume)
     {
-      file << std::endl << "# resume " << sp.N << std::endl;
+      file << std::endl << "# resume " << params.N << std::endl;
       file << "xmean" << std::endl;
       writeToStream(WKXMean, file);
       file << "path for sigma" << std::endl;
-      for(int i = 0; i < sp.N; ++i)
-        file << ps[i] << (i == sp.N-1 ? "\n" : "\t");
+      for(int i = 0; i < params.N; ++i)
+        file << ps[i] << (i == params.N-1 ? "\n" : "\t");
       file << "path for C" << std::endl;
-      for(int i = 0; i < sp.N; ++i)
-        file << pc[i] << (i == sp.N-1 ? "\n" : "\t");
+      for(int i = 0; i < params.N; ++i)
+        file << pc[i] << (i == params.N-1 ? "\n" : "\t");
       file << "sigma " << sigma << std::endl;
       // note than B and D might not be up-to-date
       file << "covariance matrix" << std::endl;
@@ -685,13 +685,13 @@ private:
     }
     if(key & WKXMean)
     {
-      for(int i = 0; i < sp.N; ++i)
+      for(int i = 0; i < params.N; ++i)
         file << (i == 0 ? "" : "\t") << xmean[i];
       file << std::endl;
     }
     if(key & WKC)
     {
-      for(int i = 0; i < sp.N; ++i)
+      for(int i = 0; i < params.N; ++i)
         for(int j = 0; j <= i; ++j)
         {
           file << C[i][j];
@@ -706,41 +706,41 @@ private:
     {
       time_t ti = time(0);
       file << std::endl << "# --------- " << asctime(localtime(&ti)) << std::endl;
-      file << " N " << sp.N << std::endl;
+      file << " N " << params.N << std::endl;
       file << "function evaluations " << (long) countevals << std::endl;
       file << "elapsed (CPU) time [s] " << std::setprecision(2) << eigenTimings.totaltotaltime << std::endl;
-      file << "function value f(x)=" << population[index[0]][sp.N] << std::endl;
+      file << "function value f(x)=" << population[index[0]][params.N] << std::endl;
       file << "maximal standard deviation " << sigma*std::sqrt(maxdiagC) << std::endl;
       file << "minimal standard deviation " << sigma*std::sqrt(mindiagC) << std::endl;
       file << "sigma " << sigma << std::endl;
-      file << "axisratio " << (maxElement(rgD, sp.N) / minElement(rgD, sp.N)) << std::endl;
-      file << "xbestever found after " << std::setprecision(0) << xBestEver[sp.N+1]
-          << "evaluations, function value " << xBestEver[sp.N] << std::endl;
-      for(int i = 0; i < sp.N; ++i)
-        file << " " << std::setw(12) << xBestEver[i] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
-      file << "xbest (of last generation, function value " << population[index[0]][sp.N] << ")" << std::endl;
-      for(int i = 0; i < sp.N; ++i)
-        file << " " << std::setw(12) << population[index[0]][i] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+      file << "axisratio " << (maxElement(rgD, params.N) / minElement(rgD, params.N)) << std::endl;
+      file << "xbestever found after " << std::setprecision(0) << xBestEver[params.N+1]
+          << "evaluations, function value " << xBestEver[params.N] << std::endl;
+      for(int i = 0; i < params.N; ++i)
+        file << " " << std::setw(12) << xBestEver[i] << (i % 5 == 4 || i == params.N-1 ? '\n' : ' ');
+      file << "xbest (of last generation, function value " << population[index[0]][params.N] << ")" << std::endl;
+      for(int i = 0; i < params.N; ++i)
+        file << " " << std::setw(12) << population[index[0]][i] << (i % 5 == 4 || i == params.N-1 ? '\n' : ' ');
       file << "xmean" << std::endl;
-      for(int i = 0; i < sp.N; ++i)
-        file << " " << std::setw(12) << xmean[i] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+      for(int i = 0; i < params.N; ++i)
+        file << " " << std::setw(12) << xmean[i] << (i % 5 == 4 || i == params.N-1 ? '\n' : ' ');
       file << "Standard deviation of coordinate axes (sigma*sqrt(diag(C)))" << std::endl;
-      for(int i = 0; i < sp.N; ++i)
-        file << " " << std::setw(12) << sigma*std::sqrt(C[i][i]) << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+      for(int i = 0; i < params.N; ++i)
+        file << " " << std::setw(12) << sigma*std::sqrt(C[i][i]) << (i % 5 == 4 || i == params.N-1 ? '\n' : ' ');
       file << "Main axis lengths of mutation ellipsoid (sigma*diag(D))" << std::endl;
-      for(int i = 0; i < sp.N; ++i)
+      for(int i = 0; i < params.N; ++i)
           tempRandom[i] = rgD[i];
-      std::sort(tempRandom, tempRandom + sp.N);
-      for(int i = 0; i < sp.N; ++i)
-        file << " " << std::setw(12) << sigma*tempRandom[sp.N-1-i] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+      std::sort(tempRandom, tempRandom + params.N);
+      for(int i = 0; i < params.N; ++i)
+        file << " " << std::setw(12) << sigma*tempRandom[params.N-1-i] << (i % 5 == 4 || i == params.N-1 ? '\n' : ' ');
       file << "Longest axis (b_i where d_ii=max(diag(D))" << std::endl;
-      int k = maxIndex(rgD, sp.N);
-      for(int i = 0; i < sp.N; ++i)
-        file << " " << std::setw(12) << B[i][k] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+      int k = maxIndex(rgD, params.N);
+      for(int i = 0; i < params.N; ++i)
+        file << " " << std::setw(12) << B[i][k] << (i % 5 == 4 || i == params.N-1 ? '\n' : ' ');
       file << "Shortest axis (b_i where d_ii=max(diag(D))" << std::endl;
-      k = minIndex(rgD, sp.N);
-      for(int i = 0; i < sp.N; ++i)
-        file << " " << std::setw(12) << B[i][k] << (i % 5 == 4 || i == sp.N-1 ? '\n' : ' ');
+      k = minIndex(rgD, params.N);
+      for(int i = 0; i < params.N; ++i)
+        file << " " << std::setw(12) << B[i][k] << (i % 5 == 4 || i == params.N-1 ? '\n' : ' ');
       file << std::endl;
     }
     if(key & WKFewInfo)
@@ -766,13 +766,13 @@ private:
     }
     if(key & WKFitness)
     {
-      for(int i = 0; i < sp.N; ++i)
+      for(int i = 0; i < params.N; ++i)
         file << (i == 0 ? "" : "\t") << functionValues[index[i]];
       file << std::endl;
     }
     if(key & WKFBestEver)
     {
-      file << xBestEver[sp.N] << std::endl;
+      file << xBestEver[params.N] << std::endl;
     }
     if(key & WKCGeneration)
     {
@@ -784,17 +784,17 @@ private:
     }
     if(key & WKLambda)
     {
-      file << sp.lambda << std::endl;
+      file << params.lambda << std::endl;
     }
     if(key & WKB)
     {
-      int* iindex = new int[sp.N];
-      sortIndex(rgD, iindex, sp.N);
-      for(int i = 0; i < sp.N; ++i)
-        for(int j = 0; j < sp.N; ++j)
+      int* iindex = new int[params.N];
+      sortIndex(rgD, iindex, params.N);
+      for(int i = 0; i < params.N; ++i)
+        for(int j = 0; j < params.N; ++j)
         {
-          file << B[j][iindex[sp.N-1-i]];
-          if(j != sp.N-1)
+          file << B[j][iindex[params.N-1-i]];
+          if(j != params.N-1)
             file << '\t';
           else
             file << std::endl;
@@ -805,7 +805,7 @@ private:
     }
     if(key & WKXBest)
     {
-      for(int i = 0; i < sp.N; ++i)
+      for(int i = 0; i < params.N; ++i)
         file << (i == 0 ? "" : "\t") << population[index[0]][i];
       file << std::endl;
     }
@@ -817,7 +817,7 @@ private:
     }
     if(key & WKDim)
     {
-      file << sp.N;
+      file << params.N;
       file << std::endl;
     }
   }
@@ -847,12 +847,12 @@ public:
     delete[] --xBestEver;
     delete[] --output;
     delete[] rgD;
-    for(int i = 0; i < sp.N; ++i)
+    for(int i = 0; i < params.N; ++i)
     {
       delete[] C[i];
       delete[] B[i];
     }
-    for(int i = 0; i < sp.lambda; ++i)
+    for(int i = 0; i < params.lambda; ++i)
       delete[] --population[i];
     delete[] population;
     delete[] C;
@@ -872,16 +872,16 @@ public:
    */
   T* init(const Parameters<T>& parameters)
   {
-    sp = parameters;
+    params = parameters;
 
     stopMessage = "";
 
     T trace(0);
-    for(int i = 0; i < sp.N; ++i)
-      trace += sp.rgInitialStds[i]*sp.rgInitialStds[i];
-    sigma = std::sqrt(trace/sp.N);
+    for(int i = 0; i < params.N; ++i)
+      trace += params.rgInitialStds[i]*params.rgInitialStds[i];
+    sigma = std::sqrt(trace/params.N);
 
-    chiN = std::sqrt((T) sp.N) * (T(1) - T(1)/(T(4)*sp.N) + T(1)/(T(21)*sp.N*sp.N));
+    chiN = std::sqrt((T) params.N) * (T(1) - T(1)/(T(4)*params.N) + T(1)/(T(21)*params.N*params.N));
     eigensysIsUptodate = true;
     doCheckEigen = false;
     genOfEigensysUpdate = 0;
@@ -899,55 +899,55 @@ public:
     dLastMinEWgroesserNull = T(1);
     printtime = writetime = firstwritetime = firstprinttime = 0;
 
-    pc = new T[sp.N];
-    ps = new T[sp.N];
-    tempRandom = new T[sp.N+1];
-    BDz = new T[sp.N];
-    xmean = new T[sp.N+2];
-    xmean[0] = sp.N;
+    pc = new T[params.N];
+    ps = new T[params.N];
+    tempRandom = new T[params.N+1];
+    BDz = new T[params.N];
+    xmean = new T[params.N+2];
+    xmean[0] = params.N;
     ++xmean;
-    xold = new T[sp.N+2];
-    xold[0] = sp.N;
+    xold = new T[params.N+2];
+    xold[0] = params.N;
     ++xold;
-    xBestEver = new T[sp.N+3];
-    xBestEver[0] = sp.N;
+    xBestEver = new T[params.N+3];
+    xBestEver[0] = params.N;
     ++xBestEver;
-    xBestEver[sp.N] = std::numeric_limits<T>::max();
-    output = new T[sp.N+2];
-    output[0] = sp.N;
+    xBestEver[params.N] = std::numeric_limits<T>::max();
+    output = new T[params.N+2];
+    output[0] = params.N;
     ++output;
-    rgD = new T[sp.N];
-    C = new T*[sp.N];
-    B = new T*[sp.N];
-    publicFitness = new T[sp.lambda];
-    functionValues = new T[sp.lambda+1];
-    functionValues[0] = sp.lambda;
+    rgD = new T[params.N];
+    C = new T*[params.N];
+    B = new T*[params.N];
+    publicFitness = new T[params.lambda];
+    functionValues = new T[params.lambda+1];
+    functionValues[0] = params.lambda;
     ++functionValues;
-    const int historySize = 10 + (int) ceil(3.*10.*sp.N/sp.lambda);
+    const int historySize = 10 + (int) ceil(3.*10.*params.N/params.lambda);
     funcValueHistory = new T[historySize + 1];
     funcValueHistory[0] = (T) historySize;
     funcValueHistory++;
 
-    for(int i = 0; i < sp.N; ++i)
+    for(int i = 0; i < params.N; ++i)
     {
       C[i] = new T[i+1];
-      B[i] = new T[sp.N];
+      B[i] = new T[params.N];
     }
-    index = new int[sp.lambda];
-    for(int i = 0; i < sp.lambda; ++i)
+    index = new int[params.lambda];
+    for(int i = 0; i < params.lambda; ++i)
         index[i] = i;
-    population = new T*[sp.lambda];
-    for(int i = 0; i < sp.lambda; ++i)
+    population = new T*[params.lambda];
+    for(int i = 0; i < params.lambda; ++i)
     {
-      population[i] = new T[sp.N+2];
-      population[i][0] = sp.N;
+      population[i] = new T[params.N+2];
+      population[i][0] = params.N;
       population[i]++;
-      for(int j = 0; j < sp.N; j++)
+      for(int j = 0; j < params.N; j++)
         population[i][j] = 0.0;
     }
 
     // initialize newed space
-    for(int i = 0; i < sp.lambda; i++)
+    for(int i = 0; i < params.lambda; i++)
     {
       functionValues[i] = std::numeric_limits<T>::max();
     }
@@ -955,36 +955,36 @@ public:
     {
       funcValueHistory[i] = std::numeric_limits<T>::max();
     }
-    for(int i = 0; i < sp.N; ++i)
+    for(int i = 0; i < params.N; ++i)
       for(int j = 0; j < i; ++j)
         C[i][j] = B[i][j] = B[j][i] = 0.;
 
-    for(int i = 0; i < sp.N; ++i)
+    for(int i = 0; i < params.N; ++i)
     {
       B[i][i] = T(1);
-      C[i][i] = rgD[i] = sp.rgInitialStds[i]*std::sqrt(sp.N/trace);
+      C[i][i] = rgD[i] = params.rgInitialStds[i]*std::sqrt(params.N/trace);
       C[i][i] *= C[i][i];
       pc[i] = ps[i] = T(0);
     }
-    minEW = minElement(rgD, sp.N);
+    minEW = minElement(rgD, params.N);
     minEW = minEW*minEW;
-    maxEW = maxElement(rgD, sp.N);
+    maxEW = maxElement(rgD, params.N);
     maxEW = maxEW*maxEW;
 
     maxdiagC = C[0][0];
-    for(int i = 1; i < sp.N; ++i) if(maxdiagC < C[i][i]) maxdiagC = C[i][i];
+    for(int i = 1; i < params.N; ++i) if(maxdiagC < C[i][i]) maxdiagC = C[i][i];
     mindiagC = C[0][0];
-    for(int i = 1; i < sp.N; ++i) if(mindiagC > C[i][i]) mindiagC = C[i][i];
+    for(int i = 1; i < params.N; ++i) if(mindiagC > C[i][i]) mindiagC = C[i][i];
 
-    for(int i = 0; i < sp.N; ++i)
-      xmean[i] = xold[i] = sp.xstart[i];
+    for(int i = 0; i < params.N; ++i)
+      xmean[i] = xold[i] = params.xstart[i];
     // use in case xstart as typicalX
-    if(sp.typicalXcase)
-      for(int i = 0; i < sp.N; ++i)
+    if(params.typicalXcase)
+      for(int i = 0; i < params.N; ++i)
         xmean[i] += sigma*rgD[i]*rand.gauss();
 
-    if(sp.resumefile != "")
-      resumeDistribution(sp.resumefile);
+    if(params.resumefile != "")
+      resumeDistribution(params.resumefile);
 
     return publicFitness;
   }
@@ -996,10 +996,10 @@ public:
   std::string sayHello()
   {
     std::stringstream stream;
-    stream << "(" << sp.mu << "," << sp.lambda << ")-CMA-ES(mu_eff="
-        << std::setprecision(1) << sp.mueff << "), Ver=\"" << version
-        << "\", dimension=" << sp.N << ", diagonalIterations="
-        << (long) sp.diagonalCov << " (" << getTimeStr() << ")";
+    stream << "(" << params.mu << "," << params.lambda << ")-CMA-ES(mu_eff="
+        << std::setprecision(1) << params.mueff << "), Ver=\"" << version
+        << "\", dimension=" << params.N << ", diagonalIterations="
+        << (long) params.diagonalCov << " (" << getTimeStr() << ")";
     return stream.str();
   }
 
@@ -1042,7 +1042,7 @@ public:
 
     int n = 0;
     file >> n;
-    if(n != sp.N)
+    if(n != params.N)
       throw std::runtime_error("resumeDistribution(): Dimension numbers do not match");
 
     // find next "xmean" entry
@@ -1136,7 +1136,7 @@ public:
     // read C
     if(file.eof())
       throw std::runtime_error("resumeDistribution(): 'covariance matrix' not found");
-    for(int i = 0; i < sp.N; ++i)
+    for(int i = 0; i < params.N; ++i)
       for(int j = 0; j <= i; ++j)
         file >> C[i][j];
 
@@ -1153,7 +1153,7 @@ public:
    */
   T* const* samplePopulation()
   {
-    bool diag = sp.diagonalCov == 1 || sp.diagonalCov >= gen;
+    bool diag = params.diagonalCov == 1 || params.diagonalCov >= gen;
 
     // calculate eigensystem
     if(!eigensysIsUptodate)
@@ -1162,10 +1162,10 @@ public:
         updateEigensystem(false);
       else
       {
-        for(int i = 0; i < sp.N; ++i)
+        for(int i = 0; i < params.N; ++i)
           rgD[i] = std::sqrt(C[i][i]);
-        minEW = square(minElement(rgD, sp.N));
-        maxEW = square(maxElement(rgD, sp.N));
+        minEW = square(minElement(rgD, params.N));
+        maxEW = square(maxElement(rgD, params.N));
         eigensysIsUptodate = true;
         eigenTimings.start();
       }
@@ -1173,19 +1173,19 @@ public:
 
     testMinStdDevs();
 
-    for(int iNk = 0; iNk < sp.lambda; ++iNk)
+    for(int iNk = 0; iNk < params.lambda; ++iNk)
     { // generate scaled random vector D*z
       T* rgrgxink = population[iNk];
-      for(int i = 0; i < sp.N; ++i)
+      for(int i = 0; i < params.N; ++i)
         if(diag)
           rgrgxink[i] = xmean[i] + sigma*rgD[i]*rand.gauss();
         else
           tempRandom[i] = rgD[i]*rand.gauss();
       if(!diag)
-        for(int i = 0; i < sp.N; ++i) // add mutation sigma*B*(D*z)
+        for(int i = 0; i < params.N; ++i) // add mutation sigma*B*(D*z)
         {
           T sum = 0.0;
-          for(int j = 0; j < sp.N; ++j)
+          for(int j = 0; j < params.N; ++j)
             sum += B[i][j]*tempRandom[j];
           rgrgxink[i] = xmean[i] + sigma*sum;
         }
@@ -1210,7 +1210,7 @@ public:
   T* const* reSampleSingle(int i)
   {
     T* x;
-    assert(i >= 0 && i < sp.lambda &&
+    assert(i >= 0 && i < params.lambda &&
         "reSampleSingle(): index must be between 0 and sp.lambda");
     x = population[i];
     addMutation(x);
@@ -1234,7 +1234,7 @@ public:
   T* sampleSingleInto(T* x)
   {
     if(!x)
-      x = new T[sp.N];
+      x = new T[params.N];
     addMutation(x);
     return x;
   }
@@ -1271,7 +1271,7 @@ public:
   T* perturbSolutionInto(T* x, T const* pxmean, T eps)
   {
     if(!x)
-      x = new T[sp.N];
+      x = new T[params.N];
     assert(pxmean && "perturbSolutionInto(): pxmean was not given");
     addMutation(x, eps);
     return x;
@@ -1286,32 +1286,32 @@ public:
    */
   T* updateDistribution(const T* fitnessValues)
   {
-    const int N = sp.N;
-    bool diag = sp.diagonalCov == 1 || sp.diagonalCov >= gen;
+    const int N = params.N;
+    bool diag = params.diagonalCov == 1 || params.diagonalCov >= gen;
 
     assert(state != UPDATED && "updateDistribution(): You need to call "
           "samplePopulation() before update can take place.");
     assert(fitnessValues && "updateDistribution(): No fitness function value array input.");
 
     if(state == SAMPLED) // function values are delivered here
-      countevals += sp.lambda;
-    else if(sp.logWarnings)
-      sp.logStream <<  "updateDistribution(): unexpected state" << std::endl;
+      countevals += params.lambda;
+    else if(params.logWarnings)
+      params.logStream <<  "updateDistribution(): unexpected state" << std::endl;
 
     // assign function values
-    for(int i = 0; i < sp.lambda; ++i)
+    for(int i = 0; i < params.lambda; ++i)
       population[i][N] = functionValues[i] = fitnessValues[i];
 
     // Generate index
-    sortIndex(fitnessValues, index, sp.lambda);
+    sortIndex(fitnessValues, index, params.lambda);
 
     // Test if function values are identical, escape flat fitness
-    if(fitnessValues[index[0]] == fitnessValues[index[(int) sp.lambda / 2]])
+    if(fitnessValues[index[0]] == fitnessValues[index[(int) params.lambda / 2]])
     {
-      sigma *= std::exp(T(0.2) + sp.cs / sp.damps);
-      if(sp.logWarnings)
+      sigma *= std::exp(T(0.2) + params.cs / params.damps);
+      if(params.logWarnings)
       {
-        sp.logStream << "Warning: sigma increased due to equal function values"
+        params.logStream << "Warning: sigma increased due to equal function values"
             << std::endl << "   Reconsider the formulation of the objective function";
       }
     }
@@ -1329,14 +1329,14 @@ public:
         xBestEver[N+1] = countevals;
       }
 
-    const T sqrtmueffdivsigma = std::sqrt(sp.mueff) / sigma;
+    const T sqrtmueffdivsigma = std::sqrt(params.mueff) / sigma;
     // calculate xmean and rgBDz~N(0,C)
     for(int i = 0; i < N; ++i)
     {
       xold[i] = xmean[i];
       xmean[i] = 0.;
-      for(int iNk = 0; iNk < sp.mu; ++iNk)
-        xmean[i] += sp.weights[iNk]*population[index[iNk]][i];
+      for(int iNk = 0; iNk < params.mu; ++iNk)
+        xmean[i] += params.weights[iNk]*population[index[iNk]][i];
       BDz[i] = sqrtmueffdivsigma*(xmean[i]-xold[i]);
     }
 
@@ -1356,8 +1356,8 @@ public:
     }
 
     // cumulation for sigma (ps) using B*z
-    const T sqrtFactor = std::sqrt(sp.cs*(T(2)-sp.cs));
-    const T invps = T(1)-sp.cs;
+    const T sqrtFactor = std::sqrt(params.cs*(T(2)-params.cs));
+    const T invps = T(1)-params.cs;
     for(int i = 0; i < N; ++i)
     {
       T sum;
@@ -1382,10 +1382,10 @@ public:
     }
 
     // cumulation for covariance matrix (pc) using B*D*z~N(0,C)
-    int hsig = std::sqrt(psxps) / std::sqrt(T(1) - std::pow(T(1) - sp.cs, T(2)* gen))
+    int hsig = std::sqrt(psxps) / std::sqrt(T(1) - std::pow(T(1) - params.cs, T(2)* gen))
         / chiN < T(1.4) + T(2) / (N + 1);
-    const T ccumcovinv = 1.-sp.ccumcov;
-    const T hsigFactor = hsig*std::sqrt(sp.ccumcov*(T(2)-sp.ccumcov));
+    const T ccumcovinv = 1.-params.ccumcov;
+    const T hsigFactor = hsig*std::sqrt(params.ccumcov*(T(2)-params.ccumcov));
     for(int i = 0; i < N; ++i)
       pc[i] = ccumcovinv*pc[i] + hsigFactor*BDz[i];
 
@@ -1393,7 +1393,7 @@ public:
     adaptC2(hsig);
 
     // update of sigma
-    sigma *= std::exp(((std::sqrt(psxps) / chiN) - T(1))* sp.cs / sp.damps);
+    sigma *= std::exp(((std::sqrt(psxps) / chiN) - T(1))* params.cs / params.damps);
 
     state = UPDATED;
     return xmean;
@@ -1409,19 +1409,19 @@ public:
     switch(key)
     {
       case AxisRatio:
-        return maxElement(rgD, sp.N) / minElement(rgD, sp.N);
+        return maxElement(rgD, params.N) / minElement(rgD, params.N);
       case Eval:
         return countevals;
       case Fitness:
         return functionValues[index[0]];
       case FBestEver:
-        return xBestEver[sp.N];
+        return xBestEver[params.N];
       case Generation:
         return gen;
       case MaxEval:
-        return sp.stopMaxFunEvals;
+        return params.stopMaxFunEvals;
       case MaxIter:
-        return std::ceil(sp.stopMaxIter);
+        return std::ceil(params.stopMaxIter);
       case MaxAxisLength:
         return sigma*std::sqrt(maxEW);
       case MinAxisLength:
@@ -1431,9 +1431,9 @@ public:
       case MinStdDev:
         return sigma*std::sqrt(mindiagC);
       case Dimension:
-        return sp.N;
+        return params.N;
       case SampleSize:
-        return sp.lambda;
+        return params.lambda;
       case Sigma:
         return sigma;
       default:
@@ -1454,7 +1454,7 @@ public:
     {
       case DiagC:
       {
-        for(int i = 0; i < sp.N; ++i)
+        for(int i = 0; i < params.N; ++i)
           output[i] = C[i][i];
         return output;
       }
@@ -1462,7 +1462,7 @@ public:
         return rgD;
       case StdDev:
       {
-        for(int i = 0; i < sp.N; ++i)
+        for(int i = 0; i < params.N; ++i)
           output[i] = sigma*std::sqrt(C[i][i]);
         return output;
       }
@@ -1500,8 +1500,8 @@ public:
   {
     T const* res0 = getPtr(key);
     if(!res)
-      res = new T[sp.N];
-    for(int i = 0; i < sp.N; ++i)
+      res = new T[params.N];
+    for(int i = 0; i < params.N; ++i)
       res[i] = res0[i];
     return res;
   }
@@ -1518,8 +1518,8 @@ public:
   {
     T range, fac;
     int iAchse, iKoo;
-    int diag = sp.diagonalCov == 1 || sp.diagonalCov >= gen;
-    int N = sp.N;
+    int diag = params.diagonalCov == 1 || params.diagonalCov >= gen;
+    int N = params.N;
     std::stringstream message;
 
     if(stopMessage != "")
@@ -1528,23 +1528,23 @@ public:
     }
 
     // function value reached
-    if((gen > 1 || state > SAMPLED) && sp.stStopFitness.flg &&
-        functionValues[index[0]] <= sp.stStopFitness.val)
+    if((gen > 1 || state > SAMPLED) && params.stStopFitness.flg &&
+        functionValues[index[0]] <= params.stStopFitness.val)
     {
       message << "Fitness: function value " << functionValues[index[0]]
-          << " <= stopFitness (" << sp.stStopFitness.val << ")" << std::endl;
+          << " <= stopFitness (" << params.stStopFitness.val << ")" << std::endl;
     }
 
     // TolFun
     range = std::max(maxElement(funcValueHistory, (int) std::min(gen, *(funcValueHistory - 1))),
-        maxElement(functionValues, sp.lambda)) -
+        maxElement(functionValues, params.lambda)) -
         std::min(minElement(funcValueHistory, (int) std::min(gen, *(funcValueHistory - 1))),
-        minElement(functionValues, sp.lambda));
+        minElement(functionValues, params.lambda));
 
-    if(gen > 0 && range <= sp.stopTolFun)
+    if(gen > 0 && range <= params.stopTolFun)
     {
       message << "TolFun: function value differences " << range
-          << " < stopTolFun=" << sp.stopTolFun << std::endl;
+          << " < stopTolFun=" << params.stopTolFun << std::endl;
     }
 
     // TolFunHist
@@ -1552,30 +1552,30 @@ public:
     {
       range = maxElement(funcValueHistory, (int) *(funcValueHistory - 1))
           - minElement(funcValueHistory, (int) *(funcValueHistory - 1));
-      if(range <= sp.stopTolFunHist)
+      if(range <= params.stopTolFunHist)
         message << "TolFunHist: history of function value changes " << range
-            << " stopTolFunHist=" << sp.stopTolFunHist << std::endl;
+            << " stopTolFunHist=" << params.stopTolFunHist << std::endl;
     }
 
     // TolX
     int cTemp = 0;
     for(int i = 0; i < N; ++i)
     {
-      cTemp += (sigma*std::sqrt(C[i][i]) < sp.stopTolX) ? 1 : 0;
-      cTemp += (sigma*pc[i] < sp.stopTolX) ? 1 : 0;
+      cTemp += (sigma*std::sqrt(C[i][i]) < params.stopTolX) ? 1 : 0;
+      cTemp += (sigma*pc[i] < params.stopTolX) ? 1 : 0;
     }
     if(cTemp == 2*N)
     {
-      message << "TolX: object variable changes below " << sp.stopTolX << std::endl;
+      message << "TolX: object variable changes below " << params.stopTolX << std::endl;
     }
 
     // TolUpX
     for(int i = 0; i < N; ++i)
     {
-      if(sigma*std::sqrt(C[i][i]) > sp.stopTolUpXFactor*sp.rgInitialStds[i])
+      if(sigma*std::sqrt(C[i][i]) > params.stopTolUpXFactor*params.rgInitialStds[i])
       {
         message << "TolUpX: standard deviation increased by more than "
-            << sp.stopTolUpXFactor << ", larger initial standard deviation recommended."
+            << params.stopTolUpXFactor << ", larger initial standard deviation recommended."
             << std::endl;
         break;
       }
@@ -1620,15 +1620,15 @@ public:
       }
     }
 
-    if(countevals >= sp.stopMaxFunEvals)
+    if(countevals >= params.stopMaxFunEvals)
     {
       message << "MaxFunEvals: conducted function evaluations " << countevals
-          << " >= " << sp.stopMaxFunEvals << std::endl;
+          << " >= " << params.stopMaxFunEvals << std::endl;
     }
-    if(gen >= sp.stopMaxIter)
+    if(gen >= params.stopMaxIter)
     {
       message << "MaxIter: number of iterations " << gen << " >= "
-          << sp.stopMaxIter << std::endl;
+          << params.stopMaxIter << std::endl;
     }
 
     stopMessage = message.str();
@@ -1682,11 +1682,11 @@ public:
       if(eigensysIsUptodate)
         return;
       // return on modulo generation number
-      if(gen < genOfEigensysUpdate + sp.updateCmode.modulo)
+      if(gen < genOfEigensysUpdate + params.updateCmode.modulo)
         return;
       // return on time percentage
-      if(sp.updateCmode.maxtime < 1.00
-          && eigenTimings.tictoctime > sp.updateCmode.maxtime* eigenTimings.totaltime
+      if(params.updateCmode.maxtime < 1.00
+          && eigenTimings.tictoctime > params.updateCmode.maxtime* eigenTimings.totaltime
           && eigenTimings.tictoctime > 0.0002)
         return;
     }
@@ -1696,13 +1696,13 @@ public:
     eigenTimings.toc();
 
     // find largest and smallest eigenvalue, they are supposed to be sorted anyway
-    minEW = minElement(rgD, sp.N);
-    maxEW = maxElement(rgD, sp.N);
+    minEW = minElement(rgD, params.N);
+    maxEW = maxElement(rgD, params.N);
 
     if(doCheckEigen) // needs O(n^3)! writes, in case, error message in error file
       checkEigen(rgD, B);
 
-    for(int i = 0; i < sp.N; ++i)
+    for(int i = 0; i < params.N; ++i)
       rgD[i] = std::sqrt(rgD[i]);
 
     eigensysIsUptodate = true;
@@ -1721,7 +1721,7 @@ public:
         "of samplePopulation and updateDistribution");
 
     if(newxmean && newxmean != xmean)
-      for(int i = 0; i < sp.N; ++i)
+      for(int i = 0; i < params.N; ++i)
         xmean[i] = newxmean[i];
     else
       newxmean = xmean;
