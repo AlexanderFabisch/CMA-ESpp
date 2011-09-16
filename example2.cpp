@@ -91,11 +91,11 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
     lambda = 0,      // offspring population size, 0 invokes default
     countevals = 0;  // used to set for restarts
 
-  for (irun = 0; irun < nrestarts+1; ++irun) /* restarts */
+  for (irun = 0; irun < nrestarts+1; ++irun)
   {
-    /* Parameters can be set in two ways. Here as input parameter 
-     * to evo.init and as value read from signals.par by calling evo,readSignals
-     * explicitely.
+    /* Parameters can be set in two ways. Here as input parameter to evo.init()
+       and as value read from signals.par by calling evo.readSignals
+       explicitely.
      */
     const int dim = 22;
     double xstart[dim];
@@ -110,9 +110,9 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
     parameters.updateCmode.maxtime = 1.0;
     parameters.init(dim, xstart, stddev);
 
-    fitvals = evo.init(parameters); /* allocs fitvals */
+    fitvals = evo.init(parameters); // allocs fitvals
     std::cout << evo.sayHello() << std::endl;
-    evo.countevals = countevals; /* a hack, effects the output and termination */
+    evo.countevals = countevals; // a hack, effects the output and termination
 
     while(!evo.testForTermination())
     { 
@@ -120,7 +120,7 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
       pop = evo.samplePopulation(); // do not change content of pop
 
       /* Here optionally handle constraints etc. on pop. You may
-       * call reSampleSingle(&evo, i) to resample the i-th
+       * call evo.reSampleSingle(i) to resample the i-th
        * vector pop[i], see below.  Do not change pop in any other
        * way. You may also copy and modify (repair) pop[i] only
        * for the evaluation of the fitness function and consider
@@ -160,7 +160,8 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
     std::cout << (int) evo.get(CMAES<double>::Generation) << " generations, "
         << (int) evo.get(CMAES<double>::Eval) << " fevals (" << evo.eigenTimings.totaltime
         << " sec): f(x)=" << evo.get(CMAES<double>::Fitness) << std::endl
-        << "  (axis-ratio=" << evo.get(CMAES<double>::MaxAxisLength) / evo.get(CMAES<double>::MinAxisLength)
+        << "  (axis-ratio=" << evo.get(CMAES<double>::MaxAxisLength)
+            / evo.get(CMAES<double>::MinAxisLength)
         << ", max/min-stddev=" << evo.get(CMAES<double>::MaxStdDev) << "/"
         << evo.get(CMAES<double>::MinStdDev) << ")" << std::endl
         << "Stop (run " << (irun+1) << "):" << std::endl
@@ -173,7 +174,7 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
     if (irun == 0 || evo.get(CMAES<double>::FBestEver) < fbestever)
     {
       fbestever = evo.get(CMAES<double>::FBestEver); 
-      xbestever = evo.getInto(CMAES<double>::XBestEver, xbestever); // alloc mem if needed
+      xbestever = evo.getInto(CMAES<double>::XBestEver, xbestever); // allocates memory if needed
     }
     // best estimator for the optimum is xmean, therefore check
     if((fmean = (*pFun)(evo.getPtr(CMAES<double>::XMean))) < fbestever)
@@ -188,7 +189,8 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
       break;
     if(strncmp(stop.c_str(), "Manual", 6) == 0)
     {
-      printf("Press RETURN to start next run\n"); fflush(stdout);
+      printf("Press RETURN to start next run\n");
+      fflush(stdout);
       getchar();
     }
   }
@@ -471,13 +473,14 @@ double f_ellinumtest( double const *x)
   return sum;
 }
 
-/*
-  Gleichungssystem 5-dimensional von Juergen Bremer
-  Fuer jede Zeile soll gelten:
-   c_1*x[1] + c_2*x[2] + c_3*x[3] + c_4*x[4] + c_5*x[5] + c_0 = 0 
-  Deswegen geht das Quadrat der linken Seite in die 
-  Qualitaetsfunktion ein. 
-*/
+/**
+ * 5-dimensional system of equations (Juergen Bremer).
+ * For each row the following equation holds:
+ *
+ *  c_1*x[1] + c_2*x[2] + c_3*x[3] + c_4*x[4] + c_5*x[5] + c_0 = 0 
+ *
+ * This is the reason why the square of the left side is in the quality function.
+ */
 double f_gleichsys5( double const *x)
 {
   double qualitaet = 0.0;
