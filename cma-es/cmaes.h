@@ -11,17 +11,25 @@
  *
  * \section lgpl License
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License, version 2,
- * as published by the Free Software Foundation.
+ * Copyright 1996, 2003, 2007, 2011 Nikolaus Hansen, Alexander Fabisch
  *
- * This program is distributed in the hope that it will be useful,
+ * This file is part of CMA-ESpp.
+ *
+ * CMA-ESpp is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * CMA-ESpp is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with CMA-ESpp. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  * \section purpose General Purpose
  *
@@ -190,7 +198,13 @@ private:
   T** B; //!< matrix with normalize eigenvectors in columns
   T* rgD; //!< axis lengths
 
+  /**
+   * anisotropic evolution path (for covariance)
+   */
   T* rgpc;
+  /**
+   * isotropic evolution path (for step length)
+   */
   T* rgps;
   T* rgxold;
   T* rgout;
