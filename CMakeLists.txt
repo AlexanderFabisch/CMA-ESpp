@@ -8,6 +8,7 @@ add_definitions(
   -Wall
   -Wshadow
   -Wconversion
+  -DNDEBUG
 )
 
 include_directories(cma-es)
