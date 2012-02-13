@@ -35,9 +35,5 @@ add_custom_target(apidoc_forced
 )
 endif(DOXYGEN_FOUND)
 
-add_subdirectory(cma-es)
-
 add_executable(evo1 example1.cpp)
-target_link_libraries(evo1 cmaes)
 add_executable(evo2 example2.cpp)
-target_link_libraries(evo2 cmaes)
