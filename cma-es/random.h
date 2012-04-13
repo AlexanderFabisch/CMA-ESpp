@@ -26,7 +26,7 @@ public:
   {
     stored = false;
     if(seed < 1)
-      seed = (long unsigned) std::abs(100*time(0) + clock());
+      seed = (long unsigned) std::abs((long) (100*time(0) + clock()));
     start(seed);
   }
   /**
