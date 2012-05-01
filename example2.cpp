@@ -35,7 +35,7 @@ double f_gleichsys5( double const *x);
 double * optimize(double(*pFun)(double const *), int number_of_restarts, 
       double increment_factor_for_population_size);
 
-int main(int argn, char **args)
+int main(int, char**)
 {
   typedef double (*pfun_t)(double const *); 
   pfun_t rgpFun[99];  // array (range) of pointer to objective function

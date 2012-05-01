@@ -26,7 +26,10 @@ public:
   {
     stored = false;
     if(seed < 1)
-      seed = (long unsigned) std::abs((long) (100*time(0) + clock()));
+    {
+      long int t = 100*time(0) + clock();
+      seed = (long unsigned) (t < 0 ? -t : t);
+    }
     start(seed);
   }
   /**

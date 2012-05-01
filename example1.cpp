@@ -22,7 +22,7 @@ double fitfun(double const *x, int N)
 /**
  * The optimization loop.
  */
-int main(int argn, char **args) {
+int main(int, char**) {
   CMAES<double> evo;
   double *arFunvals, *const*pop, *xfinal;
 
