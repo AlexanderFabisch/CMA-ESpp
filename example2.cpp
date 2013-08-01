@@ -40,7 +40,6 @@ int main(int, char**)
   typedef double (*pfun_t)(double const *); 
   pfun_t rgpFun[99];  // array (range) of pointer to objective function
   double incpopsize = 2;
-  int maxnb;
   double *x;
 
   // Put together objective functions
@@ -62,7 +61,6 @@ int main(int, char**)
   rgpFun[21] = f_stepsphere;
   rgpFun[22] = f_ellirot;
   rgpFun[23] = f_diffpowrot;
-  maxnb = 23;
 
   int nb = 5;
   int nbrestarts = 0;
@@ -109,6 +107,7 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
     parameters.logWarnings = true; // warnings will be printed on std::cerr
     parameters.stopTolX = 1e-11;
     parameters.updateCmode.maxtime = 1.0;
+    parameters.lambda = lambda;
     parameters.init(dim, xstart, stddev);
 
     fitvals = evo.init(parameters); // allocs fitvals
@@ -199,14 +198,15 @@ double * optimize(double(*pFun)(double const *), int nrestarts, double incpopsiz
   return xbestever; // was dynamically allocated, should be deleted in the end
 }
 
-double f_rand( double const *x)
+double f_rand(double const *)
 {
   double d = (double)rand() / RAND_MAX;
   while (d == 0.)
     d = (double)rand() / RAND_MAX;
   return d; 
 }
-double f_constant( double const *x)
+
+double f_constant(double const *)
 {
   return 1; 
 }
